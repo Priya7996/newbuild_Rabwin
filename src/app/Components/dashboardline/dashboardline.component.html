@@ -11,9 +11,9 @@
             </div>
         </div>
 
-        <div class="dashboardline_page d-flex">
+        <div class="dashboardline_page">
             <div class="dashboardline_list left_side side_sec">
-
+                <div class="inner_card" *ngFor = "let val of alname" (click)="valvo(val?.line,val?.name,val?.utlization,val?.run_time,val?.stop,val?.disconnect,val?.reason)">
                 <div class="dashboardline_item active" *ngIf="val.status === 'DISCONNECT'">
                     <div>
                         <h3>{{val?.name}}</h3>
@@ -37,7 +37,7 @@
                     </div>
                     <span>{{val?.utlization}}%</span>
                 </div>
-        
+            </div>
             </div>
 
             <div class="right_side side_sec" >
