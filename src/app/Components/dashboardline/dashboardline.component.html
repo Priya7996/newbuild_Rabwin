@@ -12,7 +12,7 @@
         </div>
 
         <div class="dashboardline_page d-flex">
-            <div class="dashboardline_list left_side side_sec">
+            <div class="dashboardline_list left_side side_sec" *ngFor = "let val of alname" (click)="valvo(val?.line,val?.name,val?.utlization,val?.run_time,val?.stop,val?.disconnect,val?.reason)">
 
                 <div class="dashboardline_item active" *ngIf="val.status === 'DISCONNECT'">
                     <div>
