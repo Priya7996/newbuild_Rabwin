@@ -1,0 +1,162 @@
+<section class="page">
+
+  <div class="container_fluid pt-3">
+    <div class="page_title_sec">
+      <!-- <h2 class="sub_title">[m
+                  <mat-icon class="v-align-middle display">laptop</mat-icon>[m
+                  <span class="v-align-middle">Report</span>[m
+              </h2> -->
+
+    </div>
+    <div class="filter_sec mt-10">
+      <form [formGroup]="login" (ngSubmit)="logintest('true')">
+        <div class="filter_fields">
+          <div class="filter_field">
+            <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
+            <mat-form-field appearance="outline">
+              <mat-select placeholder="Select Machine" matNativeControl required formControlName="machine_name">
+                <mat-option value="all">All</mat-option>
+
+                <mat-option *ngFor="let machine of machine_response" [value]="machine">
+                  {{machine}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="filter_field">
+            <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
+            <mat-form-field appearance="outline">
+              <mat-select placeholder="Select Shift" matNativeControl required formControlName="shift_num">
+                <mat-option value="all">All</mat-option>
+                <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
+                  {{shift.shift_no}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- <div class="filter_field date_picker" color="primary">
+           
+                  <ejs-daterangepicker placeholder='Select a range' formControlName="date"
+                      (click)="daterangepicker.open()">
+                      <e-presets>
+                      <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
+                      <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
+                      <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
+                      <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
+                  </e-presets>
+              </ejs-daterangepicker>
+          </div> -->
+
+          <div class="datepicker_field filter_field date_picker">
+
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date">
+
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
+        </div>
+      </form>
+      <div class="table_export">
+        <button class="export_btn" (click)="export()" mat-raised-button> Export</button>
+        <!-- <a href="" class="export_btn">
+                  <i class="material-icons">
+                      file_copy
+                  </i>
+                  Export
+              </a> -->
+      </div>
+    </div>
+    <mat-card class="card_sec">
+      <div class="table_wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th rowspan="2">S.no</th>
+              <th rowspan="2">Date</th>
+
+              <th rowspan="2">Shift</th>
+              <th rowspan="2">Machine Name</th>
+              <!-- <th colspan="2">Operator Details</th> -->
+              <th colspan="11"></th>
+              <!-- <th colspan="4">Machine Details</th> -->
+            </tr>
+            <tr>
+              <!-- <th>NAME</th>[m
+[31m-                            <th>ID</th> -->
+              <!-- <th>Program No</th>
+              <th>Product Result accumulative</th> -->
+              <!-- <th>Work Order No</th> -->
+              <!-- <th>Operation No</th> -->
+              <th>Product Name</th>
+              <th>Product Result</th>
+              <th>Availabilty</th>
+              <th>Performance</th>
+              <th>Quality</th>
+              <th>OEE</th>
+              <th>Accept Count</th>
+              <th>Reject Count</th>
+              <!-- <th>Start Time</th>
+              <th>End Time</th> -->
+              <!-- <th>Spindle Load</th> -->
+
+              <!-- <th>Feed Rate</th> -->
+              <!-- <th>Utilization</th> -->
+
+              <!-- <th class="green">Run Time in (min)</th> -->
+              <!-- <th class="yellow">Setup Idle in (min)</th> -->
+              <!-- <th>Alarm time in min</th> -->
+              <!-- <th class="grey">Non Utilized Time</th> -->
+
+            </tr>
+          </thead>
+          <tbody *ngFor="let show_report of get_report; let i = index">
+            <tr>
+              <td>{{i+1}}</td>
+              <td>{{report?.date | date:'MM-dd-yyyy'}}</td>
+              <td>{{report?.shift}}</td>
+
+              <td>{{show_report?.L1Name}}</td>
+              <!-- <td>---</td>
+                      <td>---</td> -->
+              <!-- <td>{{show_report?.program_number || '---'}}</td>
+              <td>{{show_report?.productresult_accumulate || '---'}}</td> -->
+              <!-- <td>---</td> -->
+              <!-- <td>---</td> -->
+              <td>{{show_report?.productname}}</td>
+              <td>{{show_report?.productresult}}</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <td>---</td>
+              <!-- <td>{{show_report?.updatedate | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+              <td>{{show_report?.enddate | date:'yyyy-MM-dd ; HH:mm:ss'}}</td> -->
+              <!-- <td>---</td> -->
+              <!-- <td>{{show_report?.utilisation}}</td> -->
+              <!-- <td>{{show_report?.run_time}}[m
+                        <button color="primary" (click)="openDialog()" mat-button>More Info</button>[m
+                   </td> -->
+              <!-- <td>{{show_report?.idle_time}}</td> -->
+              <!-- <td>8</td> -->
+              <!-- <td>{{show_report?.disconnect}}</td> -->
+            </tr>
+          </tbody>
+        </table>
+        <mat-paginator [length]="total_count" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+          (page)="pageEvent($event)" showFirstLastButtons></mat-paginator>
+
+      </div>
+
+    </mat-card>
+  </div>
+  <div *ngIf="myLoader" class="spinner">
+    <img src="assets/images/spinner.gif">
+  </div>
+
+
+</section>

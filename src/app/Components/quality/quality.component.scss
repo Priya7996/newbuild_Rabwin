@@ -1,0 +1,21 @@
+.mat-form-field-outline {
+    background: #990000!important;
+    border-radius: 5px!important;
+}
+.mat-form-field-flex{
+    height: 59px!important;
+}
+.mat-input-element{
+    height: 40px;
+}
+.mat-form-field-wrapper{
+    background: #990000!important;
+}
+
+::ng-deep .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 330px;
+}

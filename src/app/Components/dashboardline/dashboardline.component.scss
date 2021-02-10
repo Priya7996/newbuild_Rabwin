@@ -1,0 +1,40 @@
+#vumeter{
+    height: 100px;
+}
+.overall_efficiency{
+    .circle_chart{
+        margin-top:-30px;
+        ::ng-deep svg.ng-star-inserted {
+            margin-bottom: -21px;
+        }
+    }
+}
+.dashboardline_page .right_side .utilization_load .spindle_loader.bg {
+    padding: 0px 16px!important;
+}
+.dashboardline_item_right{
+    float: right;
+}
+.dashboardline_item_left{
+    float: left;
+}
+.grid-list {
+    display: grid;
+    overflow-y: scroll;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    max-width:50%;
+    height: calc(100vh - 200px);
+  }
+  .grid-list-item {
+    background-color: #ccc;
+    display: flex;
+    padding: 0.5em;
+    margin-bottom: 20px;
+    height: 100%;
+  }
+  .grid-list-content {
+    width: 100%;
+  }

@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Setting</h2>
+<div class="close_modal">
+    <mat-icon mat-dialog-close (click)="cancel()" class="v-align-middle display" matTooltip="Close">close
+    </mat-icon>
+</div>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="settingform" class="form_sec"  autocomplete="off">
+        <div class="row_sec">
+            <mat-form-field appearance="outline">
+                <mat-label>Machine Name</mat-label>
+                <input matInput formControlName="machine" type="text" readonly>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Mean Time</mat-label>
+                <input matInput formControlName="mean_time" type="number" min="1" class="mean_time" required>
+                <mat-error *ngIf="settingform.controls['mean_time'].errors?.required">Mean Time is Required
+                </mat-error>
+                <mat-error *ngIf="settingform.controls['mean_time'].errors?.max">Please Enter value less than 60
+                </mat-error>
+                <mat-error *ngIf="settingform.controls['mean_time'].errors?.min">Please Enter value greater than
+                    5
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <mat-slide-toggle *ngIf="notificationSettings?.status" [checked]=notificationSettings.data.active
+        (change)="status($event)"></mat-slide-toggle>
+    <button mat-raised-button color="primary" type="submit" class="filter_btn btn_orange ml-16" (click)="submit()">
+        Save</button>
+</mat-dialog-actions>
