@@ -15,7 +15,7 @@ export class ReportIldeService {
    return this.http.get('shifts')
  }
  overall_report(register):Observable<any>{
-   return this.http.get('idle_reason_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date )
+   return this.http.get('idle_reports?machine=' + register.machine +'&&shift=' +register.shift +'&&date='+ register.date )
  }
  first_page_loading():Observable<any>{
    return this.http.get('previous_shift')

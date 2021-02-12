@@ -20,9 +20,9 @@
             Time &amp; Date</p>
 
           <p><span>
-              00:00:00 PM <br>
+            {{today | date:'h:mm:ss a'  }} <br>
             </span>
-            <span>01 JAN 2021</span>
+            <span>{{today | date:'dd-MM-yyyy'}}</span>
           </p>
         </div>
           <button class="btn btn_link" (click)="refresh()" matTooltip="Refresh">

@@ -20,9 +20,12 @@ export class AndonDashboardComponent implements OnInit {
   valuen:any; 
   data:any;
   myLoader = false;
+  today: number = Date.now();
 
   constructor(private router:Router,private nav:NavbarService,private service: DashboardService) {
     this.nav.show();
+    setInterval(() => {this.today = Date.now()}, 1);
+
 
    }
 

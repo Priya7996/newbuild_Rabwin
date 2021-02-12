@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ExportService } from '../shared/export.service';
 import Swal from 'sweetalert2';    
+import { map } from 'rxjs/operators';
 
 declare var gtag;
 @Component({
@@ -13,7 +14,9 @@ declare var gtag;
   styleUrls: ['./report-idle.component.scss']
 })
 export class ReportIdleComponent implements OnInit {
-
+  g_report:any;
+  time:any;
+  
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
   public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
@@ -36,6 +39,7 @@ export class ReportIdleComponent implements OnInit {
   first_loading: any;
   daterangepicker:any;
   get_duration:any;
+  startDate:any;
   status: string;
 myLoader = false;
  export_excel: any[] = [];
@@ -44,6 +48,29 @@ myLoader = false;
   constructor(private exportService: ExportService,private nav:NavbarService,private service:ReportIldeService,private fb:FormBuilder  ) { 
     this.nav.show()
   }
+
+   toSeconds = hours => {
+    let a = hours.split(':');
+    let seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+    console.log(seconds)
+    return seconds;
+  }
+
+  toHoursMinutesSeconds = totalSeconds => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    // let result = `${minutes
+    //   .toString()
+    //   .padStart(1, '0')}:${seconds.toString().padStart(2, '0')}`;
+    // if (!!hours) {
+    let result = `${hours.toString()}:${minutes
+      .toString()
+      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    // }
+    // console.log(result)
+    return result;
+  };
     ngOnInit() {
 
       
@@ -57,23 +84,24 @@ myLoader = false;
       })
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
-        this.login.patchValue({
-          machine_name: this.machine_response[0],
-        })
+        // this.login.patchValue({
+        //   machine_name: this.machine_response[0],
+        // })
         this.service.getshift().subscribe(res => {
           this.shift_response = res;
-          this.login.patchValue({
-            shift_num: this.shift_response[0].shift_no,
-          })
-          this.service.first_page_loading().subscribe(res => {
-            this.first_loading = res;
-            this.login.patchValue({
-              date : [this.first_loading['from_date'],this.first_loading['to_date']]
-            })
+          // this.login.patchValue({
+          //   shift_num: this.shift_response[0].shift_no,
+          // })
+          // this.service.first_page_loading().subscribe(res => {
+          //   this.first_loading = res.from_date;
+          //   console.log(this.first_loading)
+          //   this.login.patchValue({
+          //     date : this.first_loading
+          //   })
             // this.minDate = this.first_loading['from_date']
             // this.maxDate = this.first_loading['to_date']
-            this.logintest('true');
-          })
+          //   this.logintest('true');
+          // })
         })
       })
   }
@@ -110,29 +138,42 @@ myLoader = false;
 
   logintest(s) {
     this.status = s;
-    this.myLoader = true;
+    // this.myLoader = true;
 
     // this.maxDate = this.datepipe.transform(this.maxDate);
-    console.log(this.minDate)
-    console.log(this.login.value)
-    if (this.status == 'true') {
-      this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
-      this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
-      let register = {
-        "machine_name": this.login.value.machine_name,
-        "shift_num": this.login.value.shift_num,
-        "date": this.new_date + '-' + this.new_date1
-      }
+    // console.log(this.minDate)
+    this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'yyyy-MM-dd');
+    // console.log(this.login.value.date)
 
+    // if (this.status == 'true') {
+    //   this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
+    //   this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
+      let register = {
+        "machine": this.login.value.machine_name,
+        "shift": this.login.value.shift_num,
+        "date": this.login.value.date
+      }
+console.log(register);
       this.service.overall_report(register).subscribe(res => {
-        this.myLoader = false;
-        this.get_report = res.tabel;
-        console.log(res.time);
-        this.get_duration = res.time;
-        console.log(res.tabel);
+        // this.myLoader = false;
+        console.log(res[0]);
+         this.g_report = res[0];
+         this.get_report = res[0].data;
+        this.time = this.toHoursMinutesSeconds( res[0].data[0].time);
+        console.log(this.time );
+
+        this.get_duration = this.toHoursMinutesSeconds(res[0].total);
+        console.log(this.get_duration)
+
+        res[0].data[0].time.map(val => {
+          res[0].data[0].time.push(val)
+        console.log(val)
+        
+         })
 
 
       })
-    }
+    
   }
+ 
 }

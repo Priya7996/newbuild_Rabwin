@@ -10,15 +10,7 @@
         <div class="filter_sec mt-10 filter_align">
             <form [formGroup]="login" (ngSubmit)="logintest('true')">
                 <div class="filter_fields">
-                    <div class="filter_field">
-                        <mat-form-field appearance="outline">
-                            <mat-select placeholder="Select Line" matNativeControl required
-                                formControlName="machine_name">
-                                <mat-option value="all">All</mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="filter_field">
+                <div class="filter_field">
                         <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Machine" matNativeControl required
@@ -47,7 +39,7 @@
                     <div class="filter_field date_picker" color="primary">
                         <!-- <label>Select Date</label> -->
                         <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
-                        <ejs-daterangepicker placeholder='Select a range' formControlName="date"
+                        <!-- <ejs-daterangepicker placeholder='Select a range' formControlName="date"
                             (click)="daterangepicker.open()">
                             <e-presets>
                                 <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
@@ -55,7 +47,14 @@
                                 <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
                                 <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
                             </e-presets>
-                        </ejs-daterangepicker>
+                        </ejs-daterangepicker> -->
+
+                        <mat-form-field appearance="fill">
+                            <input matInput [matDatepicker]="picker" formControlName="date"
+                            (click)="picker.open()"  placeholder='Select Date'>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                          </mat-form-field>
                     </div>
 
                     <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
@@ -115,18 +114,18 @@
                     <tbody *ngFor="let show_report of get_report; let i = index">
                         <tr>
                             <td>{{i+1}}</td>
-                            <td>{{show_report?.date}}</td>
-                            <td>{{show_report?.shift_num}}</td>
+                            <td>{{g_report?.date}}</td>
+                            <td>{{g_report?.shift_no}}</td>
 
-                            <td>{{show_report?.machine_name}}</td>
+                            <td>{{g_report?.machine_name}}</td>
                             <!-- <td>---</td>
                         <td>---</td> -->
-                            <td>{{show_report?.reason }}</td>
-                            <td>{{show_report?.start_time | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                            <td>{{show_report?.idle_reason }}</td>
+                            <td>{{show_report?.idle_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                             <!-- <td>---</td> -->
                             <!-- <td>---</td> -->
-                            <td>{{show_report?.end_time | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-                            <td>{{show_report?.duration}}</td>
+                            <td>{{show_report?.idle_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                            <td>{{show_report?.time | date:'HH:mm:ss'}}</td>
                             <!-- <td>---</td>
                         <td>---</td>
                         <td>{{show_report?.part_start_time }}</td>
@@ -143,9 +142,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- <div class="duke">
+                <div class="duke">
                     Duration: {{get_duration}}
-                </div> -->
+                </div>
             </div>
 
             <div *ngIf="get_report?.length==0" class="no_data_found">
