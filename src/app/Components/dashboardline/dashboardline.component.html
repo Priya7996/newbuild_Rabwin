@@ -83,8 +83,10 @@
                                           </progress> -->
 
                                         <div class="bar run" style="width:35%">
-                                            <p class="percent">{{operator?.run_time}}%</p>
-                                        </div>
+                                            <progress class="bar run" max="100" value={{operator?.run_time}}>
+                                            </progress>
+                      
+                                            </div>
                                     </div>
                                     <p>Run Time</p>
                                 </li>
@@ -94,9 +96,10 @@
 
                                         <!-- <progress class="bar idle" max="100" value={{operator?.stop}}>
                                           </progress> -->
-                                        <div class="bar idle" style="width:35%">
-                                            <p class="percent">{{operator?.stop}}%</p>
-                                        </div>
+                                        <div class="bar stop" style="width:35%">
+                                            <progress class="bar run" max="100" value={{operator?.stop}}>
+                                            </progress>
+                                         </div>
                                     </div>
                                     <p>Idle Time</p>
                                 </li>
@@ -107,7 +110,8 @@
                                         <!-- <progress class="progress-bar no-data" max="100" value={{operator?.diconnect}}>
                                           </progress> -->
                                           <div class="bar disconnect" style="width:35%">
-                                            <p class="percent">{{operator?.stop}}%</p>
+                                            <progress class="bar disconnect" max="100" value={{operator?.disconnect}}>
+                                            </progress>
                                         </div>
                                     </div>
                                     <p>Disconnect Time</p>
