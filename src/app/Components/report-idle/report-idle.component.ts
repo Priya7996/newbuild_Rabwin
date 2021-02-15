@@ -16,7 +16,9 @@ declare var gtag;
 export class ReportIdleComponent implements OnInit {
   g_report:any;
   time:any;
-  
+  loop:any;
+  data:any;
+  no_data:any;
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
   public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
@@ -45,6 +47,8 @@ myLoader = false;
  export_excel: any[] = [];
   new_date: string;
   new_date1: any;
+
+  chart_loop:any;
   constructor(private exportService: ExportService,private nav:NavbarService,private service:ReportIldeService,private fb:FormBuilder  ) { 
     this.nav.show()
   }
@@ -137,6 +141,8 @@ myLoader = false;
  }  
 
   logintest(s) {
+
+    
     this.status = s;
     // this.myLoader = true;
 
@@ -154,26 +160,41 @@ myLoader = false;
         "date": this.login.value.date
       }
 console.log(register);
+this.myLoader = true;
+
       this.service.overall_report(register).subscribe(res => {
-        // this.myLoader = false;
+        this.myLoader = false;
         console.log(res[0]);
+         this.no_data = res;
          this.g_report = res[0];
          this.get_report = res[0].data;
-        this.time = this.toHoursMinutesSeconds( res[0].data[0].time);
-        console.log(this.time );
+
+
+
+         
+
 
         this.get_duration = this.toHoursMinutesSeconds(res[0].total);
         console.log(this.get_duration)
+        this.data = []
 
-        res[0].data[0].time.map(val => {
-          res[0].data[0].time.push(val)
-        console.log(val)
+        for(let i in this.get_report){
+
+          console.log(i);
+          this.chart_loop = this.toHoursMinutesSeconds(this.get_report[i].time);
+          this.data.push(this.chart_loop);
+
+          console.log(this.chart_loop);
+          console.log(this.data) 
+
+
+
         
-         })
-
+        }
 
       })
     
   }
+
  
 }

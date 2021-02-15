@@ -132,7 +132,9 @@
 
                 <div class="spindle_loader bg">
                     <figure class="highcharts-figure">
-                        <div id="vumeter"></div>
+                        <!-- <div id="vumeter"></div> -->
+                        <div id="container2"></div>
+
                     </figure>
                     <!-- <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
@@ -141,20 +143,20 @@
                 
                 <div class="axis_chart bg">
                     <div class="circle_chart">
-                        <circle-progress radius="90" outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
+                        <circle-progress radius="90" percent={{servo_load}} outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
-                            <h3><span class="value">00</span> %</h3>
+                            <h3><span class="value">{{servo_load}}</span> %</h3>
                         </div>
                         <span class="chart_sub_title">X Axis</span>
                     </div>
                     <div class="circle_chart">
-                        <circle-progress radius="90" outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
+                        <circle-progress radius="90" percent={{servo_load1}} outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
-                            <h3><span class="value">00</span> %</h3>
+                            <h3><span class="value">{{servo_load1}}</span> %</h3>
                         </div>
                         <span class="chart_sub_title">Y Axis</span>
                     </div>

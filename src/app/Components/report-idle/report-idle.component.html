@@ -125,7 +125,7 @@
                             <!-- <td>---</td> -->
                             <!-- <td>---</td> -->
                             <td>{{show_report?.idle_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-                            <td>{{show_report?.time | date:'HH:mm:ss'}}</td>
+                            <td>{{data[i]}}</td>
                             <!-- <td>---</td>
                         <td>---</td>
                         <td>{{show_report?.part_start_time }}</td>
@@ -147,9 +147,11 @@
                 </div>
             </div>
 
-            <div *ngIf="get_report?.length==0" class="no_data_found">
+            <div *ngIf="no_data?.length==0" class="no_data_found">
                 <h4>No Data found</h4>
             </div>
+
+        
 
         </mat-card>
     </div>
