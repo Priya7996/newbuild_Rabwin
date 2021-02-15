@@ -10,7 +10,7 @@
     }
 }
 .dashboardline_page .right_side .utilization_load .spindle_loader.bg {
-    padding: 0px 16px!important;
+    padding: 0px 16px 16px;
 }
 .dashboardline_item_right{
     float: right;
@@ -45,3 +45,8 @@
   .dashboardline_page .dashboardline_list.left_side .dashboardline_item{
     width: 92%!important;
   }
+#highcharts-12sizde-0{
+    height: 104px!important;
+} 
+
+  

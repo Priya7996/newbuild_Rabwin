@@ -78,7 +78,7 @@ export class DashboardlineComponent implements OnInit {
               }
             },
             title: {
-              text: 'Spindle Load',
+              text: '',
               y: 30,
               style: {
                 fontSize: '14px',
@@ -114,7 +114,7 @@ export class DashboardlineComponent implements OnInit {
                     [1, '#59db57'] //red
                   ]
                 },
-                thickness: '40%'
+                thickness: '20%'
               }, {
                 from: 5000,
                 to: 10000,
@@ -125,12 +125,29 @@ export class DashboardlineComponent implements OnInit {
                     [1, '#c41a1a'] //red
                   ]
                 },
-                thickness: '40%'
+                thickness: '20%'
               }]
             },
             exporting: {
               enabled: false
             },
+            plotOptions: {
+              gauge: {
+                  dataLabels: {
+                      enabled: false
+                  },
+                  dial: {
+                      radius: '100%',
+                      backgroundColor: 'white',
+                      // needle extending from pivot
+                      baseLength: 10, // how high the fat part rises
+                      baseWidth: 4, // fat part of needle                   
+                      rearLength: 0.1, // below the pivot                    
+                      borderColor: '#fff',
+                      borderWidth: 0,
+                  }
+              }
+          },
             series: [{
               name: 'Spindle Speed',
               // data: ['80'spindlespeed],

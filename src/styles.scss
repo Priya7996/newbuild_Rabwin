@@ -1994,11 +1994,10 @@ ul{
                                 }
                                 &.run{
                                     color: #04C984;
-                                    background-color: #04C984;
+                                    // background-color: #04C984;
                                 }
                                 &.idle{
                                   color: #FECC00;
-                                  background-color:  #FECC00;
                                 }
                                 p{
                                     margin: 0;
@@ -2279,7 +2278,7 @@ ul{
             border: unset;
             .line_mac_target{
                 .box_bg{
-                    width: 33%;
+                    width:49%;
                     margin-left: 5px;
                     p{
                         font-size: 14px;
@@ -3453,16 +3452,15 @@ body .compare_page .chart_sec .ulitization_chart {
 
 .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.run {
     color: #04C984;
-    background-color: #04C984;
-    width: 50px;
-    margin-right: 10px;
+    // background-color: #04C984;
+    width: 48px;
+    // margin-right: 10px;
 }
 
 .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.idle {
     color: #FECC00;
-    background-color: #FECC00;
-    width: 50px;
-    margin-right: 10px;
+    width:49px;
+    // margin-right: 10px;
 }
 
 .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.active {
@@ -3470,7 +3468,7 @@ body .compare_page .chart_sec .ulitization_chart {
     background: url(./assets/images/hexagon.png);
 
     width: 50px;
-    background-color: #bdbdbd;
+    // background-color: #bdbdbd;
     background-size: 100%;
     margin-right: 10px;
     background-repeat: no-repeat;
@@ -3482,3 +3480,20 @@ body .compare_page .chart_sec .ulitization_chart {
     background-position: center;
     background-size: contain;
 }
+.machine_status_list:nth-child(4) {
+    .machine_status_item{
+        margin: 0!important;
+    }}
+    .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.idle h3{
+        color: #FECC00!important;
+        font-weight: 600;
+    }  
+    .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.run h3{
+        color: #04C984!important;
+        font-weight: 600;
+    }  
+    .spindle_loader {
+        .highcharts-container{
+            height: 104px!important;
+        }
+    }    
