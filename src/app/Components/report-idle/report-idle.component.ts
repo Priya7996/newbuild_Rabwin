@@ -163,8 +163,9 @@ console.log(register);
 this.myLoader = true;
 
       this.service.overall_report(register).subscribe(res => {
-        this.myLoader = false;
         console.log(res[0]);
+        this.myLoader = false;
+
          this.no_data = res;
          this.g_report = res[0];
          this.get_report = res[0].data;

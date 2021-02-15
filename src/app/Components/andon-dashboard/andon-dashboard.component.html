@@ -101,33 +101,43 @@
                   <li>
                     <span>{{vaul.run_time}}%</span>
                     <div class="progress">
-                      <div class="bar run" style="width:35%">
+                      <!-- <div class="bar run" style="width:35%">
                         <p class="percent">50%</p>
-                      </div>
+                      </div> -->
+
+                      <progress class="bar run" max="100" value={{vaul?.run_time}}>
+                      </progress>
+
                     </div>
                     <p>Run Time</p>
                   </li>
                   <li>
                     <span>{{vaul.stop}}%</span>
                     <div class="progress">
-                      <div class="bar idle" style="width:35%">
+                      <!-- <div class="bar idle" style="width:35%">
                         <p class="percent">35%</p>
-                      </div>
+                      </div> -->
+                      <progress class="bar idle" max="100" value={{vaul?.stop}}>
+                      </progress>
+
                     </div>
                     <p>Idle Time</p>
                   </li>
                   <li>
                     <span>{{vaul.disconnect}}%</span>
                     <div class="progress">
-                      <div class="bar disconnect" style="width:35%">
+                      <!-- <div class="bar disconnect" style="width:35%">
                         <p class="percent">20%</p>
-                      </div>
+                      </div> -->
+                      <progress class="bar disconnect" max="100" value={{vaul?.disconnect}}>
+                      </progress>
+
                     </div>
                     <p>Disconnect Time</p>
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> 
 
 
           </div>
