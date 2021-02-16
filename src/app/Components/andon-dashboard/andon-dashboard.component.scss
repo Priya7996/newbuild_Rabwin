@@ -756,3 +756,12 @@
   display: flex;
   flex-wrap: wrap;
 }
+progress.run::-moz-progress-bar { background:#04C984; }
+progress.run::-webkit-progress-value { background:#04C984; }
+progress.run { color:#04C984; }
+progress.idle::-moz-progress-bar { background: #FEAD01; }
+progress.idle::-webkit-progress-value { background: #FEAD01; }
+progress.idle { color: #FEAD01; }
+progress.disconnect::-moz-progress-bar { background: #939393; }
+progress.disconnect::-webkit-progress-value { background: #939393; }
+progress.disconnect { color: #939393; }

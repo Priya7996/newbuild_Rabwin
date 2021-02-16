@@ -114,8 +114,8 @@ export class DashboardlineComponent implements OnInit {
                 color: {
                   linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
                   stops: [
-                    [0, '#40aa3e'], //green
-                    [1, '#59db57'] //red
+                    [0, '#25b77f'], //green Dark
+                    [1, '#10c284'] //green light
                   ]
                 },
                 thickness: '20%'
@@ -125,8 +125,8 @@ export class DashboardlineComponent implements OnInit {
                 color: {
                   linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
                   stops: [
-                    [0, '#fd6363'], //green
-                    [1, '#c41a1a'] //red
+                    [0, '#eb0808'], //red dark
+                    [1, '#e00d08'] //red light
                   ]
                 },
                 thickness: '20%'
