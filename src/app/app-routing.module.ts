@@ -94,6 +94,7 @@ import { NgModule } from '@angular/core';
     { path: 'dashboardline', loadChildren: () => import('./Components/dashboardline/dashboardline.module').then(m => m.DashboardlineModule) },
     { path: 'component', loadChildren: () => import('./Components/component/component.module').then(m => m.ComponentModule) },
     { path: 'widget', loadChildren: () => import('./Components/widget/widget.module').then(m => m.WidgetModule) },
+    { path: 'eff_report', loadChildren: () => import('./Components/eff-report/eff-report.module').then(m => m.EffReportModule) },
     ]
     
     @NgModule({

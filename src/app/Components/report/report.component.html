@@ -96,14 +96,15 @@
                             <th>Operator ID</th>
                             <!-- <th>Program No</th> -->
                             <th>Part Count</th>
-                            <th>Part Name</th>
-                            <th>Component Name</th>
+                            <!-- <th>Part Name</th> -->
+                            <th>Route Card Number</th>
                             <th>Target</th>
                             <th>Actual Parts Produced</th>
                             <!-- <th>Availability</th> -->
                             <!-- <th>Performance</th> -->
                             <!-- <th>Quality</th> -->
                             <!-- <th>OEE</th> -->
+                            <th>Efficiency</th>
                             <th>Utilization</th>
                             <th class="run_bg">Run Time <span>(min)</span></th>
                             <th class="idle_bg">Setup Idle <span>(min)</span></th>
@@ -128,7 +129,7 @@
                             <td>---</td>
                             <!-- <td>{{show_report?.program_number || '---'}}</td> -->
                             <td>{{show_report?.part_count || '---'}}</td>
-                            <td>{{show_report?.part_name || '---'}}</td>
+                            <!-- <td>{{show_report?.part_name || '---'}}</td> -->
 
                             <td>---</td>
                             <td>{{show_report?.target || '---'}}</td>
@@ -141,6 +142,7 @@
                             <!-- <td>{{show_report?.perfomance || '---'}}</td> -->
                             <!-- <td>{{show_report?.quality || '---'}}</td> -->
                             <!-- <td>{{show_report?.oee || '---'}}</td> -->
+                            <td>---</td>
                             <td>{{show_report?.utilisation || '---'}}</td>
                             <td>{{show_report?.run_time || '---'}}
                                 <!-- <button color="primary" (click)="openDialog()" mat-button>More Info</button> -->
