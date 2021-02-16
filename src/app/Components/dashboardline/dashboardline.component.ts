@@ -182,7 +182,7 @@ export class DashboardlineComponent implements OnInit {
                 // valueSuffix: 'this.spindle_load'
               },
               series: [{
-                data: this.eff
+                data: [this.servo_load]
               }],
             }]
       
@@ -730,7 +730,7 @@ export class DashboardlineComponent implements OnInit {
               // valueSuffix: 'm/min'
             },
             series: [{
-              data: this.spindle_load
+              data: this.servo_load
             }],
           }]
     

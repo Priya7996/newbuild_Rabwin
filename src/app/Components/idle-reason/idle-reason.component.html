@@ -51,7 +51,7 @@
 
             <mat-form-field>
               <mat-label>Date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date">
+              <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Select Date">
 
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
