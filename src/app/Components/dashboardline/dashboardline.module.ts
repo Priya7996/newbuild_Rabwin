@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardlineRoutingModule } from './dashboardline-routing.module';
 import { DashboardlineComponent } from './dashboardline.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 const routes: Routes = [{ path: '', component: DashboardlineComponent }];
 
@@ -13,7 +14,7 @@ const routes: Routes = [{ path: '', component: DashboardlineComponent }];
   declarations: [DashboardlineComponent],
   imports: [
     CommonModule,RouterModule.forChild(routes),
-    DashboardlineRoutingModule, SharedModule,
+    DashboardlineRoutingModule, SharedModule,HighchartsChartModule,
     NgCircleProgressModule.forRoot({
       backgroundOpacity: 1,
       backgroundStrokeWidth: 15,

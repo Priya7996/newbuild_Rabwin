@@ -91,11 +91,11 @@
                             <th>Line</th>
                             <th>Machine</th>
                             <th>Shift</th>
-                            <th>Time</th>
+                            <!-- <th>Time</th> -->
                             <th>Operator Name</th>
                             <th>Operator ID</th>
                             <!-- <th>Program No</th> -->
-                            <th>Part Count</th>
+                            <!-- <th>Part Count</th> -->
                             <!-- <th>Part Name</th> -->
                             <th>Route Card Number</th>
                             <th>Target</th>
@@ -119,19 +119,19 @@
                         <tr *ngFor="let show_report of get_report; let i = index">
                             <td>{{i+1}}</td>
                             <td>{{show_report?.date | date:'dd-MM-yyyy'}}</td>
-                            <td>---</td>
+                            <td>{{show_report?.line || '---'}}</td>
                             <td>{{show_report?.machine_name || '---'}}</td>
 
                             <td>{{show_report?.shift_num || '---'}}</td>
-                            <td>---</td>
+                            <!-- <td>---</td> -->
 
-                            <td>---</td>
-                            <td>---</td>
+                            <td>{{show_report?.operator || '---'}}</td>
+                            <td>{{show_report?.operator_id || '---'}}</td>
                             <!-- <td>{{show_report?.program_number || '---'}}</td> -->
-                            <td>{{show_report?.part_count || '---'}}</td>
+                            <!-- <td>{{show_report?.part_count || '---'}}</td> -->
                             <!-- <td>{{show_report?.part_name || '---'}}</td> -->
 
-                            <td>---</td>
+                            <td>{{show_report?.root_card || '---'}}</td>
                             <td>{{show_report?.target || '---'}}</td>
 
                             <td>{{show_report?.actual || '---'}}</td>
@@ -142,7 +142,7 @@
                             <!-- <td>{{show_report?.perfomance || '---'}}</td> -->
                             <!-- <td>{{show_report?.quality || '---'}}</td> -->
                             <!-- <td>{{show_report?.oee || '---'}}</td> -->
-                            <td>---</td>
+                            <td>{{show_report?.efficiency || '---'}}</td>
                             <td>{{show_report?.utilisation || '---'}}</td>
                             <td>{{show_report?.run_time || '---'}}
                                 <!-- <button color="primary" (click)="openDialog()" mat-button>More Info</button> -->

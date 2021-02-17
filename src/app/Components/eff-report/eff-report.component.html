@@ -11,7 +11,7 @@
                             <mat-select placeholder="Select Module" matNativeControl required
                                 formControlName="machine_name">
                                 <mat-option value="all">All</mat-option>
-                            </mat-select>
+                            </mat-select> 
                         </mat-form-field>
                     </div>
                     <div class="filter_field">
@@ -78,17 +78,19 @@
                         <tr>
                             <th>S.no</th>
                             <th class="date">Date</th>
-                            <th>Time</th>
+                            <!-- <th>Time</th> -->
 
                             <th>Shift</th>
                             <th>Module </th>
                             <th>Machine Name</th>
                             <th>Operator Name</th>
                             <th>Operator ID</th>
-                            <th>Parts Produced</th>
-                            <th>Accept</th>
+                            <th>Target</th>
+                            <th>Actual</th>
+                            <th>Efficiency</th>
+                            <!-- <th>Accept</th>
                             <th>Reject</th>
-                            <th>Rework</th>
+                            <th>Rework</th> -->
                            
                           
                         </tr>
@@ -97,17 +99,22 @@
                         <tr *ngFor="let show_report of get_report; let i = index">
                             <td>{{i+1}}</td>
                             <td>{{show_report?.date | date:'dd-MM-yyyy'}}</td>
-                            <td>---</td>
+                            <!-- <td>---</td> -->
 
                             <td>{{show_report?.shift_num || '---'}}</td>
+                            <td>{{show_report?.line || '---'}}</td>
+                             <td>{{show_report?.machine_name || '---'}}</td>
+                            <td>{{show_report?.operator || '---'}}</td>
+                            <td>{{show_report?.operator_id || '---'}}</td>
+                            <td>{{show_report?.target || '---'}}</td>
+
+                            <td>{{show_report?.actual || '---'}}</td>
+
+                            <td>{{show_report?.efficiency || '---'}}</td>
+
+                            <!-- <td>---</td>
                             <td>---</td>
-                             <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
-                            <td>---</td>
+                            <td>---</td> -->
                            
 
                         </tr>

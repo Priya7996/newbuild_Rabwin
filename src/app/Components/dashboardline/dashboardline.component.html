@@ -25,7 +25,7 @@
                 <div class="dashboardline_item run" *ngIf="val.status === 'OPERATE'">
                     <div>
                         <h3>{{val?.name}}</h3>
-                        <p>{{val?.reason}}</p>
+                        <p>Machine Running</p>
                     </div>
                     <span>{{val?.utlization}}%</span>
                 </div>
@@ -82,11 +82,8 @@
                                         <!-- <progress class="progress-bar running" max="100" value={{operator?.run_time}}>
                                           </progress> -->
 
-                                        <div class="bar run" style="width:35%">
-                                            <progress class="bar run" max="100" value={{operator?.run_time}}>
-                                            </progress>
-                      
-                                            </div>
+                                          <progress class="bar run" max="100" value={{operator?.run_time}}>
+                                        </progress>
                                     </div>
                                     <p>Run Time</p>
                                 </li>
@@ -96,12 +93,10 @@
 
                                         <!-- <progress class="bar idle" max="100" value={{operator?.stop}}>
                                           </progress> -->
-                                        <div class="bar stop" style="width:35%">
-                                            <progress class="bar run" max="100" value={{operator?.stop}}>
-                                            </progress>
-                                         </div>
+                                          <progress class="bar idle" max="100" value={{operator?.stop}}>
+                                        </progress>
                                     </div>
-                                    <p>Idle Time</p>
+                                    <p>Idle Time</p> 
                                 </li>
                                 <li>
                                     <span>{{operator?.diconnect}}%</span>
@@ -109,10 +104,9 @@
 
                                         <!-- <progress class="progress-bar no-data" max="100" value={{operator?.diconnect}}>
                                           </progress> -->
-                                          <div class="bar disconnect" style="width:35%">
-                                            <progress class="bar disconnect" max="100" value={{operator?.disconnect}}>
-                                            </progress>
-                                        </div>
+                                          <progress class="bar disconnect" max="100" value={{operator?.disconnect}}>
+                                        </progress>
+                  
                                     </div>
                                     <p>Disconnect Time</p>
                                 </li>

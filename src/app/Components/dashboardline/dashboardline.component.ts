@@ -153,7 +153,7 @@ export class DashboardlineComponent implements OnInit {
               }
           },
             series: [{
-              name: 'Spindle Speed',
+              name: 'Spindle Load',
               // data: ['80'spindlespeed],
               background: '#fff',
               data: [{
@@ -182,7 +182,7 @@ export class DashboardlineComponent implements OnInit {
                 // valueSuffix: 'this.spindle_load'
               },
               series: [{
-                data: [this.servo_load]
+                data: [this.spindle_load]
               }],
             }]
       
@@ -608,7 +608,7 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
 
         this.operator = res;
-        this.spindle_load = res.spendle_load[0]
+        this.spindle_load = res.spendle_load
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
         console.log(this.servo_load, this.servo_load1,this.spindle_load);
@@ -701,7 +701,7 @@ export class DashboardlineComponent implements OnInit {
             }
         },
           series: [{
-            name: 'Spindle Speed',
+            name: 'Spindle Load',
             // data: ['80'spindlespeed],
             background: '#fff',
             data: [{
@@ -730,7 +730,7 @@ export class DashboardlineComponent implements OnInit {
               // valueSuffix: 'm/min'
             },
             series: [{
-              data: this.servo_load
+              data: [this.spindle_load]
             }],
           }]
     
