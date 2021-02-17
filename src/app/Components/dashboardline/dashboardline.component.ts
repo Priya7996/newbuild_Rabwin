@@ -608,7 +608,7 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
 
         this.operator = res;
-        this.spindle_load = res.spendle_load
+        this.spindle_load = res.spendle_load[0]
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
         console.log(this.servo_load, this.servo_load1,this.spindle_load);

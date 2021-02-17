@@ -45,7 +45,7 @@
                     <div class="overall_utilization">
                         <h3>{{operator?.machine}}</h3>
                         <div class="circle_chart">
-                            <circle-progress radius="65" percent={{operator?.utlization}}  outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
+                            <circle-progress radius="65" percent={{operator?.utlization}}  outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                                 animation="true" animationDuration="300">
                             </circle-progress>
                             <div class="chart_text">
@@ -129,11 +129,19 @@
                 </div>
 
                 <div class="spindle_loader bg">
-                    <figure class="highcharts-figure">
-                        <!-- <div id="vumeter"></div> -->
+                    <!-- <figure class="highcharts-figure">
+                        <div id="vumeter"></div>
                         <div id="container2" class="chart-container"></div>
  
-                    </figure>
+                    </figure> -->
+                    <div class="circle_chart">
+                        <circle-progress radius="90" percent={{spindle_load}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
+                            animation="true" animationDuration="300">
+                        </circle-progress>
+                        <div class="chart_text">
+                            <h3><span class="value">{{spindle_load}}</span> %</h3>
+                        </div>
+                    </div>
                     <!-- <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                     </figure> -->
@@ -142,7 +150,7 @@
                 
                 <div class="axis_chart bg">
                     <div class="circle_chart">
-                        <circle-progress radius="90" percent={{servo_load}} outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
+                        <circle-progress radius="90" percent={{servo_load}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
@@ -151,7 +159,7 @@
                         <span class="chart_sub_title">X Axis</span>
                     </div>
                     <div class="circle_chart">
-                        <circle-progress radius="90" percent={{servo_load1}} outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
+                        <circle-progress radius="90" percent={{servo_load1}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
