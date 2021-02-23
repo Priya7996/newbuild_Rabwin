@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Component Registration</h2>
+<h2 mat-dialog-title>Route Card Registration</h2>
 <div class="close_modal">
     <mat-icon mat-dialog-close  class="v-align-middle display" matTooltip="Close">close
     </mat-icon>
@@ -9,15 +9,15 @@
             <div class="row_sec">
                 <div class="col-6">
                 <mat-form-field appearance="outline">
-                    <mat-label>Component Name</mat-label>
+                    <mat-label>Route Card Name</mat-label>
                     <input matInput formControlName="name" type="text">
-                    <mat-error *ngIf="componentForm.controls['name'].errors?.required">Component Name is Required
+                    <mat-error *ngIf="componentForm.controls['name'].errors?.required">Route Card Name is Required
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Component Id</mat-label>
+                    <mat-label>Route Card Id</mat-label>
                     <input matInput formControlName="spec_id"  maxlength="10" minlength="0"  (keypress)="keyPress($event)" type="text" required>
-                    <mat-error *ngIf="componentForm.controls['spec_id'].errors?.required">Component Id is Required
+                    <mat-error *ngIf="componentForm.controls['spec_id'].errors?.required">Route Card Id is Required
                     </mat-error> 
                 </mat-form-field>
             

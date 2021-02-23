@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
 import { ReportService } from '../../Service/app/report.service';
-
+import { MatSort,MatTableDataSource,} from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ExportService } from '../shared/export.service';
@@ -12,9 +12,10 @@ import Swal from 'sweetalert2';
   templateUrl: './eff-report.component.html',
   styleUrls: ['./eff-report.component.scss']
 })
-export class EffReportComponent implements OnInit {
+export class EffReportComponent implements OnInit { 
 
- 
+  displayedColumns: string[] = ['position', 'date', 'shift_num', 'line','machine_name','operator','operator_id','target','actual','efficiency'];
+  dataSource = new MatTableDataSource();
   type: any;
   myLoader = false;
   daterangepicker:any;
@@ -85,7 +86,6 @@ export class EffReportComponent implements OnInit {
           // this.minDate = this.first_loading['from_date']
           // this.maxDate = this.first_loading['to_date']
           this.logintest('true');
-          console.log(typeof this.first_loading['from_date'])
         })
       })
     })
@@ -112,23 +112,22 @@ export class EffReportComponent implements OnInit {
          "S.No": i+1,
          "Date": this.get_report[i].date || '---',
          "Shift": this.get_report[i].shift_num || '---',
+         "Module": this.get_report[i].line || '---',
+
          "Machine Name":this.get_report[i].machine_name || '---',
         
-         "Program No": this.get_report[i].program_number || '---',
-         "Qty Produced": this.get_report[i].part_count,
+         "Operator Name": this.get_report[i].operator || '---',
+         "Operator ID": this.get_report[i].operator_id,
        
-         "Part Name": this.get_report[i].part_name || '---',
-         "Utilization": this.get_report[i].utilisation || '---',
-         "Run Time (in mins)": this.get_report[i].run_time || '---',
-         "Setup Idle (in mins)": this.get_report[i].idle_time || '---',
-         "Alarm Time": this.get_report[i].alarm_time || '---',
-         "Non Utilized Time": this.get_report[i].disconnect || '---',
-          "Duration": this.get_report[i].duration || '---',
+         "Target": this.get_report[i].target || '---',
+         "Actual": this.get_report[i].actual || '---',
+         "Efficiency": this.get_report[i].efficiency || '---',
 
+ 
 
       });
     }
-      this.exportService.exportAsExcelFile(this.export_excel, 'Report Details');
+      this.exportService.exportAsExcelFile(this.export_excel, 'Operator Efficiency Report Details');
   }
   })
 
@@ -138,8 +137,7 @@ export class EffReportComponent implements OnInit {
     this.myLoader = true;
 
     // this.maxDate = this.datepipe.transform(this.maxDate);
-    console.log(this.minDate)
-    console.log(this.login.value)
+    
     if (this.status == 'true') {
       this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
       this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
@@ -152,6 +150,8 @@ export class EffReportComponent implements OnInit {
       this.service.overall_report(register).subscribe(res => {
         this.myLoader = false;
         this.get_report = res;
+        this.dataSource = new MatTableDataSource(this.get_report);
+
       })
     }
   }

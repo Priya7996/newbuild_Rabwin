@@ -35,11 +35,11 @@
 
     <div class="dashboard_page_sec">
       <div class="line_list" >
-        <div class="line_item"  *ngFor = "let value of a_dashboard" (click)="char(value?.Line)">
+        <div class="line_item"  *ngFor = "let value of a_dashboard" >
           <div class="line_item_content">
-            <div class="circle_chart">
+            <div class="circle_chart" (click)="char(value?.Line)">
               <h3>{{value?.Line}}</h3>
-              <circle-progress radius="65" percent={{value?.eff}} outerStrokeColor="#878a86" innerStrokeColor="#1f2635" animation="true"
+              <circle-progress radius="65" percent={{value?.eff}} outerStrokeColor="#21a477" innerStrokeColor="#1f2635" animation="true"
                 animationDuration="300">
               </circle-progress>
               <div class="chart_text">
@@ -66,7 +66,8 @@
               <div class="machine_status_list " *ngFor = "let val of value.status; let i = index">
 
                 <div class="machine_status_item active"  *ngIf="val.value === 'DISCONNECT'">
-                  <h3    matTooltip="{{val.machine}}">{{i+1}}</h3>
+                 
+                  <h3  matTooltip="{{val.machine}}">{{i+1}}</h3>
                 </div>
 
                 <div class="machine_status_item run"  *ngIf="val.value === 'OPERATE'">

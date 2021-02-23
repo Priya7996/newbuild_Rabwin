@@ -39,20 +39,16 @@ export class AndonDashboardComponent implements OnInit {
 
        for(let i in this.a_dashboard){
          this.valuen = this.a_dashboard[i].status;
-         console.log(this.valuen) 
          for(let j in this.a_dashboard[i].status){
 
           this.data = this.a_dashboard[i].status[j].machine; 
-          console.log(this.data)
        }
       }
       })
 
-    gtag('config', 'G-JRVTCZ20DE');
-    console.log(gtag);
+
 
     this.service.machine_count().pipe(untilDestroyed(this)).subscribe(res=>{
-      console.log(res);
       this.count_machine = res;
      
     })
@@ -197,7 +193,6 @@ export class AndonDashboardComponent implements OnInit {
   }
   char(line){
      
-    console.log(line);
     localStorage.setItem('line_name',line);
     this.router.navigate(['/dashboardline'], { queryParams: { line_name: line } });
 

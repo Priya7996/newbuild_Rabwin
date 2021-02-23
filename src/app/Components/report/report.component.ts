@@ -55,26 +55,23 @@ export class ReportComponent implements OnInit {
   status: string;
   new_date: string;
   new_date1: any;
+  operaid:any;
+  opera:any;
   constructor(private datepipe: DatePipe, private nav: NavbarService, private service: ReportService, public dialog: MatDialog, private fb: FormBuilder, private exportService: ExportService) {
     this.nav.show()
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewDialog, {
-      // width: '250px',
-      // data: { name: this.name, animal: this.animal }
+   
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
     });
   } machine_name: ["",]
 
   ngOnInit() {
 
-    gtag('config', 'G-JRVTCZ20DE');
-    console.log(gtag);
 
     this.login = this.fb.group({
       machine_name: [""],
@@ -110,7 +107,6 @@ export class ReportComponent implements OnInit {
           // this.minDate = this.first_loading['from_date']
           // this.maxDate = this.first_loading['to_date']
           this.logintest('true');
-          console.log(typeof this.first_loading['from_date'])
         })
       })
     })
@@ -126,23 +122,35 @@ export class ReportComponent implements OnInit {
         "shift_num": this.login.value.shift_num,
         "date": this.new_date + '-' + this.new_date1
       }
+
+      
   this.service.overall_report(register).subscribe(res => {
     this.myLoader = false;
     this.get_report = res;
     if(this.get_report.length==0){
-      Swal.fire('Exporting!, No Data Found')
+      Swal.fire('Exporting!, No Data Found') 
     }else{
     for(var i=0;i<this.get_report.length;i++){
+         for(let j=0; j<this.get_report[i].operator.length;j++){
+          for(let k=0; k<this.get_report[i].operator_id.length;k++){
+            for(let m=0; m<this.get_report[i].root_card.length;m++){
+             this.opera = this.get_report[i].operator[j];
+             this.operaid = this.get_report[i].operator_id[k];
+
+     
+    
       this.export_excel.push({
          "S.No": i+1,
          "Date": this.get_report[i].date || '---',
-         "Shift": this.get_report[i].shift_num || '---',
+         "Line": this.get_report[i].line || '---',
          "Machine Name":this.get_report[i].machine_name || '---',
-        
-         "Program No": this.get_report[i].program_number || '---',
-         "Qty Produced": this.get_report[i].part_count,
-       
-         "Part Name": this.get_report[i].part_name || '---',
+         "Shift": this.get_report[i].shift_num || '---',
+         "Operator Name": this.opera || '---',
+         "Operator ID": this.operaid || '---',
+         "Route Card Number": this.get_report[i].root_card[m] || '---',
+         "Target": this.get_report[i].target,
+         "Actual Parts Produced": this.get_report[i].actual,
+         "Efficiency": this.get_report[i].efficiency || '---',
          "Utilization": this.get_report[i].utilisation || '---',
          "Run Time (in mins)": this.get_report[i].run_time || '---',
          "Setup Idle (in mins)": this.get_report[i].idle_time || '---',
@@ -155,6 +163,9 @@ export class ReportComponent implements OnInit {
     }
       this.exportService.exportAsExcelFile(this.export_excel, 'Report Details');
   }
+}
+    }
+    }
   })
 
  }
@@ -162,9 +173,7 @@ export class ReportComponent implements OnInit {
     this.status = s;
     this.myLoader = true;
 
-    // this.maxDate = this.datepipe.transform(this.maxDate);
-    console.log(this.minDate)
-    console.log(this.login.value)
+  
     if (this.status == 'true') {
       this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
       this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');

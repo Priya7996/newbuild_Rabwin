@@ -1721,7 +1721,7 @@ ul{
             }
             }
             h3{
-                color: #fff;
+                color: #878a86;
                 margin: 0;
                 font-size: 20px;
                 font-weight: 400;
@@ -1876,7 +1876,7 @@ ul{
                     }
                     .circle_chart{
                         position: relative;
-                        border: 2px solid #d65929;
+                        border: 5px solid #6A6A6A;;
                         border-top-left-radius: 10px;
                         border-top-right-radius: 10px;
                                            ul{
@@ -1919,7 +1919,7 @@ ul{
                     .machine_status_sec{
                         background: #242424;
                         padding: 10px;
-                        border: 2px solid #6A6A6A;
+                        border: 4px solid #6A6A6A;
                         border-bottom-left-radius: 10px;
                         border-bottom-right-radius: 10px;
                         h2{
@@ -2076,7 +2076,7 @@ ul{
                     padding: 0;
                     height: 5px;
                     overflow: hidden;
-                    background: #242D34;
+                    background: #1d4a6e;
                     border-radius: 6px;
                     .bar{
                         &.run{
@@ -3474,7 +3474,7 @@ body .compare_page .chart_sec .ulitization_chart {
     background-repeat: no-repeat;
     font-size: 25px;
     font-weight: 700;
-    -webkit-text-stroke: 0.7px #ffffff;
+    -webkit-text-stroke: 0.7px #878a86;
     line-height: 28px;
     height: 40px;
     background-position: center;
@@ -3490,6 +3490,11 @@ body .compare_page .chart_sec .ulitization_chart {
     }  
     .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.run h3{
         color: #04C984!important;
+        font-weight: 600;
+    }  
+
+    .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.active h3{
+        color: #878a86!important;
         font-weight: 600;
     }  
     .spindle_loader {

@@ -66,8 +66,7 @@ export class ComparechartComponent implements OnInit {
   ngOnInit() {
 
 
-    gtag('config', 'G-JRVTCZ20DE');
-    console.log(gtag);
+
     
      this.login = this.fb.group({
         machine_name:["",],
@@ -124,27 +123,7 @@ export class ComparechartComponent implements OnInit {
   
   })
   
-      //  this.service.machine_get().subscribe(res =>{
-      //   this.machine_get=res;
-      // })
- 
-      // this.service.shift_get().subscribe(res =>{
-      //   this.select_shift=res;
-      //   console.log(this.select_shift)
-      // })
-      // this.service.right_first_page_loading().subscribe(res =>{
-      //   this.first_pge_loading = res;        
-      //   this.test.patchValue({
-      //     machine_name:this.machine_get[0],
-      //     shift_num:this.select_shift[0].shift_no,
-      //     date:this.first_pge_loading['from_date'] + '-' + this.first_pge_loading['to_date'],
-      //      from_date:this.first_pge_loading['from_date'],
-      //      to_date:this.first_pge_loading['to_date']          
-        
-      //   })
-      //   this.testfunction();
-      // })
-  
+      
       this.test = this.fb.group({
         machine_name:["",],
         shift_num:["",],
@@ -155,15 +134,12 @@ export class ComparechartComponent implements OnInit {
 
 
   logintest(s){
-    console.log(s);
     this.status=s;
 
-    console.log(this.login.value,"hi")
     this.myLoader = true;
     this.maxDate = this.datePipe.transform(this.maxDate);
     
     let register = this.login.value;
-    console.log(register,"reg")
     if(this.status == 'true'){
       this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
       this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
@@ -174,7 +150,6 @@ export class ComparechartComponent implements OnInit {
         "date":this.new_date + '-' + this.new_date1
       }
       this.service.overall_compare(register).subscribe(res =>{
-      console.log(res);
       this.myLoader = false;
       this.first = res.table;
       this.get_report = res;
@@ -182,8 +157,7 @@ export class ComparechartComponent implements OnInit {
       this.utili2 = res.idle_time;
       this.utili3 = res.disconnect_time;
 
-      console.log(this.utili1)
-      console.log(this.get_report)
+   
       Highcharts.chart('comparepie', {
         chart: {
           plotBackgroundColor: null,                                
@@ -279,10 +253,8 @@ export class ComparechartComponent implements OnInit {
 
   testfunction(e){
     this.status=e;
-    console.log(e)
     this.myLoader1 = true;
     let value = this.test.value;
-    console.log(value,"reg")
     if(this.status == 'true'){
       this.new_date2 = new DatePipe('en-US').transform(this.test.value.date[0], 'MM/dd/yyyy');
       this.new_date3 = new DatePipe('en-US').transform(this.test.value.date[1], 'MM/dd/yyyy');
@@ -293,12 +265,8 @@ export class ComparechartComponent implements OnInit {
         "shift_num":this.test.value.shift_num,
         "date":this.new_date2 + '-' + this.new_date3
       }
-    // console.log(this.test.value);
-    // let value = this.test.value;
-    // value.from_date = this.test.value.date;
-    // value.to_date = this.test.value.date;
+  
     this.service.compare_chart(value).subscribe(res=>{
-      console.log(res);
       this.myLoader1 = false;
       this.second = res.table;
       this.report_table = res;
@@ -395,7 +363,6 @@ export class ComparechartComponent implements OnInit {
   else{
      
     this.service.compare_chart(value).subscribe(res =>{
-      console.log(res);
       this.myLoader = false;
 
       this.report_table = res;

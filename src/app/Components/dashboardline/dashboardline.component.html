@@ -17,7 +17,7 @@
                 <div class="dashboardline_item active" *ngIf="val.status === 'DISCONNECT'">
                     <div>
                         <h3>{{val?.name}}</h3>
-                        <p>{{val?.reason}}</p>
+                        <p>Machine Disconnect</p>
                     </div>
                     <span>{{val?.utlization}}%</span>
                 </div>
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="job_desc">
-                            <p>Job Name : <span>{{operator?.job}}</span></p>
+                            <p>Route Card Name : <span>{{operator?.job}}</span></p>
                             <p>Operator Name: <span>{{operator?.operator}}</span></p>
                         </div>
 

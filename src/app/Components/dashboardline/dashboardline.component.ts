@@ -34,15 +34,13 @@ export class DashboardlineComponent implements OnInit {
   spindle_load:any;
   constructor(private service: DashboardService,private route:ActivatedRoute,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show();
-    console.log(localStorage.getItem('line_name'))
     this.lname = this.route.snapshot.queryParamMap.get('line_name');
     
-    console.log(this.lname)
     this.myLoader = true;
 
     this.service.form_line(this.lname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.myLoader = false;
-
+   
     this.fline = res[0].line;
     this.fname = res[0].name;
     this.utlization = res[0].utlization;
@@ -50,19 +48,15 @@ export class DashboardlineComponent implements OnInit {
     this.stop = res[0].stop;
     this.disconnect = res[0].disconnect;
     this.reason = res[0].reason;
-    console.log(this.fline,this.fname,this.utlization,this.run_time,this.stop,this.disconnect,this.reason);
 
     this.myLoader = true;
 
     this.service.pie(this.fline,this.fname,this.utlization,this.run_time,this.stop,this.disconnect,this.reason).pipe(untilDestroyed(this)).subscribe(res=>{
-        console.log(res.operator);
         this.operator = res;
         this.eff = res.effe;
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
-        console.log(this.servo_load, this.servo_load1);
         this.spindle_load = res.spendle_load[0]
-        console.log(this.spindle_load);
         this.myLoader = false;
         var container = Highcharts.chart('container2', {
             credits: {
@@ -600,18 +594,15 @@ export class DashboardlineComponent implements OnInit {
 
   valvo(fline,fname,utlization,run_time,stop,disconnect,reason)
   {     
-         console.log(fline,fname,utlization,run_time,stop,disconnect,reason)
          this.myLoader = true;
 
          this.service.pie(fline,fname,utlization,run_time,stop,disconnect,reason).pipe(untilDestroyed(this)).subscribe(res=>{
-        console.log(res.operator);
         this.myLoader = false;
 
         this.operator = res;
         this.spindle_load = res.spendle_load[0]
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
-        console.log(this.servo_load, this.servo_load1,this.spindle_load);
         var container = Highcharts.chart('container2', {
           credits: {
             enabled: false

@@ -247,8 +247,7 @@
                     <div class="filter_fields">
                         <div class="filter_field sml-input">
                             <mat-form-field appearance="outline">
-                                <mat-placeholder>Search</mat-placeholder>
-                                <mat-select placeholder="Line" required formControlName="machine_line">
+                                <mat-select placeholder="Line" required >
                                     <mat-option value="all">All</mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -281,7 +280,7 @@
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
                                 <mat-select placeholder="Operator" matNativeControl required
-                                    formControlName="machine_line">
+                                    >
                                     <mat-option value="all">All</mat-option>
                                 
                                 </mat-select>
@@ -355,10 +354,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Machine Name</th>
-                                <th>Operator Name</th>
-                                <th>Part Name</th>
-                                <th>Parts Targeted</th>
                                 <th>Parts Produced</th>
+                                <th>Utilization	</th>
                                 <th>Run Time</th>
                                 <th>Idle Time</th>
                                 <th>No Data Time</th>
@@ -368,11 +365,8 @@
                             <tr>
                                 <td>{{i+1}}</td>
                                 <td>{{show_table?.machine_name}}</td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
                                 <td>{{show_table?.part_count}}</td>
-
+                                <td>{{show_table?.utilisation}}</td>
                                 <td>{{show_table?.run_time}}</td>
                                 <td>{{show_table?.idle_time}}</td>
                                 <td>{{show_table?.disconnect}}</td>
@@ -426,7 +420,7 @@
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
                                 <mat-select placeholder="Operator" matNativeControl required
-                                    formControlName="machine_line">
+                                   >
                                     <mat-option value="all">All</mat-option>
                                 
                                 </mat-select>
@@ -499,10 +493,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Machine Name</th>
-                                <th>Operator Name</th>
-                                <th>Part Name</th>
-                                <th>Parts Targeted</th>
                                 <th>Parts Produced</th>
+                                <th>Utilisation</th>
                                 <th>Run Time</th>
                                 <th>Idle Time</th>
                                 <th>No Data Time</th>
@@ -512,12 +504,9 @@
                             <tr>
                                 <td>{{i+1}}</td>
                                 <td>{{show_right?.machine_name}}</td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>---</td>
-                                <td>{{show_right?.part_count}}</td>
-
-                                <td>{{show_right?.run_time}}</td>
+                                 <td>{{show_right?.part_count}}</td>
+                                 <td>{{show_right?.utilisation}}</td>
+                                 <td>{{show_right?.run_time}}</td>
                                 <td>{{show_right?.idle_time}}</td>
                                 <td>{{show_right?.disconnect}}</td>
 

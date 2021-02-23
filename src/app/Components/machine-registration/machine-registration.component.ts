@@ -23,7 +23,6 @@ export class MachineRegistrationComponent implements OnInit {
 
 
   edit_view(data1) {
-    console.log(data1)
     const dialogRef = this.dialog.open(Edit, {
       width: '',
       data: data1
@@ -36,7 +35,6 @@ export class MachineRegistrationComponent implements OnInit {
     });
   }
   setting_view(data2) {
-    console.log(data2)
     const dialogRef = this.dialog.open(Add, {
       width: '400px',
       data: data2
@@ -54,11 +52,9 @@ export class MachineRegistrationComponent implements OnInit {
     this.myLoader = true;
 
     this.machine.machine_get().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.myLoader = false;
 
       this.machine_list = res;
-      console.log(this.machine_list)
     })
   }
   delete() {
@@ -83,8 +79,7 @@ export class Edit {
   constructor(public dialogRef: MatDialogRef<Edit>, @Inject(MAT_DIALOG_DATA) public data1: Edit, private fb: FormBuilder, private machine: MachineService, private toast: ToastrService) {
     this.edit_data1 = data1;
     this.id = data1.id.$oid;
-    console.log(this.id);
-    console.log(this.edit_data1)
+   
 
   }
 
@@ -106,10 +101,7 @@ export class Edit {
       "line": this.reasonforum.value.line,
       "id": this.id
     }
-    console.log(register);
-    console.log(this.reasonforum.value)
     this.machine.lines(register).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.toast.success('Updated Successfully')
       this.dialogRef.close();
 
@@ -146,7 +138,6 @@ export class Add {
 
   constructor(public dialogRef: MatDialogRef<Edit>, @Inject(MAT_DIALOG_DATA) public data2: Add, private fb: FormBuilder, private machine: MachineService, private toast: ToastrService) {
     this.edit_data2 = data2;
-    console.log(this.edit_data2)
   }
 
 
@@ -163,7 +154,6 @@ export class Add {
 
   getNotificationSetting() {
     this.machine.getsetting(this.edit_data2.L0Name).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.notificationSettings = res;
       this.settingform.patchValue({
         mean_time: this.notificationSettings.data.mean_time
@@ -199,7 +189,6 @@ export class Add {
   }
 
   status(event) {
-    console.log(event.checked);
     let params = {
       "id": this.notificationSettings.data._id.$oid,
     };
