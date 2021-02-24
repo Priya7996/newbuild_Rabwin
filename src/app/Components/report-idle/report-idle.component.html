@@ -61,17 +61,13 @@
                 </div>
 
             </form>
-            <div class="table_export">
+            <!-- <div class="table_export">
                 <button class="export_btn" mat-raised-button (click)="export()"> Export</button>
-                <!-- <a href="" class="export_btn">
-                        <i class="material-icons">
-                            file_copy
-                        </i>
-                        Export
-                    </a> -->
-            </div>
+               
+            </div> -->
 
         </div>
+        
         <mat-card class="card_sec">
             <div class="table_wrapper">
                 <table class="table">
@@ -83,33 +79,16 @@
                             <th rowspan="2">Shift</th>
                             <th rowspan="2">Machine Name</th>
                             <th rowspan="2">Time</th>
-                            <!-- <th colspan="2">Operator Details</th> -->
                             <th colspan="11">Idle Reason Report</th>
-                            <!-- <th colspan="4">Machine Details</th> -->
                         </tr>
                         <tr>
-                            <!-- <th>NAME</th>
-                            <th>ID</th> -->
+                         
                             <th>Reason</th>
                             <th>Start Time</th>
-                            <!-- <th>Work Order No</th> -->
-                            <!-- <th>Operation No</th> -->
+                            
                             <th>End Time</th>
                             <th>Duration</th>
-                            <!-- <th>Accept Count</th>
-                            <th>Reject Count</th>
-                            <th>Start Time</th>
-                            <th>End Time</th> -->
-                            <!-- <th>Spindle Load</th> -->
-
-                            <!-- <th>Feed Rate</th> -->
-                            <!-- <th>Utilization</th> -->
-
-                            <!-- <th class="green">Run Time in (min)</th> -->
-                            <!-- <th class="yellow">Setup Idle in (min)</th> -->
-                            <!-- <th>Alarm time in min</th> -->
-                            <!-- <th class="grey">Non Utilized Time</th> -->
-
+                           
                         </tr>
                     </thead>
                     <tbody *ngFor="let show_report of get_report; let i = index">
@@ -122,43 +101,29 @@
                              <td>{{g_report?.time}}</td>
                             <td>{{show_report?.idle_reason }}</td>
                             <td>{{show_report?.idle_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-                            <!-- <td>---</td> -->
-                            <!-- <td>---</td> -->
+                         
                             <td>{{show_report?.idle_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                             <td>{{data[i]}}</td>
-                            <!-- <td>---</td>
-                        <td>---</td>
-                        <td>{{show_report?.part_start_time }}</td>
-                        <td>{{show_report?.part_end_time }}</td> -->
-                            <!-- <td>---</td> -->
-                            <!-- <td>---</td> -->
-                            <!-- <td>{{show_report?.utilisation}}</td> -->
-                            <!-- <td>{{show_report?.run_time}}
-                            <button color="primary" (click)="openDialog()" mat-button>More Info</button>
-                        </td> -->
-                            <!-- <td>{{show_report?.idle_time}}</td> -->
-                            <!-- <td>8</td> -->
-                            <!-- <td>{{show_report?.disconnect}}</td> -->
-                        </tr>
+                                                   </tr>
                     </tbody>
                 </table>
                 <div class="duke">
                     Duration: {{get_duration}}
                 </div>
             </div>
-
+           
             
             <div *ngIf="no_data?.length==0" class="no_data_found">
                 <h4>No Data Found</h4>
             </div>
-            <!-- <div *ngIf="get_report?.length==0" class="no_data_found">
-                <h4>No Idle Data Found</h4>
-            </div> -->
+         
  
 
         
 
         </mat-card>
+
+
     </div>
     <div *ngIf="myLoader" class="spinner">
         <img src="assets/images/spinner.gif">

@@ -243,6 +243,9 @@
         </div>
         <div class="compare_page">
             <div class="compare_side left_side">
+                <div *ngIf="myLoader" class="spinner">
+                    <img src="assets/images/spinner.gif">
+                </div>
                 <form [formGroup]="login" (ngSubmit)="logintest('true')" class="compare_form filter_sec" action="">
                     <div class="filter_fields">
                         <div class="filter_field sml-input">
@@ -381,6 +384,9 @@
              
             </div>
             <div class="compare_side right_side">
+                <div *ngIf="myLoader1" class="spinner">
+                    <img src="assets/images/spinner.gif">
+                </div>
                 <form [formGroup]="test" (ngSubmit)="testfunction('true')" class="compare_form filter_sec" action="">
                     <div class="filter_fields">
                         <div class="filter_field sml-input">
@@ -523,9 +529,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="myLoader" class="spinner">
-        <img src="assets/images/spinner.gif">
-    </div>
+   
 
 </section> 
 

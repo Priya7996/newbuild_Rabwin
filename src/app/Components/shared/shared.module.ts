@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ExportService } from './export.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 
 
@@ -32,7 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatTreeModule, MatButtonToggleModule, MatSnackBarModule, MatTabsModule,
     MatDialogModule, MatTableModule, MatDatepickerModule, MatCheckboxModule,
     CommonModule, DateRangePickerModule, MatToolbarModule, MatPaginatorModule, 
-    NgbModule, NgxMaterialTimepickerModule,
+    NgbModule, NgxMaterialTimepickerModule,MatTableExporterModule,
     ToastrModule.forRoot({
       timeOut: 2000,
       positionClass: 'toast-top-center',
@@ -45,7 +46,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule, MatDividerModule, MatNativeDateModule, MatRadioModule
     , MatExpansionModule, MatGridListModule, MatStepperModule, MatTooltipModule,
     MatTreeModule, MatButtonToggleModule, MatSnackBarModule, MatTabsModule,
-    MatDialogModule, MatTableModule, MatDatepickerModule, MatCheckboxModule,
+    MatDialogModule, MatTableModule, MatDatepickerModule, MatCheckboxModule,MatTableExporterModule,
     CommonModule, DateRangePickerModule, MatToolbarModule, MatPaginatorModule
     , NgxMaterialTimepickerModule, NgbModule],
   providers: [

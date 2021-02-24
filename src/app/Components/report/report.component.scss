@@ -23,3 +23,24 @@
     font-size: 20px;
     font-family: 'Barlow Condensed', sans-serif;
 }
+
+th.mat-header-cell.cdk-column-run_time.mat-column-run_time.ng-star-inserted {
+    background-color: #207a24;
+}
+
+th.mat-header-cell.cdk-column-idle_time.mat-column-idle_time.ng-star-inserted {
+    background-color: #e8be15;
+}
+
+th.mat-header-cell.cdk-column-alarm_time.mat-column-alarm_time.ng-star-inserted {
+    background-color: #870c0c;
+}
+
+th.mat-header-cell.cdk-column-disconnect.mat-column-disconnect.ng-star-inserted {
+    background-color: #434343;
+}
+
+.table {
+    width: max-content !important; 
+    margin-bottom: 1rem;
+}

@@ -41,6 +41,7 @@
     "highcharts-angular": "^2.4.0",
     "highcharts-more": "^0.1.7",
     "jquery": "^3.4.1",
+    "mat-table-exporter": "^1.2.5",
     "ng-circle-progress": "^1.5.1",
     "ng-pick-datetime": "^7.0.0",
     "ng2-charts": "^2.3.0",

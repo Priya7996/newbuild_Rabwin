@@ -434,7 +434,7 @@ h6 {
 
 table {
     width: 100%;
-    max-width: 100%;
+    // max-width: 100%;
     margin-bottom: 1rem;
     background-color: transparent;
 }
@@ -3501,4 +3501,8 @@ body .compare_page .chart_sec .ulitization_chart {
         .highcharts-container{
             height: 104px!important;
         }
-    }    
+    } 
+    .cdk-column-time, 
+.cdk-column-date{
+	white-space: nowrap;
+}   

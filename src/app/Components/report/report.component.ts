@@ -3,6 +3,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
 import { ReportService } from '../../Service/app/report.service';
+import { MatSort,MatTableDataSource,} from '@angular/material';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -23,7 +24,8 @@ declare var gtag;
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
-
+  displayedColumns: string[] = ['position', 'date', 'line', 'machine_name','shift_num','time','operator','operator_id','root_card','target','actual','efficiency','utilisation','run_time','idle_time','alarm_time','disconnect','duration'];
+  dataSource = new MatTableDataSource();
   // animal: string;
   // name: string;
 
@@ -186,6 +188,11 @@ export class ReportComponent implements OnInit {
       this.service.overall_report(register).subscribe(res => {
         this.myLoader = false;
         this.get_report = res;
+
+        this.dataSource = new MatTableDataSource(this.get_report);
+        console.log(this.dataSource);
+        console.log(this.dataSource.filteredData.length);
+
       })
     }
   }
