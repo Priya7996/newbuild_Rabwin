@@ -21,7 +21,7 @@ export class AlarmComponent implements OnInit {
   reason:any;
     pageSizeOptions:any;
   total_count: any;
-  displayedColumns: string[] = ['position', 'machine', 'alarmtype', 'axis','date','time'];
+  displayedColumns: string[] = [ 'machine', 'alarmtype', 'axis','date','time'];
   dataSource = new MatTableDataSource();
   myLoader = false;
   public doFilter = (value: string) => {
@@ -36,8 +36,7 @@ export class AlarmComponent implements OnInit {
   ngOnInit() {
 
 
-    gtag('config', 'G-JRVTCZ20DE');
-    console.log(gtag);
+  
 
     this.getAlarmHistory();
   }
@@ -45,7 +44,7 @@ export class AlarmComponent implements OnInit {
     this.myLoader = true;
       this.pageNo =1;
    this.alarmService.alarm_history(this.pageNo,this.searchText).pipe(untilDestroyed(this)).subscribe( res => {
-     console.log(res);
+     
      this.myLoader = false;
 
      this.alarmHistory = res.alarm_histories;
@@ -56,10 +55,10 @@ export class AlarmComponent implements OnInit {
   }
   pageEvent(e){
     this.myLoader = false;
-   console.log(e);
+   
     this.pageNo = e.pageIndex+1;
     this.alarmService.alarm_history(this.pageNo,this.searchText).pipe(untilDestroyed(this)).subscribe( res => {
-      console.log(res);
+   
       this.myLoader = false;
      this.alarmHistory = res.alarm_histories;
       this.dataSource = new MatTableDataSource(this.alarmHistory);
@@ -70,7 +69,7 @@ export class AlarmComponent implements OnInit {
 
     if(value.length>= 3){
       this.searchText = value;
-      console.log(this.searchText)
+     
       this.myLoader = true;
   
       this.alarmService.alarm_history(this.pageNo,this.searchText,).pipe(untilDestroyed(this)).subscribe(res =>{

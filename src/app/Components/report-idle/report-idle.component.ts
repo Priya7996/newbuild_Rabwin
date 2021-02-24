@@ -17,6 +17,7 @@ export class ReportIdleComponent implements OnInit {
   g_report:any;
   time:any;
   loop:any;
+  totl:any;
   data:any;
   no_data:any;
   public today: Date = new Date(new Date().toDateString());
@@ -133,12 +134,20 @@ myLoader = false;
         "shift": this.login.value.shift_num,
         "date": this.login.value.date
       }
-// this.myLoader = true;
+ this.myLoader = true;
 
       this.service.overall_report(register).subscribe(res => {
         this.no_data = res;
+        this.myLoader = false;
+
         this.g_report = res[0];
         this.get_report = res[0].data;
+        this.totl = res[0].total;
+        if(this.totl == '0'){
+          Swal.fire("No Idle Reason Report Found")
+          let datas = this.totl;
+        }
+
         
 
      
