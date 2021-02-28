@@ -49,7 +49,6 @@ export class ComponentComponent implements OnInit {
 
     this.myLoader = true;
     this.operator_service.component_get().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res)
       this.myLoader = false;
       this.operators = res;
       this.dataSource = new MatTableDataSource(this.operators);
@@ -59,19 +58,7 @@ export class ComponentComponent implements OnInit {
   }
 
 
-  // pageEvent(e){
-  //   console.log(e);
-  //    this.pageNo = e.pageIndex+1;
-  //    this.myLoader = true;
-  //    this.service.component_get(this.pageNo).pipe(untilDestroyed(this)).subscribe(res => {
-  //     this. myLoader = false;
-  //      this.operators = res.operator_list; 
-  //     this.dataSource = new MatTableDataSource(this.operators);
-  //     this.total_count = res.operator_count;
-
-  //    })
-
-  //  }
+ 
 
   operator_edit(data, id) {
     const dialogRef = this.dialog.open(operator, {
@@ -127,7 +114,6 @@ export class operator {
   machines: any;
   constructor(private datepipe: DatePipe, public dialogRef: MatDialogRef<operator>, @Inject(MAT_DIALOG_DATA) public data: Operator, private fb: FormBuilder, private operator: OperatorService, private service: OeeService, private toast: ToastrService) {
     this.value = data;
-    console.log(this.value)
   }
 
 
@@ -156,14 +142,12 @@ export class operator {
 
   getmachineList() {
     this.service.machines().subscribe(res => {
-      console.log(res);
       this.machine_list = res;
       this.machines = res;
     });
   }
 
   search_machines(event) {
-    console.log(event)
     let value = event.trim().toLowerCase();
     this.machine_list = this.machines.filter(machine => machine.name.toLowerCase().indexOf(value) > -1);
     if (this.machine_list.length === 0) {
@@ -184,7 +168,6 @@ export class operator {
     };
   }
   convertTime(time) {
-    console.log(time.hour)
     let hour;
     if (time.hour >= 12) {
       hour = time.hour - 12;
@@ -198,7 +181,6 @@ export class operator {
     if (this.componentForm.invalid) {
       return;
     }
-    console.log(this.componentForm.value);
     let data = this.componentForm.value;
     data.cycle_time = this.convertTime(this.componentForm.value.cycle_time);
     // let data={
@@ -210,13 +192,11 @@ export class operator {
     // }
     if (this.value.new) {
       this.operator.component_create(data).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res)
         this.toast.success('Created Successfully');
         this.dialogRef.close();
       })
     } else {
       this.operator.component_put(data, this.value.operator_id).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res)
         this.toast.success('Updated Successfully');
         this.dialogRef.close();
       })

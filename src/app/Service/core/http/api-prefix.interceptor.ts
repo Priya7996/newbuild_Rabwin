@@ -27,7 +27,6 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
             }
             else {
                 this.encodedToken = this.tokenService.getEncodedToken(); 
-                console.log(this.encodedToken)
                 let headers: HttpHeaders = new HttpHeaders({
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${this.encodedToken}`

@@ -40,9 +40,7 @@ export class UserManagementComponent implements OnInit {
     this.pageNo =1;
 
     this.userService.user_get(this.pageNo).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.users = res.user_list;
-      console.log(res.user_list._id)
       this.dataSource = new MatTableDataSource(this.users)
       this.total_count =res.user_count;
 
@@ -51,10 +49,8 @@ export class UserManagementComponent implements OnInit {
 
   pageEvent(e){
     this.myLoader = false;
-   console.log(e);
     this.pageNo = e.pageIndex+1;
     this.userService.user_get(this.pageNo).pipe(untilDestroyed(this)).subscribe( res => {
-      console.log(res);
       this.myLoader = false;
       this.users = res.user_list;
 
@@ -67,7 +63,6 @@ export class UserManagementComponent implements OnInit {
   getRoles() {
     this.myLoader = true;
     this.userService.role_get().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.myLoader = false;
 
       this.roles = res;
@@ -133,7 +128,6 @@ export class User {
 
   constructor(public dialogRef: MatDialogRef<User>, @Inject(MAT_DIALOG_DATA) public data: User, private fb: FormBuilder, private user: UserService, private toast: ToastrService, private userService: UserService) {
     this.value = data;
-    console.log(this.value)
   }
 
   ngOnInit() {
@@ -164,7 +158,6 @@ export class User {
   getRoles() {
     // this.myLoader = true;
     this.userService.role_get().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       // this.myLoader = false;
 
       this.roles = res;
@@ -179,20 +172,17 @@ export class User {
     }
   }
   submit() {
-    console.log(this.userForm.value)
     if (this.userForm.invalid) {
       return;
     }
     if (this.value.new) {
       this.user.user_create(this.userForm.value).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res);
         this.dialogRef.close();
         Swal.fire(res.phone_no[0])
 
       })
     } else {
       this.user.user_put(this.userForm.value, this.value.user_id).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res);
         this.dialogRef.close();
         this.toast.success('Updated Successfully')
       })

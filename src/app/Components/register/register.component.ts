@@ -38,10 +38,8 @@ export class RegisterComponent implements OnInit {
   }
    logintest(val)
    {
-     console.log(val)
     //  this.login.reset();
      this.register.senddata(val).subscribe(res =>{
-       console.log(res);
        if (res === true) {
         Swal.fire('Thank You for registering with Yantra24x7');
         this.route.navigateByUrl('');

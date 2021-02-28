@@ -71,7 +71,6 @@ export enum LogLevel {
     constructor(private source?: string) {
 
       this.rolename = localStorage.getItem('role_name');
-    console.log(this.rolename)
      }
   
     /**

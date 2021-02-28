@@ -27,21 +27,17 @@ export class ProductionService {
    return this.http.get('live_production_part?machine=' + register.machine +'&&shift_num=' +register.shift_num +'&&date='+ register.date +'&&status='+ register.status +'&&page='+pageNo+'&&per_page='+10 )
  }
  accept(data){
-   console.log(data)
    return this.http.put('production_results_remarks',data)
    
  }
  reject(data):Observable<any>{
-  console.log(data)
   return this.http.put('production_results_remarks',data)
   
 }
 reject1(data):Observable<any>{
-  console.log(data)
   return this.http.put('production_results_remarks',data)
 }
 accept1(data){
-  console.log(data)
   return this.http.put('production_results_remarks',data)
   
 }

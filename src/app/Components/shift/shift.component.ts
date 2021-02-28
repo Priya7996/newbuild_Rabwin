@@ -33,7 +33,6 @@ export class ShiftComponent implements OnInit {
     this.myLoader = true;
 
     this.shift.shift_get().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.myLoader = false;
 
       this.shifts = res;
@@ -125,9 +124,6 @@ export class Add {
         end_day: ["", Validators.required],
       })
     } else {
-      console.log(this.TimeAM(this.value.edit_shift.start_time))
-      console.log(this.TimeAM(this.value.edit_shift.end_time))
-      console.log(this.Time(this.value.edit_shift.break_time))
       let shift = this.value.edit_shift;
       this.shiftForm = this.fb.group({
         start_time: [this.TimeAM(shift.start_time),Validators.required],
@@ -140,10 +136,6 @@ export class Add {
     }
   }
   submit() {
-    console.log(this.shiftForm.value)
-    console.log(this.convertTimeAM(this.shiftForm.value.start_time))
-    console.log(this.convertTimeAM(this.shiftForm.value.end_time))
-    console.log(this.convertTime(this.shiftForm.value.break_time))
     if (this.shiftForm.invalid) {
       return;
     }
@@ -154,22 +146,15 @@ export class Add {
     // var timeStart = new Date("01/01/2010 " + data.start_time);
     // var timeEnd = new Date("01/01/2010 " + data.end_time);
     // var difference = timeEnd - timeStart;
-    // console.log(difference)
     // // var hours = Math.floor(difference / 1000 / 60 / 60);
-    // // console.log(hours)
     // var diff = difference * 1000 * 60 * 60;
     // var minutes = Math.floor(diff / 1000 / 60);
-    // console.log(minutes)
-    // console.log(duration);
 
 
     if (this.value.new) {
       this.myLoader = true;
-      console.log(data)
       this.shift.shift_create(data).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res);
         this.myLoader = false;
-        console.log(res.msg)
         Swal.fire(res.msg);
 
         this.dialogRef.close();
@@ -178,7 +163,6 @@ export class Add {
       this.myLoader = true;
 
       this.shift.shift_put(data, this.value.shift_id).pipe(untilDestroyed(this)).subscribe(res => {
-        console.log(res);
         this.myLoader = false;
 
         this.toast.success('Updated Successfully')
@@ -188,7 +172,6 @@ export class Add {
   }
 
   end_day_validation(val) {
-    console.log(val)
     if (val === '2') {
       this.end_day = [
         { name: 'Day 2', value: 2 },
@@ -203,7 +186,6 @@ export class Add {
   }
 
   // convertTimeAM(time) {
-  //   console.log(time.hour)
   //   let AMPM;
   //   let hour;
   //   if (time.hour >= 12) {
@@ -221,7 +203,6 @@ export class Add {
 
 
   convertTimeAM(time) {
-    console.log(time.hour)
     let AMPM;
     let hour;
     if (time.hour >= 12) {
@@ -239,7 +220,6 @@ export class Add {
     return time != null ? `${pad(hour)}:${pad(time.minute)}:${pad(time.second)} ${AMPM}` : null;
   }
   convertTime(time) {
-    console.log(time.hour)
     let hour;
     if (time.hour >= 12) {
       hour = time.hour - 12;
@@ -256,7 +236,6 @@ export class Add {
     }
     const split = time.split(':');
     const AM = time.split(' ');
-    console.log(AM[1])
     let hours;
     if (AM[1] === 'PM') {
       hours = parseInt(split[0], 10) + 12;

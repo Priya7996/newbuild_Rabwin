@@ -151,7 +151,6 @@ export class EffReportComponent implements OnInit {
         this.myLoader = false;
         this.get_report = res;
         this.dataSource = new MatTableDataSource(this.get_report);
-        console.log(this.dataSource);
 
       })
     }

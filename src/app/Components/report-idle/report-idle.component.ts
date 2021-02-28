@@ -95,20 +95,25 @@ myLoader = false;
   }
       export(){
    let register = {
-        "machine": this.login.value.machine_name,
-        "shift": this.login.value.shift_num,
-        "date": this.login.value.date
+    "machine": this.login.value.machine_name,
+    "shift": this.login.value.shift_num,
+    "date": this.login.value.date
       }
   this.service.overall_report(register).subscribe(res => {
-    this.get_report = res.tabel;
-    if(this.get_report.length==0){
+    this.no_data = res;
+    this.myLoader = false;
+
+    this.g_report = res[0];
+    this.get_report = res[0].data;
+    this.totl = res[0].total;   
+     if(this.g_report.length==0){
       Swal.fire('Exporting!, No Data Found')
     }else{
     for(var i=0;i<this.get_report.length;i++){
       this.export_excel.push({
          "S.No": i+1,
          "Date": this.get_report[i].date || '---',
-         "Shift": this.get_report[i].shift_num || '---',
+         "Shift": this.get_report[i].shift_no || '---',
          "Machine Name": this.get_report[i].machine_name || '---',
          "Reason":this.get_report[i].reason || '---',
          "Start Time": this.get_report[i].start_time || '---',
@@ -118,7 +123,7 @@ myLoader = false;
 
       });
     }
-      this.exportService.exportAsExcelFile(this.export_excel, 'Report Details');
+      this.exportService.exportAsExcelFile(this.export_excel, 'Idle Reason Report');
   }
   })
 

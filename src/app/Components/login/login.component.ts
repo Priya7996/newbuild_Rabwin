@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.signup = localStorage.getItem('sign');
-    console.log(this.signup);
     // if(this.signup === 'false'){
     //   alert("no signup")
 
@@ -38,13 +37,10 @@ export class LoginComponent implements OnInit {
 
     this.service.true().pipe(untilDestroyed(this)).subscribe(res=>{
       this.signup = res;
-      console.log(this.signup)
     })
 
 
     this.rolename = localStorage.getItem('role_name');
-    console.log(this.rolename);
-    console.log(this.nav.visible)
     this.login = this.fb.group({
       email: ["", Validators.email],
       password: ["", Validators.required]
@@ -65,10 +61,8 @@ export class LoginComponent implements OnInit {
     if (this.login.invalid) {
       return;
     }
-    console.log(this.rolename)
-    console.log(val);
+   
     this.service.signin(val).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       localStorage.setItem('token', res.access_token);
       localStorage.setItem('tenant_id', res.tenant_id);
       localStorage.setItem('usertype_id', res.usertype_id);
@@ -77,18 +71,14 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('role_name', res.role);
       localStorage.setItem('ten_name', res.tenant);
 
-      console.log(res.tenant, res.role);
       let data = res.role;
-      console.log(data)
       if (res === false) {
         Swal.fire('The Username or Password is incorrect')
       } else {
         this.service.machine_count().pipe(untilDestroyed(this)).subscribe(res => {
-          console.log(res);
           this.count_machine = res;
           localStorage.setItem('disable', res.shift_data);
 
-          console.log(res.shift_data)
           if (res.shift_data === true && data === 'Admin') {
             // Swal.fire("Welcome admin")
             this.router.navigateByUrl('/andon-dashboard');

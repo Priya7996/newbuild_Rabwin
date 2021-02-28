@@ -190,8 +190,7 @@ export class ReportComponent implements OnInit {
         this.get_report = res;
 
         this.dataSource = new MatTableDataSource(this.get_report);
-        console.log(this.dataSource);
-        console.log(this.dataSource.filteredData.length);
+    
 
       })
     }

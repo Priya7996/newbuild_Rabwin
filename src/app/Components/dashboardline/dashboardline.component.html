@@ -38,6 +38,9 @@
                     <span>{{val?.utlization}}%</span>
                 </div>
             </div>
+            <div *ngIf="alname?.length==0">
+                <h2 class="blocks">No Machines Found</h2>
+            </div>
             </div>
 
             <div class="right_side side_sec" >
@@ -57,6 +60,8 @@
                         <div class="job_desc">
                             <p>Route Card Name : <span>{{operator?.job}}</span></p>
                             <p>Operator Name: <span>{{operator?.operator}}</span></p>
+                            <p>Operation Name: <span>- - -</span></p>
+
                         </div>
 
                         <div class="line_desc">
@@ -131,9 +136,10 @@
                 <div class="spindle_loader bg">
                     <!-- <figure class="highcharts-figure">
                         <div id="vumeter"></div>
-                        <div id="container2" class="chart-container"></div>
  
                     </figure> -->
+                    <!-- <div id="container2" class="chart-container"></div> -->
+
                     <div class="circle_chart">
                         <circle-progress radius="90" percent={{spindle_load}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">

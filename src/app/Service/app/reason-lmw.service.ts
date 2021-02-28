@@ -16,7 +16,6 @@ export class ReasonLmwService {
     return this.http.post('idle_reasons',val)
   }
   put_api( id: any,data: any):Observable<any>{
-    console.log(data,id)
     return this.http.put('idle_reasons/'+id,data)
   }
   delete_reason(id:any):Observable<any>{

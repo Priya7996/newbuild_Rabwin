@@ -47,7 +47,6 @@ export class OperatorRegistrationComponent implements OnInit {
 
    this. myLoader = true;
    this.operator_service.operator_get(this.pageNo).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res)
       this. myLoader = false;
        this.operators = res.operator_list; 
       this.dataSource = new MatTableDataSource(this.operators);
@@ -58,7 +57,6 @@ export class OperatorRegistrationComponent implements OnInit {
 
 
   pageEvent(e){
-    console.log(e);
      this.pageNo = e.pageIndex+1;
      this.myLoader = true;
      this.operator_service.operator_get(this.pageNo).pipe(untilDestroyed(this)).subscribe(res => {
@@ -101,7 +99,6 @@ export class OperatorRegistrationComponent implements OnInit {
           Swal.fire('Something Went Wrong');
         });
         this.operator_service.operator_get(this.pageNo).subscribe(res =>{
-          console.log(res);
           this.operators = res.operator_list; 
           this.dataSource = new MatTableDataSource(this.operators);
           this.total_count = res.operator_count;
@@ -164,10 +161,8 @@ export class operator {
     if(this.operatorForm.invalid) {
       return;
     }
-    console.log(this.operatorForm.value);
     if (this.value.new) {
     this.operator.operator_create(this.operatorForm.value).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res.operator_spec_id)
       this.dialogRef.close();
       if(res){
         Swal.fire(res.operator_spec_id[0])
@@ -181,7 +176,6 @@ export class operator {
     })
   } else {
     this.operator.operator_put(this.operatorForm.value, this.value.operator_id).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res)
       this.dialogRef.close();
       if(res){
         Swal.fire('Updated Successfully')

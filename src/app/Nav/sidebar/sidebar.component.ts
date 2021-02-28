@@ -42,13 +42,11 @@ export class SidebarComponent implements OnInit {
 
     this.servie.true().pipe(untilDestroyed(this)).subscribe(res=>{
       localStorage.setItem('sign', res);
-      console.log(res);
 
 
     })
 
     this.rolename = localStorage.getItem('role_name');
-    console.log(this.rolename)
   
   }
 
@@ -56,7 +54,6 @@ export class SidebarComponent implements OnInit {
   shift(){
     this.servie.machine_count().pipe(untilDestroyed(this)).subscribe(res=>{
       this.count_machine = res.shift_data;
-      console.log(this.count_machine);
       if(this.count_machine === false){
           Swal.fire({
             title: 'REgister Shift',
@@ -86,12 +83,9 @@ export class SidebarComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if(changes.navStatus.currentValue){
       this.tenant_name = localStorage.getItem('ten_name');
-      console.log(this.tenant_name);
 
       this.rolename = localStorage.getItem('role_name');
-      console.log(this.rolename);
       this.available =  localStorage.getItem('disable');
-      console.log(this.available);
 
     }
 
