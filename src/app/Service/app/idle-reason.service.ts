@@ -18,10 +18,10 @@ export class IdleReasonService {
  getshift():Observable<any>{
    return this.http.get('shifts')
  }
- overall_report(register,pageNo):Observable<any>{
+ overall_report(register):Observable<any>{
 
  
-   return this.http.get('production_part_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date +'&&page='+pageNo+'&&per_page='+10 )
+   return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date)
  }
  first_page_loading():Observable<any>{
    return this.http.get('previous_shift')

@@ -112,13 +112,13 @@ myLoader = false;
     for(var i=0;i<this.get_report.length;i++){
       this.export_excel.push({
          "S.No": i+1,
-         "Date": this.get_report[i].date || '---',
-         "Shift": this.get_report[i].shift_no || '---',
-         "Machine Name": this.get_report[i].machine_name || '---',
-         "Reason":this.get_report[i].reason || '---',
-         "Start Time": this.get_report[i].start_time || '---',
-         "End Time": this.get_report[i].end_time,
-         "Duration": this.get_report[i].duration || '---',
+         "Date": this.g_report.date || '---',
+         "Shift": this.g_report.shift_no || '---',
+         "Machine Name": this.g_report.machine_name || '---',
+         "Reason":this.get_report[i].idle_reason || '---',
+         "Start Time": this.get_report[i].idle_start || '---',
+         "End Time": this.get_report[i].idle_end || '---',
+         "Duration": this.toHoursMinutesSeconds(this.get_report[i].time) || '---',
          
 
       });

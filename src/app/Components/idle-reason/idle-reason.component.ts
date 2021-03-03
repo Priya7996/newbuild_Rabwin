@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { ExportService } from '../shared/export.service';
 import Swal from 'sweetalert2';    
+import { MatSort,MatTableDataSource,} from '@angular/material';
 
 declare var gtag;
 
@@ -14,6 +15,9 @@ declare var gtag;
    styleUrls: ['./idle-reason.component.scss']
     }) 
     export class IdleReasonComponent implements OnInit {
+
+      displayedColumns: string[] = ['position', 'date', 'line', 'machine_name','operator','availability','perfomance','quality','oee'];
+  dataSource = new MatTableDataSource();
       public today: Date = new Date(new Date().toDateString());
       public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());      
       public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
@@ -96,9 +100,9 @@ console.log(gtag);
         // "date": this.new_date + '-' + this.new_date1
         "date" : this.login.value.date
       }
-  this.service.overall_report(register,this.pageNo).subscribe(res => {
+  this.service.overall_report(register).subscribe(res => {
     // this.myLoader = false;
-  this.service.overall_report(register,this.pageNo).subscribe(res => {
+  this.service.overall_report(register).subscribe(res => {
     // this.myLoader = false;
     this.get_report = res;
     console.log(this.get_report);
@@ -139,22 +143,24 @@ console.log(gtag);
     console.log(this.login.value)
        if (this.status == 'true') {
         // this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
-        this.new_date1 = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
+        // this.new_date1 = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
+        this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
+        this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
         let register = {
             "machine_name": this.login.value.machine_name,
            "shift_num": this.login.value.shift_num,
           //  "date": this.new_date + '-' + this.new_date1
-          "date":this.new_date1
+          "date":this.new_date + '-' + this.new_date1
         }
 
                    this.register= register;
 
-      this.service.overall_report(register,this.pageNo).subscribe(res => {
+      this.service.overall_report(register).subscribe(res => {
       this.myLoader = false;
          this.report = res;
-         this.get_report = res.parts;
-          this.total_count =res.count;
-         console.log(this.total_count)
+         this.get_report = res;
+
+         this.dataSource = new MatTableDataSource(this.get_report);
 
       })
     }
@@ -166,7 +172,7 @@ console.log(gtag);
    console.log(e);
     this.pageNo = e.pageIndex+1;
     this.myLoader = true;
-    this.service.overall_report(this.register,this.pageNo).subscribe( res => {
+    this.service.overall_report(this.register).subscribe( res => {
       console.log(res);
       this.myLoader = false;
       this.get_report = res.parts;

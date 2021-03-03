@@ -34,34 +34,26 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <!-- <div class="filter_field date_picker" color="primary">
-           
-                  <ejs-daterangepicker placeholder='Select a range' formControlName="date"
-                      (click)="daterangepicker.open()">
-                      <e-presets>
-                      <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
-                      <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
-                      <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
-                      <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
-                  </e-presets>
-              </ejs-daterangepicker>
-          </div> -->
+       
 
-          <div class="datepicker_field filter_field date_picker">
-
-            <mat-form-field>
-              <mat-label>Date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Select Date">
-
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-            </mat-form-field>
-          </div>
+          <div class="filter_field date_picker" color="primary">
+            <!-- <label>Select Date</label> -->
+            <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
+            <ejs-daterangepicker placeholder='Select a range' formControlName="date"
+                (click)="daterangepicker.open()">
+                <e-presets>
+                    <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
+                    <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
+                    <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
+                    <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
+                </e-presets>
+            </ejs-daterangepicker>
+        </div>
           <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
         </div>
       </form>
       <div class="table_export">
-        <button class="export_btn" (click)="export()" mat-raised-button> Export</button>
+        <button class="export_btn" (click)="exporter.exportTable('xlsx',{fileName:'Production Report'})" mat-raised-button> Export</button>
         <!-- <a href="" class="export_btn">
                   <i class="material-icons">
                       file_copy
@@ -70,7 +62,7 @@
               </a> -->
       </div>
     </div>
-    <mat-card class="card_sec">
+    <!-- <mat-card class="card_sec">
       <div class="table_wrapper">
         <table class="table">
           <thead>
@@ -80,17 +72,10 @@
 
               <th rowspan="2">Shift</th>
               <th rowspan="2">Machine Name</th>
-              <!-- <th colspan="2">Operator Details</th> -->
               <th colspan="11"></th>
-              <!-- <th colspan="4">Machine Details</th> -->
             </tr>
             <tr>
-              <!-- <th>NAME</th>[m
-[31m-                            <th>ID</th> -->
-              <!-- <th>Program No</th>
-              <th>Product Result accumulative</th> -->
-              <!-- <th>Work Order No</th> -->
-              <!-- <th>Operation No</th> -->
+            
               <th>Product Name</th>
               <th>Product Result</th>
               <th>Availabilty</th>
@@ -99,17 +84,7 @@
               <th>OEE</th>
               <th>Accept Count</th>
               <th>Reject Count</th>
-              <!-- <th>Start Time</th>
-              <th>End Time</th> -->
-              <!-- <th>Spindle Load</th> -->
-
-              <!-- <th>Feed Rate</th> -->
-              <!-- <th>Utilization</th> -->
-
-              <!-- <th class="green">Run Time in (min)</th> -->
-              <!-- <th class="yellow">Setup Idle in (min)</th> -->
-              <!-- <th>Alarm time in min</th> -->
-              <!-- <th class="grey">Non Utilized Time</th> -->
+           
 
             </tr>
           </thead>
@@ -120,12 +95,7 @@
               <td>{{report?.shift}}</td>
 
               <td>{{show_report?.L1Name}}</td>
-              <!-- <td>---</td>
-                      <td>---</td> -->
-              <!-- <td>{{show_report?.program_number || '---'}}</td>
-              <td>{{show_report?.productresult_accumulate || '---'}}</td> -->
-              <!-- <td>---</td> -->
-              <!-- <td>---</td> -->
+             
               <td>{{show_report?.productname}}</td>
               <td>{{show_report?.productresult}}</td>
               <td>---</td>
@@ -134,16 +104,7 @@
               <td>---</td>
               <td>---</td>
               <td>---</td>
-              <!-- <td>{{show_report?.updatedate | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-              <td>{{show_report?.enddate | date:'yyyy-MM-dd ; HH:mm:ss'}}</td> -->
-              <!-- <td>---</td> -->
-              <!-- <td>{{show_report?.utilisation}}</td> -->
-              <!-- <td>{{show_report?.run_time}}[m
-                        <button color="primary" (click)="openDialog()" mat-button>More Info</button>[m
-                   </td> -->
-              <!-- <td>{{show_report?.idle_time}}</td> -->
-              <!-- <td>8</td> -->
-              <!-- <td>{{show_report?.disconnect}}</td> -->
+            
             </tr>
           </tbody>
         </table>
@@ -152,7 +113,89 @@
 
       </div>
 
+    </mat-card> -->
+    <mat-card class="card_sec">
+      <mat-card-content class="table_responsive">
+        <table class="row" mat-table  matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" class="mat-elevation-z0">
+
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let i=index;"> {{i+1}} </td>
+
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date | date:'dd-MM-yyyy'}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="line">
+            <th mat-header-cell *matHeaderCellDef>Shift</th>
+            <td mat-cell *matCellDef="let element"> {{element.shift_num}} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="machine_name">
+            <th mat-header-cell *matHeaderCellDef>Machine Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.machine_name }} </td>
+          </ng-container>
+
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="operator">
+            <th mat-header-cell *matHeaderCellDef>Operator Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.operator}} </td>
+          </ng-container>
+
+            <ng-container matColumnDef="availability">
+              <th mat-header-cell *matHeaderCellDef>Availability</th>
+              <td mat-cell *matCellDef="let element"> {{element.availability}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="perfomance">
+              <th mat-header-cell *matHeaderCellDef>Performance</th>
+              <td mat-cell *matCellDef="let element"> {{element.perfomance}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="quality">
+              <th mat-header-cell *matHeaderCellDef>Quality</th>
+              <td mat-cell *matCellDef="let element"> {{element.quality}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="oee">
+              <th mat-header-cell *matHeaderCellDef>OEE</th>
+              <td mat-cell *matCellDef="let element"> {{element.oee}} </td>
+            </ng-container>
+
+
+
+         
+
+
+           
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        
+         
+
+
+        <!-- <mat-paginator [length]="total_count" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+          (page)="pageEvent($event)">
+        </mat-paginator> -->
+      </mat-card-content>
+
+      <mat-card-content *ngIf="dataSource.filteredData.length==0" class="no_data_found">
+        <h2>No data found</h2>
+      </mat-card-content>
     </mat-card>
+    
   </div>
   <div *ngIf="myLoader" class="spinner">
     <img src="assets/images/spinner.gif">
