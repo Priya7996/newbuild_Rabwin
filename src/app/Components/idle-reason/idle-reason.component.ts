@@ -11,7 +11,7 @@ declare var gtag;
 
    @Component({
      selector: 'app-idle-reason',
-      templateUrl: './idle-reason.component.html',
+      templateUrl: './idle-reason.component.html', 
    styleUrls: ['./idle-reason.component.scss']
     }) 
     export class IdleReasonComponent implements OnInit {

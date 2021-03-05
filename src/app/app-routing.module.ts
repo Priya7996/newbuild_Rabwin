@@ -34,6 +34,8 @@ const routes: Routes = [
 { path: 'dashboardline', loadChildren: () => import('./Components/dashboardline/dashboardline.module').then(m => m.DashboardlineModule) },
 { path: 'component', loadChildren: () => import('./Components/component/component.module').then(m => m.ComponentModule) },
 { path: 'eff_report', loadChildren: () => import('./Components/eff-report/eff-report.module').then(m => m.EffReportModule) },
+  
+{ path: 'efficiency', loadChildren: () => import('./Components/efficiency/efficiency.module').then(m => m.EfficiencyModule) },
     
 ]
     

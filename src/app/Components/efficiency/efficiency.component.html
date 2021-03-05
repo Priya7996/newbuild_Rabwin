@@ -1,19 +1,12 @@
 <section class="page">
     <div class="section_top_padding">
         <div class="page_title_sec">
-            <!-- <h2>Efficiency Report</h2> -->
+            <!-- <h2>Report</h2> -->
         </div>
         <div class="filter_sec mt-10">
             <form [formGroup]="login" (ngSubmit)="logintest('true')">
                 <div class="filter_fields">
-                    <div class="filter_field">
-                        <mat-form-field appearance="outline">
-                            <mat-select placeholder="Select Module" matNativeControl required
-                                formControlName="machine_name">
-                                <mat-option value="all">All</mat-option>
-                            </mat-select> 
-                        </mat-form-field>
-                    </div>
+                                        
                     <div class="filter_field">
                         <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
                         <mat-form-field appearance="outline">
@@ -42,17 +35,14 @@
                         </mat-form-field>
                     </div>
                     <div class="filter_field date_picker" color="primary">
-                        <!-- <label>Select Date</label> -->
-                        <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
-                        <ejs-daterangepicker placeholder='Select a range' formControlName="date"
-                            (click)="daterangepicker.open()">
-                            <e-presets>
-                                <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
-                                <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
-                                <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
-                                <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
-                            </e-presets>
-                        </ejs-daterangepicker>
+                      
+
+                        <mat-form-field appearance="fill">
+                            <input matInput [matDatepicker]="picker" formControlName="from_date"
+                            (click)="picker.open()"  placeholder='Select Date'>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                          </mat-form-field>
                     </div>
 
                     <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
@@ -61,11 +51,11 @@
             </form>
 
             <div class="table_export">
-                <button class="export_btn" mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'Efficiency Report'})"> Export</button>
+                <button class="export_btn" mat-raised-button (click)="export()"> Export</button>
               
             </div>
         </div>
-        <!-- <mat-card class="card_sec"> 
+        <mat-card class="card_sec"> 
             <div class="table_wrapper">
                 <table class="table report_table">
                     <thead>
@@ -75,13 +65,14 @@
                             <th class="date">Date</th>
 
                             <th>Shift</th>
-                            <th>Module </th>
                             <th>Machine Name</th>
                             <th>Operator Name</th>
-                            <th>Operator ID</th>
+                            <th>Route Card Number</th>
+                            <th>Route Card Start Time</th>
+                            <th>Route Card End Time</th>
                             <th>Target</th>
                             <th>Actual</th>
-                            <th>Efficiency</th>
+                            <th>Efficiency(%)</th>
                           
                            
                           
@@ -90,14 +81,16 @@
                     <tbody>
                         <tr *ngFor="let show_report of get_report; let i = index">
                             <td>{{i+1}}</td>
-                            <td>{{show_report?.date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{g_report?.date | date:'dd-MM-yyyy'}}</td>
 
-                            <td>{{show_report?.shift_num || '---'}}</td>
-                            <td>{{show_report?.line || '---'}}</td>
-                             <td>{{show_report?.machine_name || '---'}}</td>
-                            <td>{{show_report?.operator || '---'}}</td>
-                            <td>{{show_report?.operator_id || '---'}}</td>
-                            <td>{{show_report?.target || '---'}}</td>
+                            <td>{{g_report?.shift_num || '---'}}</td>
+                             <td>{{show_report?.line || '---'}}</td>
+                             <td>{{g_report?.operator || '---'}}</td>
+
+                            <td>{{show_report?.card_no || '---'}}</td>
+                            <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                            <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                            <td>{{show_report?.tar || '---'}}</td>
 
                             <td>{{show_report?.actual || '---'}}</td>
 
@@ -113,8 +106,8 @@
             <div *ngIf="get_report?.length==0" class="no_data_found">
                 <h4>No Data found</h4>
             </div>
-        </mat-card> -->
-    
+        </mat-card>
+<!--     
         <mat-card class="card_sec">
             <mat-card-content class="table_responsive">
               <table class="row" mat-table  matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" class="mat-elevation-z0">
@@ -125,47 +118,41 @@
       
                 </ng-container>
       
-                <!-- Name Column -->
                 <ng-container matColumnDef="date">
                   <th mat-header-cell *matHeaderCellDef> Date </th>
                   <td mat-cell *matCellDef="let element"> {{element.date | date:'dd-MM-yyyy'}} </td>
                 </ng-container>
       
-                <!-- Weight Column -->
                 <ng-container matColumnDef="shift_num">
                   <th mat-header-cell *matHeaderCellDef>Shift</th>
                   <td mat-cell *matCellDef="let element"> {{element.shift_num}} </td>
                 </ng-container>
-      
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="line">
-                  <th mat-header-cell *matHeaderCellDef>Module</th>
-                  <td mat-cell *matCellDef="let element"> {{element.line}} </td>
-                </ng-container>
-       
-      
-                <!-- Symbol Column -->
+               
                 <ng-container matColumnDef="machine_name">
                   <th mat-header-cell *matHeaderCellDef>Machine Name</th>
                   <td mat-cell *matCellDef="let element"> {{element.machine_name }} </td>
                 </ng-container>
       
       
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="operator">
-                  <th mat-header-cell *matHeaderCellDef>Operator Name</th>
-                  <td mat-cell *matCellDef="let element"> {{element.operator}} </td>
+                <ng-container matColumnDef="card_no">
+                  <th mat-header-cell *matHeaderCellDef>Route Card Number</th>
+                  <td mat-cell *matCellDef="let element"> {{element.card_no}} </td>
                 </ng-container>
       
-                <ng-container matColumnDef="operator_id">
-                    <th mat-header-cell *matHeaderCellDef>Operator ID</th>
-                    <td mat-cell *matCellDef="let element"> {{element.operator_id}} </td>
+                <ng-container matColumnDef="rout_start">
+                    <th mat-header-cell *matHeaderCellDef>Route Card Start Time</th>
+                    <td mat-cell *matCellDef="let element"> {{element.rout_start}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="rout_end">
+                    <th mat-header-cell *matHeaderCellDef>Route Card End Time</th>
+                    <td mat-cell *matCellDef="let element"> {{element.rout_end}} </td>
                   </ng-container>
 
 
-                  <ng-container matColumnDef="target">
+                  <ng-container matColumnDef="tar">
                     <th mat-header-cell *matHeaderCellDef>Target</th>
-                    <td mat-cell *matCellDef="let element"> {{element.target}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.tar}} </td>
                   </ng-container>
 
 
@@ -185,15 +172,13 @@
               
 
               
-              <!-- <mat-paginator [length]="total_count" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
-                (page)="pageEvent($event)">
-              </mat-paginator> -->
+         
             </mat-card-content>
 
             <mat-card-content *ngIf="dataSource.filteredData.length==0" class="no_data_found">
                 <h2>No data found</h2>
               </mat-card-content>
-          </mat-card>
+          </mat-card> -->
     </div>
     <div *ngIf="myLoader" class="spinner">
         <img src="assets/images/spinner.gif">

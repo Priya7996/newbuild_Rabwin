@@ -1,5 +1,3 @@
-
-  
 import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
 import { ReportService } from '../../Service/app/report.service';
@@ -129,7 +127,7 @@ export class ReportComponent implements OnInit {
   this.service.overall_report(register).subscribe(res => {
     this.myLoader = false;
     this.get_report = res;
-    if(this.get_report.length==0){
+    if(this.get_report.length==0){ 
       Swal.fire('Exporting!, No Data Found') 
     }else{
     for(var i=0;i<this.get_report.length;i++){
