@@ -28,7 +28,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Shift" matNativeControl required
                                 formControlName="shift_num">
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
 
                                 <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
                                     {{shift.shift_no}}

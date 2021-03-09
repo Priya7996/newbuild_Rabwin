@@ -13,7 +13,6 @@ import { ExportService } from '../shared/export.service';
   styleUrls: ['./efficiency.component.scss']
 })
 export class EfficiencyComponent implements OnInit {
-
   displayedColumns: string[] = ['position', 'date', 'shift_num','machine_name','card_no','rout_end','rout_start','tar','actual','efficiency'];
   dataSource = new MatTableDataSource();
   type: any;
@@ -42,6 +41,8 @@ export class EfficiencyComponent implements OnInit {
   get_report: any;
   first_loading: any;
   status: string;
+  startDate:any;
+  opera:any;
   new_date: string;
   new_date1: any;
   g_report:any;
@@ -70,11 +71,11 @@ export class EfficiencyComponent implements OnInit {
         // this.login.patchValue({
         //   shift_num: this.shift_response[0].shift_no,
         // })
-        // this.service.first_page_loading().subscribe(res => {
-        //   this.first_loading = res;
-        //   this.login.patchValue({
-        //     date : [this.first_loading['from_date'],this.first_loading['to_date']]
-        //   })
+        this.service.first_page_loading().subscribe(res => {
+          this.first_loading = res;
+          // this.login.patchValue({
+          //   date : [this.first_loading['from_date'],this.first_loading['from_date']]
+          // })
 
 
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
@@ -86,8 +87,8 @@ export class EfficiencyComponent implements OnInit {
           // })
           // this.minDate = this.first_loading['from_date']
           // this.maxDate = this.first_loading['to_date']
-        //   this.logintest('true');
-        // })
+          // this.logintest('true');
+        })
       })
     })
 
@@ -105,6 +106,7 @@ export class EfficiencyComponent implements OnInit {
   this.service.overallll_report(register).subscribe(res => {
     this.myLoader = false;
     this.g_report = res[0];
+    this.opera = res[0].operator;
     this.get_report = res[0].route_card_report;
      if(this.g_report.length==0){
       Swal.fire('Exporting!, No Data Found')
@@ -116,8 +118,10 @@ export class EfficiencyComponent implements OnInit {
          "Shift": this.g_report.shift_num || '---',
 
          "Machine Name":this.get_report[i].line || '---',
+         "Operator Name":this.g_report.operator[0] || '---',
+         "Operator Id":this.g_report.operator_id[0] || '---',
 
-         "Route Card Name": this.get_report[i].card_no || '---',
+         "Route Card Number": this.get_report[i].card_no || '---',
          "Route Card Start Time": this.get_report[i].rout_start || '---',
        
          "Route Card End Time": this.get_report[i].rout_end || '---',
@@ -158,8 +162,9 @@ export class EfficiencyComponent implements OnInit {
         console.log(this.g_report)
         this.get_report = res[0].route_card_report;
         // this.dataSource = new MatTableDataSource(this.get_report);
+     
 
-      })
+             })
     }
   }
 }

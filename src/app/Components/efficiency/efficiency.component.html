@@ -26,7 +26,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Shift" matNativeControl required
                                 formControlName="shift_num">
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
 
                                 <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
                                     {{shift.shift_no}}
@@ -67,11 +67,16 @@
                             <th>Shift</th>
                             <th>Machine Name</th>
                             <th>Operator Name</th>
+                            <th>Operator Id</th>
                             <th>Route Card Number</th>
                             <th>Route Card Start Time</th>
                             <th>Route Card End Time</th>
+                            <th>Setting Time Duration</th>
                             <th>Target</th>
                             <th>Actual</th>
+                            <th>Accept</th>
+                            <th>Reject</th>
+                            <th>Rework</th>
                             <th>Efficiency(%)</th>
                           
                            
@@ -86,14 +91,18 @@
                             <td>{{g_report?.shift_num || '---'}}</td>
                              <td>{{show_report?.line || '---'}}</td>
                              <td>{{g_report?.operator || '---'}}</td>
+                             <td>{{g_report?.operator_id || '---'}}</td>
 
                             <td>{{show_report?.card_no || '---'}}</td>
                             <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                             <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                            <td>---</td>
                             <td>{{show_report?.tar || '---'}}</td>
 
                             <td>{{show_report?.actual || '---'}}</td>
-
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
                             <td>{{show_report?.efficiency || '---'}}</td>
 
                            

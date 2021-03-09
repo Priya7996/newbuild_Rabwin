@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { map } from 'rxjs/operators';
 
 declare var gtag;
-@Component({
+@Component({ 
   selector: 'app-report-idle',
   templateUrl: './report-idle.component.html',
   styleUrls: ['./report-idle.component.scss']
@@ -18,6 +18,7 @@ export class ReportIdleComponent implements OnInit {
   time:any;
   loop:any;
   totl:any;
+  dates:any;
   data:any;
   no_data:any;
   public today: Date = new Date(new Date().toDateString());
@@ -86,10 +87,28 @@ myLoader = false;
       })
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
-    
+        this.login.patchValue({
+          machine_name: this.machine_response[0],
+        })
         this.service.getshift().subscribe(res => {
           this.shift_response = res;
-     
+          this.login.patchValue({
+            shift_num: this.shift_response[0].shift_no,
+          })
+          this.service.first_page_loading().subscribe(res => {
+            this.first_loading = res;
+            console.log(this.first_loading )
+
+            this.login.patchValue({
+              // date : [this.first_loading]
+              date : this.first_loading['from_date']
+
+            })
+            console.log(this.login.value.date,this.first_loading['from_date'])
+  
+           
+            this.logintest('true');
+          })
         })
       })
   }
@@ -106,7 +125,7 @@ myLoader = false;
     this.g_report = res[0];
     this.get_report = res[0].data;
     this.totl = res[0].total;   
-     if(this.g_report.length==0){
+     if(this.get_report.length==0){
       Swal.fire('Exporting!, No Data Found')
     }else{
     for(var i=0;i<this.get_report.length;i++){
@@ -133,7 +152,7 @@ myLoader = false;
 
     this.status = s;
    
-    this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'yyyy-MM-dd');
+    this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
          let register = {
         "machine": this.login.value.machine_name,
         "shift": this.login.value.shift_num,
