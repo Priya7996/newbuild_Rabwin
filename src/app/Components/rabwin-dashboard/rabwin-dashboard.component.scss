@@ -755,6 +755,7 @@
 .machinestatus_sec{
   display: flex;
   flex-wrap: wrap;
+  // width: 60%;
 }
 progress.run::-moz-progress-bar { background:#04C984; }
 progress.run::-webkit-progress-value { background:#04C984; }
@@ -765,3 +766,43 @@ progress.idle { color: #FEAD01; }
 progress.disconnect::-moz-progress-bar { background: #939393; }
 progress.disconnect::-webkit-progress-value { background:#A8A8A8; }
 progress.disconnect { color: #939393; }
+.machinestatus_sec_inner {
+  display: flex;
+  // margin-left: 30px;
+}
+.line_desc{
+  display: flex;
+}
+.circle_chart_left{
+  width: 65%;
+}
+.circle_chart_right{
+  width: 35%;
+  margin-top: 15px;
+  margin-right: 5px;
+}
+.dashboard_page_sec .machinestatus_sec {
+  // display: flex;
+}
+.dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec h2 {
+  // transform: rotate(-90deg);
+}
+.dashboard_page_sec .line_desc_inner{
+  width: 45%;
+  margin-right: 20px;
+}
+.circle_chart .circle_chart_right .chart_text {
+  position: relative!important;
+  top: 0!important;
+  left: 0!important;
+  transform: inherit;
+}
+.dashboard_page_sec .time_sec {
+  margin-top: 20px;
+}
+.dashboard_page_sec .line_desc .line_mac_target .box_bg p {
+  font-size: 15px;
+}
+.dashboard_page_sec .circle_chart .chart_text h3 {
+  font-size: 35px !important;
+}
