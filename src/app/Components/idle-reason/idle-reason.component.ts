@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { MatSort,MatTableDataSource,} from '@angular/material';
 
 declare var gtag;
-
+ 
    @Component({
      selector: 'app-idle-reason',
       templateUrl: './idle-reason.component.html', 
@@ -69,27 +69,27 @@ console.log(gtag);
           })
          this.service.getmachines().subscribe(res => {
             this.machine_response = res;
-            // this.login.patchValue({
-            //   machine_name: this.machine_response[0],
-            // })
+            this.login.patchValue({
+              machine_name: this.machine_response[0],
+            })
             this.service.getshift().subscribe(res => {
               this.shift_response = res;
-              // this.login.patchValue({
-              //   shift_num: this.shift_response[0].shift_no,
-              // })
+              this.login.patchValue({
+                shift_num: this.shift_response[0].shift_no,
+              })
              
-                  // this.service.first_page_loading().subscribe(res => {
-                  //   this.first_loading = res;
-                  //  this.login.patchValue({
-                  //     date : [this.first_loading['to_date']]
-                  // })
+                  this.service.first_page_loading().subscribe(res => {
+                    this.first_loading = res;
+                   this.login.patchValue({
+                    date : [this.first_loading['from_date'],this.first_loading['to_date']]
+                  })
                    // this.minDate = this.first_loading['from_date'][m
                  // this.maxDate = this.first_loading['to_date'][m
                
                // this.minDate = this.first_loading['from_date'][m
              // this.maxDate = this.first_loading['to_date'][m
-            //   this.logintest('true');
-            // })
+               this.logintest('true');
+            })
             })
        })
       }

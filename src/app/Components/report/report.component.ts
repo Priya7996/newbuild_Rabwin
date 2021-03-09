@@ -68,8 +68,7 @@ export class ReportComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-  } machine_name: ["",]
-
+  } 
   ngOnInit() {
 
 
@@ -191,7 +190,7 @@ export class ReportComponent implements OnInit {
     
 
       })
-    }
+    } 
   }
 }
 @Component({
