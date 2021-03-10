@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
 
           if (res.shift_data === true && data === 'Admin') {
             // Swal.fire("Welcome admin")
-            this.router.navigateByUrl('/andon-dashboard');
+            this.router.navigateByUrl('/rabwin_dashboard');
 
           }
           else if (res.shift_data === false && data === 'Admin') {
@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit {
           }
           else if (res.shift_data === true && data === 'Supervisor') {
             // Swal.fire("Welcome Supervisor")
-            this.router.navigateByUrl('/andon-dashboard');
+            this.router.navigateByUrl('/rabwin_dashboard');
           }
           else if (res.shift_data === false && data === 'Supervisor') {
             Swal.fire("Please Contact Yantra 24x7")

@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
 
       }
       else{
-        this.route.navigateByUrl('/andon-dashboard');
+        this.route.navigateByUrl('/rabwin_dashboard');
 
       }
 
