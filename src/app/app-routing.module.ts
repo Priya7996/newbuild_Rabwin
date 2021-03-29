@@ -38,6 +38,7 @@ const routes: Routes = [
 { path: 'efficiency', loadChildren: () => import('./Components/efficiency/efficiency.module').then(m => m.EfficiencyModule) },
   
 { path: 'rabwin_dashboard', loadChildren: () => import('./Components/rabwin-dashboard/rabwin-dashboard.module').then(m => m.RabwinDashboardModule) },
+  
     
 ]
     

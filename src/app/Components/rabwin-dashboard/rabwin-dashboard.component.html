@@ -75,16 +75,33 @@
                   <div class="machinestatus_sec_inner">        
                 <div class="machine_status_list " *ngFor = "let val of value.status; let i = index">
   
-                  <div class="machine_status_item active"  *ngIf="val.value === 'DISCONNECT'">
+                  <div class="machine_status_item active"  *ngIf="val.value === 'DISCONNECT'" [ngClass]="{
+                    'disconnect_wrap': value.low_perf_machine === val?.machine && val.value === 'DISCONNECT',
+                    'run_wrap': value.low_perf_machine === val?.machine && val.value === 'OPERATE',
+                    'idle_wrap': value.low_perf_machine === val?.machine && val.value === 'STOP'
+
+                }" >
                    
                     <h3  matTooltip="{{val.machine}}">{{i+1}}</h3>
                   </div>
   
-                  <div class="machine_status_item run"  *ngIf="val.value === 'OPERATE'">
+                  <div class="machine_status_item run"  *ngIf="val.value === 'OPERATE'"
+                  [ngClass]="{
+                    'disconnect_wrap': value.low_perf_machine === val?.machine && val.value === 'DISCONNECT',
+                    'run_wrap': value.low_perf_machine === val?.machine && val.value === 'OPERATE',
+                    'idle_wrap': value.low_perf_machine === val?.machine && val.value === 'STOP'
+
+                }">
                     <h3    matTooltip="{{val.machine}}">{{i+1}}</h3>
                   </div>
   
-                  <div class="machine_status_item idle"  *ngIf="val.value === 'STOP'">
+                  <div class="machine_status_item idle"  *ngIf="val.value === 'STOP'"
+                  [ngClass]="{
+                    'disconnect_wrap': value.low_perf_machine === val?.machine && val.value === 'DISCONNECT',
+                    'run_wrap': value.low_perf_machine === val?.machine && val.value === 'OPERATE',
+                    'idle_wrap': value.low_perf_machine === val?.machine && val.value === 'STOP'
+
+                }">
                     <h3    matTooltip="{{val.machine}}">{{i+1}}</h3>
                   </div>
   

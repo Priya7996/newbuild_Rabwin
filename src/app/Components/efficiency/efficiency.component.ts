@@ -16,6 +16,7 @@ export class EfficiencyComponent implements OnInit {
   displayedColumns: string[] = ['position', 'date', 'shift_num','machine_name','card_no','rout_end','rout_start','tar','actual','efficiency'];
   dataSource = new MatTableDataSource();
   type: any;
+  result:any;
   myLoader = false;
   daterangepicker:any;
   export_excel: any[] = [];
@@ -158,8 +159,12 @@ export class EfficiencyComponent implements OnInit {
       console.log(register)
       this.service.overallll_report(register).subscribe(res => {
         this.myLoader = false;
+        this.result = res.length;
+        console.log(this.result)
+        if(this.result == '0'){
+          Swal.fire("No Efficiency Report Found")
+        }
         this.g_report = res[0];
-        console.log(this.g_report)
         this.get_report = res[0].route_card_report;
         // this.dataSource = new MatTableDataSource(this.get_report);
      

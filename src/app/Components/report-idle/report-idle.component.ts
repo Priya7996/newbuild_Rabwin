@@ -97,7 +97,7 @@ myLoader = false;
           })
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
-            console.log(this.first_loading )
+            console.log(this.first_loading['from_date'] )
 
             this.login.patchValue({
               // date : [this.first_loading]

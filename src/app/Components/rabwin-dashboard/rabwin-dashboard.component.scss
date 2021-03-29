@@ -11,6 +11,21 @@
   .my-class{
     color: #1ead55;
   }
+
+  .disconnect_wrap{
+    background: rgb(81, 12, 170) !important;
+}
+.run_wrap{
+    
+  background: rgb(24, 164, 245) !important;
+
+}
+.idle_wrap{
+
+  background: rgb(76, 114, 6) !important;
+
+
+}
   .machine {
     position: relative;
     // width: calc(93.4%/4);
@@ -805,4 +820,9 @@ progress.disconnect { color: #939393; }
 }
 .dashboard_page_sec .circle_chart .chart_text h3 {
   font-size: 35px !important;
+}
+.machine_status_bg{
+
+  background-color: red;
+  color:blueviolet;
 }

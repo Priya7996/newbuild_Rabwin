@@ -49,6 +49,7 @@ export class AlarmComponent implements OnInit {
 
      this.alarmHistory = res.alarm_histories;
      this.dataSource = new MatTableDataSource(this.alarmHistory);
+     console.log(this.dataSource);
     this.total_count =res.alarms_count;
 
    })
