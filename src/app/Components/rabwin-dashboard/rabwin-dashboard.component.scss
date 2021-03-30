@@ -13,19 +13,99 @@
   }
 
   .disconnect_wrap{
-    background: rgb(81, 12, 170) !important;
-}
+    background: url(../../../assets/images/hexagon_hover.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    font-size: 25px;
+    font-weight: 700;
+    -webkit-text-stroke: 0.7px #000000;
+    line-height: 28px;
+    height: 40px;
+    background-position: center;
+    background-size: contain;
+    background-color: var(--gray) !important;   
+  
+  }
 .run_wrap{
-    
-  background: rgb(24, 164, 245) !important;
+  background: url(../../../assets/images/hexagon_hover.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-size: 25px;
+  font-weight: 700;
+  -webkit-text-stroke: 0.7px #000000;
+  line-height: 28px;
+  height: 40px;
+  background-position: center;
+  background-size: contain;
+  background-color: var(--green) !important;   
 
 }
 .idle_wrap{
 
-  background: rgb(76, 114, 6) !important;
+  background: url(../../../assets/images/hexagon_hover.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-size: 25px;
+  font-weight: 700;
+  -webkit-text-stroke: 0.7px #000000;
+  line-height: 28px;
+  height: 40px;
+  background-position: center;
+  background-size: contain;
+  background-color: var(--warning) !important;   
 
+} 
 
-}
+// .machine_status_item{
+//   width: 19%;
+//   height: 41px;
+//   background: #454545;
+//   position: relative;
+//   margin: 0 0 0px 0;
+//   color: #fff;
+//   font-weight: 500;
+//   // -webkit-transform: rotate(88deg);
+//   // transform: rotate(88deg);
+//   background: url(../../../assets/images/hexagon.png);
+//   background-size: 100%;
+//   line-height: 28px;
+//   height: 40px;
+//   background-size: contain;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   &.disconnect_wrap{
+//       background: url(../../../assets/images/hexagon_hover.png);
+//       background-size: 100%;
+//       background-repeat: no-repeat;
+//       font-size: 25px;
+//       font-weight: 700;
+//       -webkit-text-stroke: 0.7px #000000;
+//       line-height: 28px;
+//       height: 40px;
+//       background-position: center;
+//       background-size: contain;
+//       background: rgb(81, 12, 170) !important;   }
+//   &.run1{
+//       color: #04C984;
+//       background: rgb(24, 164, 245) !important;
+
+//   }
+//   &.idle1{
+//     color: #FECC00;
+//     background: rgb(76, 114, 6) !important;
+
+//   }
+//   p{
+//       margin: 0;
+//       font-size: 25px;
+//       text-align: center;
+//       font-weight: 700;
+//       -webkit-text-stroke: 0.7px #000000;   
+//       position: absolute;
+//       top: 50%;
+//       left: 50%;
+//       transform: translate(-50%, -50%);                             }
+// }
   .machine {
     position: relative;
     // width: calc(93.4%/4);

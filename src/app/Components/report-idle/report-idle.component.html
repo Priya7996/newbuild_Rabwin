@@ -84,11 +84,11 @@
                     <tbody *ngFor="let show_report of get_report; let i = index" >
                         <tr *ngIf="no_data?.length > 0">
                             <td>{{i+1}}</td>
-                            <td>{{g_report?.date}}</td>
-                            <td>{{g_report?.shift_no}}</td>
+                            <td>{{g_report?.date || '---'}}</td>
+                            <td>{{g_report?.shift_no || '---'}}</td>
 
-                            <td>{{g_report?.machine_name}}</td>
-                             <td>{{g_report?.time}}</td>
+                            <td>{{g_report?.machine_name || '---'}}</td>
+                             <td>{{g_report?.time || '---'}}</td>
                             <td>{{show_report?.idle_reason }}</td>
                             <td>{{show_report?.idle_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                          

@@ -1543,6 +1543,13 @@ ul{
         }
     }
 }
+
+table.table.report_table {
+    white-space: nowrap;
+}
+.table_wrapper {
+    overflow-x: scroll;
+}
 .page_title_sec {
     .table_search {
         float: right;
@@ -2009,11 +2016,21 @@ ul{
                                     // }
                                 }
                                 &.run{
-                                    color: #04C984;
+                                    color: #04C984; 
                                     // background-color: #04C984;
                                 }
                                 &.idle{
                                   color: #FECC00;
+                                }
+                                &.active1{
+                                    background-color: crimson;
+                                }
+                                &.idle1{
+                                    background-color: cyan;
+
+                                }
+                                &.run1{
+                                     background-color: darkmagenta;
                                 }
                                 p{
                                     margin: 0;
