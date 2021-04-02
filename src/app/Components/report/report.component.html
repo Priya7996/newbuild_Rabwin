@@ -217,7 +217,30 @@
                     <th mat-header-cell *matHeaderCellDef>Actual Parts Produced</th>
                     <td mat-cell *matCellDef="let element"> {{element.actual || '---'}} </td>
                   </ng-container>
+                
 
+                  
+
+                  <ng-container matColumnDef="accept">
+                    <th mat-header-cell *matHeaderCellDef>Accept</th>
+                    <td mat-cell *matCellDef="let element"> {{element.efficiency || '---'}} </td>
+                  </ng-container>
+
+
+                  
+
+                  <ng-container matColumnDef="reject">
+                    <th mat-header-cell *matHeaderCellDef>Reject</th>
+                    <td mat-cell *matCellDef="let element"> {{element.efficiency || '---'}} </td>
+                  </ng-container>
+
+
+                  
+
+                  <ng-container matColumnDef="rework">
+                    <th mat-header-cell *matHeaderCellDef>Rework</th>
+                    <td mat-cell *matCellDef="let element"> {{element.efficiency || '---'}} </td>
+                  </ng-container>
 
                   <ng-container matColumnDef="efficiency">
                     <th mat-header-cell *matHeaderCellDef>Efficiency(%)</th>

@@ -148,7 +148,7 @@ myLoader = false;
 
  }  
 
-  logintest(s) {
+  logintest(s) { 
 
     this.status = s;
    
@@ -156,8 +156,9 @@ myLoader = false;
          let register = {
         "machine": this.login.value.machine_name,
         "shift": this.login.value.shift_num,
-        "date": this.login.value.date
+        "date": this.login.value.date + '-' + this.login.value.date
       }
+      console.log(register)
  this.myLoader = true;
 
       this.service.overall_report(register).subscribe(res => {
