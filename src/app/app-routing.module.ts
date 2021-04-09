@@ -39,6 +39,8 @@ const routes: Routes = [
   
 { path: 'rabwin_dashboard', loadChildren: () => import('./Components/rabwin-dashboard/rabwin-dashboard.module').then(m => m.RabwinDashboardModule) },
   
+{ path: 'tv', loadChildren: () => import('./Components/tv/tv.module').then(m => m.TvModule) },
+  
     
 ]
     

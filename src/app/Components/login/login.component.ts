@@ -19,15 +19,15 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   count_machine: any;
   rolename: any;
-  signup:any;
+  Signup:any;
   constructor(public dialog: MatDialog,private fb: FormBuilder, private nav: NavbarService, private service: LoginService, private router: Router) {
     this.nav.hide();
   }
   ngOnInit() {
-    this.signup = localStorage.getItem('sign');
+    this.Signup = localStorage.getItem('sign');
     // if(this.signup === 'false'){
     //   alert("no signup")
-
+ 
     // }
     // else{
     //   alert("signup")
@@ -36,7 +36,8 @@ export class LoginComponent implements OnInit {
 
 
     this.service.true().pipe(untilDestroyed(this)).subscribe(res=>{
-      this.signup = res;
+      this.Signup = res;
+      console.log(this.Signup)
     })
 
 

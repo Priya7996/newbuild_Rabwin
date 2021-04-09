@@ -65,6 +65,7 @@
                             <th class="date">Date</th>
 
                             <th>Shift</th>
+                            <th>Line</th>
                             <th>Machine Name</th>
                             <th>Operator Name</th>
                             <th>Operator Id</th>
@@ -90,18 +91,27 @@
                             <td>{{g_report?.date | date:'dd-MM-yyyy'}}</td>
 
                             <td>{{g_report?.shift_num || '---'}}</td>
-                             <td>{{show_report?.line || '---'}}</td>
-                             <td>{{g_report?.operator || '---'}}</td>
-                             <td>{{g_report?.operator_id || '---'}}</td>
+                            <td>{{show_report?.line || '---'}}</td>
+
+                             <td>{{g_report?.machine_name || '---'}}</td>
+                             <td>
+                                 
+                                <span *ngIf="show_report?.operator_name.length === 0">No Operator Name</span>
+                                <span *ngIf="show_report?.operator_name.length != 0">{{show_report?.operator_name}}</span></td>
+                             <td>
+                                <span *ngIf="show_report?.operator_id.length === 0">No Operator Id</span>
+                                <span *ngIf="show_report?.operator_id.length != 0"> {{show_report?.operator_id || '---'}}</span> 
+                                
+                               </td>
                              <td>{{show_report?.mode || '---'}}</td>
                             <td>{{show_report?.card_no || '---'}}</td>
                             <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                             <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-                            <td>---</td>
-                            <td>{{show_report?.tar || '---'}}</td>
+                            <td>{{g_report?.duration || '---'}}</td>
+                            <td>{{show_report?.tar}}</td>
 
-                            <td>{{show_report?.actual || '---'}}</td>
-                            <td>---</td>
+                            <td>{{show_report?.actual}}</td>
+                            <td>{{show_report?.accept}}</td>
                             <td>{{show_report?.rejection }}</td>
                             <td>{{show_report?.rework }}</td>
                             <td>{{show_report?.efficiency}}</td>
