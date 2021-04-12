@@ -42,11 +42,11 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
    
     this.fline = res[0].line;
-    this.fname = res[0].name;
-    this.utlization = res[0].utlization;
+    this.fname = res[0].machine;
+    this.utlization = res[0].run;
     this.run_time = res[0].run_time;
-    this.stop = res[0].stop;
-    this.disconnect = res[0].disconnect;
+    this.stop = res[0].idle_time;
+    this.disconnect = res[0].discon_time;
     this.reason = res[0].reason;
 
     this.myLoader = true;

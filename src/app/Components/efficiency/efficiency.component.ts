@@ -118,19 +118,25 @@ export class EfficiencyComponent implements OnInit {
          "Date": this.g_report.date || '---',
          "Shift": this.g_report.shift_num || '---',
 
-         "Machine Name":this.get_report[i].line || '---',
+         "Line":this.get_report[i].line || '---',
+         "Machine Name":this.g_report.machine_name || '---',
+
          "Operator Name":this.g_report.operator[0] || '---',
          "Operator Id":this.g_report.operator_id[0] || '---',
+         "Mode":this.get_report[i].mode || '---',
 
          "Route Card Number": this.get_report[i].card_no || '---',
          "Route Card Start Time": this.get_report[i].rout_start || '---',
        
          "Route Card End Time": this.get_report[i].rout_end || '---',
-         "Target": this.get_report[i].tar || '---',
+         "Duration": this.g_report.duration || '---',
 
-         "Actual": this.get_report[i].actual || '---',
-
-         "Efficiency(%)": this.get_report[i].efficiency || '---',
+         "Target": this.get_report[i].tar ,
+         "Actual": this.get_report[i].actual ,
+         "Accept": this.get_report[i].accept ,
+         "Reject": this.get_report[i].rejection ,
+         "Rework": this.get_report[i].rework ,
+         "Efficiency(%)": this.get_report[i].efficiency ,
 
  
 
