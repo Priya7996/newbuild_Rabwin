@@ -16,6 +16,8 @@ export class RabwinDashboardComponent implements OnInit {
   a_dashboard:any; 
   valuen:any; 
   data:any;
+  s_num:any;
+  ltime:any;
   myLoader = false;
   today: number = Date.now();
 
@@ -32,8 +34,17 @@ export class RabwinDashboardComponent implements OnInit {
     this.service.andon().pipe(untilDestroyed(this)).subscribe(res=>{
     
        this.a_dashboard = res;
+      //  this.s_num = res.shift_no[0];
+      //  this.ltime = res.show_time;
+       console.log(res.shift_no,res.show_time)
        this.myLoader = false;
+       for(let i in this.a_dashboard){
+        this.ltime = this.a_dashboard[i].show_time;
+        this.s_num = this.a_dashboard[i].shift_no;
 
+        console.log(this.ltime)
+       
+     }
        for(let i in this.a_dashboard){
          this.valuen = this.a_dashboard[i].status;
          for(let j in this.a_dashboard[i].status){

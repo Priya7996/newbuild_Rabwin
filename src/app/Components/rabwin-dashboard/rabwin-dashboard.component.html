@@ -11,7 +11,7 @@
             </mat-icon>
             <p>Shift</p>
             <div class="view_box">
-              <span>02</span>
+              <span>{{s_num}}</span>
             </div>
           </div>
           <div class="last_update_view box_sec">
@@ -19,17 +19,18 @@
             <p class="time_date">Last Update <br>
               Time &amp; Date</p>
   
-            <p><span>
+            <p>
+              <!-- <span>
               {{today | date:'h:mm:ss a'  }} <br>
-              </span>
-              <span>{{today | date:'dd-MM-yyyy'}}</span>
+              </span> -->
+              <span>{{ltime | date:'dd-MM-yyyy h:mm:ss a'}}</span>
             </p>
           </div>
-            <button class="btn btn_link" (click)="refresh()" matTooltip="Refresh">
+            <!-- <button class="btn btn_link" (click)="refresh()" matTooltip="Refresh">
               Update now
               <mat-icon class="v-align-middle display">cached
               </mat-icon>
-            </button>
+            </button> -->
         </div>
       </div>
   
