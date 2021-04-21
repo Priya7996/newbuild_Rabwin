@@ -51,7 +51,7 @@ export class DashboardlineComponent implements OnInit {
 
     this.myLoader = true;
 
-    this.service.pie(this.fline,this.fname,this.utlization,this.run_time,this.stop,this.disconnect,this.reason).pipe(untilDestroyed(this)).subscribe(res=>{
+    this.service.pie(this.fline,this.fname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.operator = res;
         this.eff = res.effe;
         this.servo_load = res.servo_load[0]
@@ -596,7 +596,7 @@ export class DashboardlineComponent implements OnInit {
   {     
          this.myLoader = true;
 
-         this.service.pie(fline,fname,utlization,run_time,stop,disconnect,reason).pipe(untilDestroyed(this)).subscribe(res=>{
+         this.service.pie(fline,fname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.myLoader = false;
 
         this.operator = res;

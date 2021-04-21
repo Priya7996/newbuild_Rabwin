@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable,of, from } from 'rxjs';
 import { environment} from '../../../environments/environment';
 import { TokenService } from '../core/authentication/token.service';
 @Injectable({
@@ -29,8 +29,8 @@ export class DashboardService {
   form_line(line):Observable<any>{
     return this.http.get('line_wise_dashboards?line=' + line)
   }
-  pie(line,name,utlization,run_time,stop,disconnect,reason):Observable<any>{
-    return this.http.get('live_machine_detail?line=' + line + '&&machine=' + name + '&&utlization=' + utlization + '&&run_time=' + run_time + '&&stop=' + stop + '&&disconnect=' + disconnect + '&&reason=' + reason)
+  pie(line,name):Observable<any>{
+    return this.http.get('live_machine_detail?line=' + line + '&&machine=' + name )
   }
 }
 
