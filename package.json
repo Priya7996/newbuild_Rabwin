@@ -52,6 +52,7 @@
     "ngx-text-diff": "^0.5.4",
     "ngx-toastr": "^11.3.3",
     "rxjs": "~6.4.0",
+    "saturn-datepicker": "^8.0.5",
     "sweetalert2": "^9.6.0",
     "tslib": "^1.10.0",
     "xlsx": "^0.16.0",

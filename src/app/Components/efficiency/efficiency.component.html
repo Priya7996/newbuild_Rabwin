@@ -6,7 +6,20 @@
         <div class="filter_sec mt-10">
             <form [formGroup]="login" (ngSubmit)="logintest('true')">
                 <div class="filter_fields">
-                                        
+                     
+                  <div class="filter_field">
+                    <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select Module" matNativeControl required
+                            formControlName="line" (selectionChange)="getsplit($event.value)">
+                            <mat-option value="all">All</mat-option>
+                            <mat-option *ngFor="let mod of module_response" [value]="mod">
+                              {{mod}}
+                          </mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
                     <div class="filter_field">
                         <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
                         <mat-form-field appearance="outline">
@@ -14,7 +27,7 @@
                                 formControlName="machine_name">
                                 <mat-option value="all">All</mat-option>
 
-                                <mat-option *ngFor="let machine of machine_response" [value]="machine">
+                                <mat-option *ngFor="let machine of mac_response" [value]="machine">
                                     {{machine}}
                                 </mat-option> 
                             </mat-select>

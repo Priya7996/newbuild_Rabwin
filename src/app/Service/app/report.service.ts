@@ -14,17 +14,40 @@ export class ReportService {
   getmachines():Observable<any>{
      return this.http.get('machine_list')
   }
+  line(data):Observable<any>{
+  return this.http.get('report_filters?line=' +data)
+}
+
+//http://3.7.120.8:3000//api/v1/operator_filters?machine_name=VALVE-C63&&shift_num=all&&from_date=04/16/2021-04/16/2021
+// http://3.7.120.8:3000//api/v1/report_filters?line=ELECTRICAL
+// Line and machine filtere
+  getmodule():Observable<any>{
+    return this.http.get('module_filters')
+ }
+
+ operat(register):Observable<any>{
+   return this.http.get('operator_filters?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date)
+ }
   getshift():Observable<any>{
     return this.http.get('shifts')
   }
   overall_report(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date )
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type)
   }
   first_page_loading():Observable<any>{
     return this.http.get('previous_shift')
   }
   overallll_report(register):Observable<any>{
     return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.from_date )
+  }
+  overall_report_ing(register):Observable<any>{
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date )
+  }
+  overallls_report(register):Observable<any>{
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + 'Shiftwise')
+  }
+  overall_report_op(register):Observable<any>{
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type + '&&operator_id=' + register.operator)
   }
 
 }

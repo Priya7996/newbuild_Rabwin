@@ -11,7 +11,7 @@ declare var gtag;
  
    @Component({
      selector: 'app-idle-reason',
-      templateUrl: './idle-reason.component.html', 
+      templateUrl: './idle-reason.component.html',  
    styleUrls: ['./idle-reason.component.scss']
     }) 
     export class IdleReasonComponent implements OnInit {
@@ -47,12 +47,14 @@ startDate:any;
      report: any;
       first_loading: any;
      daterangepicker:any;
-    
+     reportblock:any;
     status: string;
     myLoader = false;
       export_excel: any[] = [];
       new_date: string;
       new_date1: any;
+      mac_response:any;
+      module_response:any;
       constructor(private nav:NavbarService,private datePipe: DatePipe,private service:IdleReasonService,private fb:FormBuilder,private exportService: ExportService  ) { 
         this.nav.show()
       }
@@ -63,10 +65,29 @@ gtag('config', 'G-JRVTCZ20DE');
 console.log(gtag);
 
          this.login = this.fb.group({
+            line:[""],
+
             machine_name: [""],
             shift_num: [""],
             date: [""],
           })
+
+
+          this.service.getmodule().subscribe(res => {
+            this.module_response = res;
+            console.log(this.module_response);
+            this.login.patchValue({
+              line: this.module_response[0],
+      
+            })
+            this.service.line(this.module_response[0]).subscribe(res => {
+              this.mac_response=res;
+              // let data =  this.mac_response;
+              // console.log(data)
+              console.log(this.mac_response);
+              this.login.patchValue({
+                machine_name: this.mac_response[0],
+              })
          this.service.getmachines().subscribe(res => {
             this.machine_response = res;
             this.login.patchValue({
@@ -90,11 +111,34 @@ console.log(gtag);
              // this.maxDate = this.first_loading['to_date'][m
                this.logintest('true');
             })
+          })
+        })
             })
        })
       }
+
+      getsplit(val){
+    
+        this.reportblock = val;
+        
+        console.log(this.reportblock)
+        
+    
+        this.service.line(this.reportblock).subscribe(res => {
+          this.mac_response=res;
+          console.log(this.mac_response[0]);
+          this.login.patchValue({
+            machine_name: this.mac_response[0],
+          })
+          // localStorage.setItem('MACHINE', this.mac_response[0]);
+          // let hadokmac = localStorage.getItem('MACHINE');
+          // console.log(hadokmac);
+       
+          })
+        }
     export(){
    let register = {
+        "line":this.login.value.line,
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         // "date": this.new_date + '-' + this.new_date1
@@ -150,8 +194,10 @@ console.log(gtag);
             "machine_name": this.login.value.machine_name,
            "shift_num": this.login.value.shift_num,
           //  "date": this.new_date + '-' + this.new_date1
-          "date":this.new_date + '-' + this.new_date1
+          "date":this.new_date + '-' + this.new_date1,
+          "line":this.login.value.line
         }
+        console.log(register);
 
                    this.register= register;
 

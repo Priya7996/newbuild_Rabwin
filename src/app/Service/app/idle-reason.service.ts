@@ -11,6 +11,12 @@ export class IdleReasonService {
     pageNo: any;
  
   constructor(private http:HttpClient,) { }
+  getmodule():Observable<any>{
+    return this.http.get('module_filters')
+ }
+ line(data):Observable<any>{
+  return this.http.get('report_filters?line=' +data)
+}
 
   getmachines():Observable<any>{
     return this.http.get('machine_list')

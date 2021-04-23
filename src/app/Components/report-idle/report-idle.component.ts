@@ -49,8 +49,10 @@ myLoader = false;
  export_excel: any[] = [];
   new_date: string;
   new_date1: any;
-
+  module_response:any;
   chart_loop:any;
+  mac_response:any;
+  reportblock:any;
   constructor(private exportService: ExportService,private nav:NavbarService,private service:ReportIldeService,private fb:FormBuilder  ) { 
     this.nav.show()
   }
@@ -75,16 +77,51 @@ myLoader = false;
    
     return result;
   };
+
+  getsplit(val){
+    
+    this.reportblock = val;
+    
+    console.log(this.reportblock)
+    
+
+    this.service.line(this.reportblock).subscribe(res => {
+      this.mac_response=res;
+      console.log(this.mac_response[0]);
+      this.login.patchValue({
+        machine_name: this.mac_response[0],
+      })
+    
+   
+      })
+    }
     ngOnInit() {
 
       
  
 
       this.login = this.fb.group({
+        line:[""],
         machine_name: [""],
         shift_num: [""],
         date: [""],
       })
+
+
+      this.service.getmodule().subscribe(res => {
+        this.module_response = res;
+        console.log(this.module_response);
+        this.login.patchValue({
+          line: this.module_response[0],
+  
+        })
+        this.service.line(this.module_response[0]).subscribe(res => {
+          this.mac_response=res;
+      
+          console.log(this.mac_response);
+          this.login.patchValue({
+            machine_name: this.mac_response[0],
+          })
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
         this.login.patchValue({
@@ -110,6 +147,8 @@ myLoader = false;
             this.logintest('true');
           })
         })
+      })
+      })
       })
   }
       export(){

@@ -87,5 +87,8 @@
   },
   "rulesDirectory": [
     "codelyzer"
-  ]
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true
+}
 }

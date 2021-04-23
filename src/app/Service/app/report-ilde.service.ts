@@ -14,6 +14,12 @@ export class ReportIldeService {
  getshift():Observable<any>{
    return this.http.get('shifts')
  }
+ getmodule():Observable<any>{
+  return this.http.get('module_filters')
+}
+line(data):Observable<any>{
+  return this.http.get('report_filters?line=' +data)
+}
  overall_report(register):Observable<any>{
    return this.http.get('idle_reports?machine=' + register.machine +'&&shift=' +register.shift +'&&date='+ register.date )
  }

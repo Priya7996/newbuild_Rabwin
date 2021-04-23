@@ -10,6 +10,17 @@ export class ComparechartService {
 
     
    }
+   line(data):Observable<any>{
+    return this.http.get('report_filters?line=' +data)
+  }
+
+   getmodule():Observable<any>{
+    return this.http.get('module_filters')
+ }
+ moduleget():Observable<any>{
+  return this.http.get('module_filters')
+}
+
    getmachines():Observable<any>{
     return this.http.get('machine_list')
  }

@@ -6,11 +6,51 @@
         <div class="filter_sec mt-10">
             <form [formGroup]="login" (ngSubmit)="logintest('true')">
                 <div class="filter_fields">
+
+                  <div class="filter_field date_picker" color="primary">
+                       
+                    <!-- <ejs-daterangepicker placeholder='Select a range' (change)="ValueChange()" [value]="value" formControlName="date">
+                        <e-presets>
+                            <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
+                            <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
+                            <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
+                            <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
+                        </e-presets>
+                    </ejs-daterangepicker> -->
+
+                    <mat-form-field>
+                      <input matInput
+                             placeholder="Choose a date"
+                             [satDatepicker]="picker2"
+                             formControlName="date"  (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                      <sat-datepicker #picker2 [rangeMode]="true">
+                      </sat-datepicker>
+                      <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+                  </mat-form-field>
+
+                </div>
+
+                <div class="filter_field">
+                  <mat-form-field appearance="outline">
+                      <mat-select placeholder="Select Shift" matNativeControl required
+                          formControlName="shift_num"  (selectionChange)="getshift($event.value)">
+                          <mat-option value="all">All</mat-option>
+
+                          <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
+                              {{shift.shift_no}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div>
                     <div class="filter_field">
                         <mat-form-field appearance="outline">
-                            <mat-select placeholder="Select Line" matNativeControl required
-                                formControlName="machine_name">
+                            <mat-select placeholder="Select Module" matNativeControl required
+                                formControlName="line" (selectionChange)="getsplit($event.value)">
                                 <mat-option value="all">All</mat-option>
+                                <mat-option *ngFor="let mod of module_response" [value]="mod">
+                                  {{mod}}
+                              </mat-option>
+
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -18,11 +58,11 @@
                         <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Machine" matNativeControl required
-                                formControlName="machine_name">
+                                formControlName="machine_name" (selectionChange)="getm($event.value)">
                                 <mat-option value="all">All</mat-option>
 
-                                <mat-option *ngFor="let machine of machine_response" [value]="machine">
-                                    {{machine}}
+                                <mat-option *ngFor="let Machine of mac_response" [value]="Machine">
+                                    {{Machine}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -31,45 +71,36 @@
                     <div class="filter_field">
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Type" matNativeControl required
-                                formControlName="machine_name">
-                                <mat-option value="all">All</mat-option>
+                                formControlName="type" (selectionChange)="gettype($event.value)">
+                                <mat-option value="Shiftwise">Shiftwise</mat-option>
+                                <mat-option value="Operatorwise">Operatorwise</mat-option>
+
                               
                             </mat-select>
                         </mat-form-field>
                     </div>
+ 
+                    <div class="filter_field"  *ngIf="types === 'Operatorwise' ">
+                      <mat-form-field appearance="outline">
+                          <mat-select placeholder="Select Operator" matNativeControl required
+                              formControlName="operator" >
+                              <mat-option *ngFor="let op of op_response" [value]="op">
+                                {{op}}
+                            </mat-option>
+                            
+                          </mat-select>
+                      </mat-form-field>
+                      <!-- <p *ngIf="op_response.length==0">No Operators Found</p> -->
+                      <div *ngIf="op_response.length==0" class="no_data_found">
+                        <h2>No Operators found</h2>
+                      </div>
+                  </div>
 
-                    <div class="filter_field">
-                        <!--have commmented out conditions feel free to use them again *ngIf="type == 'ShiftWise'" -->
-                        <mat-form-field appearance="outline">
-                            <mat-select placeholder="Select Shift" matNativeControl required
-                                formControlName="shift_num">
-                                <mat-option value="all">All</mat-option>
-
-                                <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
-                                    {{shift.shift_no}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                    <div class="filter_field date_picker" color="primary">
-                        <!-- <label>Select Date</label> -->
-                        <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
-                        <ejs-daterangepicker placeholder='Select a range' formControlName="date"
-                            (click)="daterangepicker.open()">
-                            <e-presets>
-                                <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
-                                <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'></e-preset>
-                                <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
-                                <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
-                            </e-presets>
-                        </ejs-daterangepicker>
-                    </div>
-
-                    <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
+                    <button type="submit" color="primary" mat-raised-button>Submit</button>
                 </div>
 
             </form>
-
+ 
             <div class="table_export">
                 <button class="export_btn" mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'Report'})"> Export</button>
                 <!-- <a href="" class="export_btn">

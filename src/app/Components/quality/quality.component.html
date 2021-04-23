@@ -36,10 +36,29 @@
         <div class="filter_sec mt-10">
             <form [formGroup]="login" (ngSubmit)="logintest('true')">
                 <div class="filter_fields">
+
+
+                    <div class="filter_field">
+                        <mat-form-field appearance="outline">
+                            <mat-select placeholder="Select Module" matNativeControl required
+                                formControlName="line" (selectionChange)="getsplit($event.value)">
+                                <mat-option value="all">All</mat-option>
+                                <mat-option *ngFor="let mod of module_response" [value]="mod">
+                                  {{mod}}
+                              </mat-option>
+
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                     <div class="filter_field sml-input">
                         <mat-form-field appearance="outline">
-                            <mat-placeholder>Search</mat-placeholder>
-                            <mat-select placeholder="Machine" required formControlName="machine_line">
+                            <mat-select placeholder="Select Machine" matNativeControl required
+                                formControlName="machine_name" (selectionChange)="getm($event.value)">
+                                <mat-option value="all">All</mat-option>
+
+                                <mat-option *ngFor="let Machine of mac_response" [value]="Machine">
+                                    {{Machine}}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -47,15 +66,19 @@
 
                     <div class="filter_field sml-input">
                         <mat-form-field appearance="outline">
-                            <mat-placeholder>Shift</mat-placeholder>
-                            <mat-select placeholder="Shift" required formControlName="shift">
+                            <mat-select placeholder="Select Shift" matNativeControl required
+                                formControlName="shift_num" >
+                                <mat-option value="all">All</mat-option>
+      
+                                <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
+                                    {{shift.shift_no}}
+                                </mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
 
-                    <div class="filter_field date_picker" color="primary">
-                        <!-- <label>Select Date</label> -->
-                        <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
+                    <!-- <div class="filter_field date_picker" color="primary">
+                       
                         <ejs-daterangepicker placeholder='Select a range' formControlName="date"
                             (click)="daterangepicker.open()">
                             <e-presets>
@@ -65,6 +88,17 @@
                                 <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
                             </e-presets>
                         </ejs-daterangepicker>
+                    </div> -->
+
+                    <div class="filter_field date_picker" color="primary">
+                      
+
+                        <mat-form-field appearance="fill">
+                            <input matInput [matDatepicker]="picker" formControlName="date"
+                            (click)="picker.open()"  placeholder='Select Date'>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                          </mat-form-field>
                     </div>
 
                     <button type="submit" color="primary" mat-raised-button>Go</button>
@@ -80,22 +114,22 @@
 
             </div>
             <div class="line_machines_list">
-                <div class="line_machine_item active">
+                <div class="line_machine_item active" *ngFor="let qua of get_report">
                     <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()">
+                         <div class="edit" (click)="openDialog()" *ngIf = "get_report1.length > 0">
                             <mat-icon class="v-align-middle display" (click)="openDialog()">create</mat-icon>
                         </div>
                         <div class="machine_desc">
-                            <h3>SRB -1104</h3>
+                            <h3>{{qua.machine_name}}</h3>
 
                         </div>
                         <div class="total_parts">
                             <p>Total <mat-icon class="v-align-middle display">arrow_forward
                                 </mat-icon> <br>
                                 Parts Produced</p>
-                            <span>00 </span>
+                            <span>{{qua.actual}} </span>
                         </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
+                        <!-- <p class="idle_rate">Idle run rate : <span>00:00 min</span></p> -->
                     </div>
                     <div class="user_entry_sec">
                         <p>Fill the following parts</p>
@@ -105,39 +139,39 @@
                                     <div class="filter_field">
                                         <mat-label> Rejected</mat-label>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
+                                            <input matInput placeholder="Enter Rejected Parts" value="{{qua.reject}}" readonly>
                                         </mat-form-field>
                                     </div>
 
                                     <div class="filter_field">
                                         <mat-label> Rework</mat-label>
                                         <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
+                                            <input matInput placeholder="Enter Rework Parts" value="{{qua.rework}}" readonly>
                                         </mat-form-field>
                                     </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
+                                    <!-- <button type="button" class="btn btn_gray">Go</button> -->
                                 </div>
                             </form>
                             <ul>
-                                <li>
+                                <!-- <li>
                                     <a href="javascript:;" (click)="openDialog2()">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <!-- <li>
                                     <a href="javascript:;" (click)="openDialog3()">Add
                                         <mat-icon class="v-align-middle display" >add</mat-icon>
                                     </a>
-                                </li>
-                                <li>
+                                </li> -->
+                                <!-- <li>
                                     <a href="javascript:;">Edit
                                         <mat-icon class="v-align-middle display" (click)="openDialog4()">create</mat-icon>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="accepted_parts">
                             <h3>Accepted Parts</h3>
                             <div>
-                                <span>00</span>
+                                <span>{{qua.accept}}</span>
                                 <mat-icon class="v-align-middle display">arrow_upward
                                 </mat-icon>
                             </div>
@@ -145,327 +179,17 @@
                     </div>
                 </div>
 
-                <div class="line_machine_item">
-                    <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()">
-                            <mat-icon class="v-align-middle display">create</mat-icon>
-                        </div>
-                        <div class="machine_desc">
-                            <h3>SRB -1107</h3>
-                        </div>
-                        <div class="total_parts">
-                            <p>Total <mat-icon class="v-align-middle display">arrow_forward
-                                </mat-icon> <br>
-                                Parts Produced</p>
-                            <span>00 </span>
-                        </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
-                    </div>
-                    <div class="user_entry_sec">
-                        <p>Fill the following parts</p>
-                        <div class="user_entry_desc">
-                            <form action="" class="user_entry_form">
-                                <div class="filter_fields">
-                                    <div class="filter_field">
-                                        <mat-label> Rejected</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
+               
 
-                                    <div class="filter_field">
-                                        <mat-label> Rework</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
-                                </div>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog2()">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog3()">Add
-                                        <mat-icon class="v-align-middle display">add</mat-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Edit
-                                        <mat-icon class="v-align-middle display">create</mat-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accepted_parts">
-                            <h3>Accepted Parts</h3>
-                            <div>
-                                <span>00</span>
-                                <mat-icon class="v-align-middle display">arrow_upward
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
+                <div *ngIf="get_report.length==0" class="no_data_found">
+                    <h2>No Quality found</h2>
                 </div>
-
-                <div class="line_machine_item">
-                    <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()">
-                            <mat-icon class="v-align-middle display">create</mat-icon>
-                        </div>
-                        <div class="machine_desc">
-                            <h3>SRB -1103</h3>
-                        </div>
-                        <div class="total_parts">
-                            <p>Total <mat-icon class="v-align-middle display">arrow_forward
-                                </mat-icon> <br>
-                                Parts Produced</p>
-                            <span>00 </span>
-                        </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
-                    </div>
-                    <div class="user_entry_sec">
-                        <p>Fill the following parts</p>
-                        <div class="user_entry_desc">
-                            <form action="" class="user_entry_form">
-                                <div class="filter_fields">
-                                    <div class="filter_field">
-                                        <mat-label> Rejected</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="filter_field">
-                                        <mat-label> Rework</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
-                                </div>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog2()">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog3()">Add
-                                        <mat-icon class="v-align-middle display">add</mat-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Edit
-                                        <mat-icon class="v-align-middle display">create</mat-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accepted_parts">
-                            <h3>Accepted Parts</h3>
-                            <div>
-                                <span>00</span>
-                                <mat-icon class="v-align-middle display">arrow_upward
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
 
 
-                <div class="line_machine_item">
-                    <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()">
-                            <mat-icon class="v-align-middle display">create</mat-icon>
-                        </div>
-                        <div class="machine_desc">
-                            <h3>SDG-02</h3>
-                        </div>
-                        <div class="total_parts">
-                            <p>Total <mat-icon class="v-align-middle display">arrow_forward
-                                </mat-icon> <br>
-                                Parts Produced</p>
-                            <span>00 </span>
-                        </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
-                    </div>
-                    <div class="user_entry_sec">
-                        <p>Fill the following parts</p>
-                        <div class="user_entry_desc">
-                            <form action="" class="user_entry_form">
-                                <div class="filter_fields">
-                                    <div class="filter_field">
-                                        <mat-label> Rejected</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="filter_field">
-                                        <mat-label> Rework</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
-                                </div>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog2()">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog3()">Add
-                                        <mat-icon class="v-align-middle display">add</mat-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Edit
-                                        <mat-icon class="v-align-middle display">create</mat-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accepted_parts">
-                            <h3>Accepted Parts</h3>
-                            <div>
-                                <span>00</span>
-                                <mat-icon class="v-align-middle display">arrow_upward
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
-                <div class="line_machine_item idle">
-                    <div class="line_mac_box">
-                        <div class="edit" (click)="openDialog()">
-                            <mat-icon class="v-align-middle display">create</mat-icon>
-                        </div>
-                        <div class="machine_desc">
-                            <h3>SGD-01</h3>
-                        </div>
-                        <div class="total_parts">
-                            <p>Total <mat-icon class="v-align-middle display">arrow_forward
-                                </mat-icon> <br>
-                                Parts Produced</p>
-                            <span>00 </span>
-                        </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
-                    </div>
-                    <div class="user_entry_sec">
-                        <p>Fill the following parts</p>
-                        <div class="user_entry_desc">
-                            <form action="" class="user_entry_form">
-                                <div class="filter_fields">
-                                    <div class="filter_field">
-                                        <mat-label> Rejected</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
 
-                                    <div class="filter_field">
-                                        <mat-label> Rework</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
-                                </div>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog3()">Add
-                                        <mat-icon class="v-align-middle display">add</mat-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Edit
-                                        <mat-icon class="v-align-middle display">create</mat-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accepted_parts">
-                            <h3>Accepted Parts</h3>
-                            <div>
-                                <span>00</span>
-                                <mat-icon class="v-align-middle display">arrow_upward
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="line_machine_item">
-                    <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()">
-                            <mat-icon class="v-align-middle display">create</mat-icon>
-                        </div>
-                        <div class="machine_desc">
-                            <h3>SRB -1101</h3>
-                        </div>
-                        <div class="total_parts">
-                            <p>Total <mat-icon class="v-align-middle display">arrow_forward
-                                </mat-icon> <br>
-                                Parts Produced</p>
-                            <span>00 </span>
-                        </div>
-                        <p class="idle_rate">Idle run rate : <span>00:00 min</span></p>
-                    </div>
-                    <div class="user_entry_sec">
-                        <p>Fill the following parts</p>
-                        <div class="user_entry_desc">
-                            <form action="" class="user_entry_form">
-                                <div class="filter_fields">
-                                    <div class="filter_field">
-                                        <mat-label> Rejected</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rejected Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-
-                                    <div class="filter_field">
-                                        <mat-label> Rework</mat-label>
-                                        <mat-form-field appearance="outline">
-                                            <input matInput placeholder="Enter Rework Parts" value="00">
-                                        </mat-form-field>
-                                    </div>
-                                    <button type="button" class="btn btn_gray">Go</button>
-                                </div>
-                            </form>
-                            <ul>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog2()">Reason <span>(3) </span> </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" (click)="openDialog3()">Add
-                                        <mat-icon class="v-align-middle display">add</mat-icon>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">Edit
-                                        <mat-icon class="v-align-middle display">create</mat-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accepted_parts">
-                            <h3>Accepted Parts</h3>
-                            <div>
-                                <span>00</span>
-                                <mat-icon class="v-align-middle display">arrow_upward
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 

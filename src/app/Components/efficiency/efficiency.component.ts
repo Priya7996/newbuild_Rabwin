@@ -17,10 +17,12 @@ export class EfficiencyComponent implements OnInit {
   dataSource = new MatTableDataSource();
   type: any;
   result:any;
+  reportblock:any;
+  mac_response:any;
   myLoader = false;
   daterangepicker:any;
   export_excel: any[] = [];
-
+  module_response:any;
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
   public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
@@ -62,10 +64,18 @@ export class EfficiencyComponent implements OnInit {
 
     })
 
+    this.service.getmodule().subscribe(res => {
+      this.module_response = res;
+      console.log(this.module_response);
+      // this.login.patchValue({
+      //   line: this.module_response[0],
+
+      // })
+     
     this.service.getmachines().subscribe(res => {
       this.machine_response = res;
       // this.login.patchValue({
-      //   machine_name: this.machine_response[0],
+      //   machine_name: this.machine_response[0], 
       // })
       this.service.getshift().subscribe(res => {
         this.shift_response = res;
@@ -90,7 +100,9 @@ export class EfficiencyComponent implements OnInit {
           // this.maxDate = this.first_loading['to_date']
           // this.logintest('true');
         })
-      })
+    
+    })
+  })
     })
 
     // for (let i = 0; i <= 25; i++) {
@@ -98,6 +110,22 @@ export class EfficiencyComponent implements OnInit {
     //   date: `date${i}`, });
     // }
   }
+
+
+  getsplit(val){
+    
+    this.reportblock = val;
+    
+    console.log(this.reportblock)
+    
+
+    this.service.line(this.reportblock).subscribe(res => {
+      this.mac_response=res;
+    
+    
+   
+      })
+    }
   export(){
    let register = {
         "machine_name": this.login.value.machine_name,
