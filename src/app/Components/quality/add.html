@@ -1,10 +1,10 @@
-<h2 mat-dialog-title>Editsd Quality</h2>
+<!-- <h2 mat-dialog-title>Editsd Quality</h2> -->
 <div class="close_modal">
     <mat-icon class="v-align-middle display" mat-dialog-close  matTooltip="Close">close
     </mat-icon>
 </div>
 <mat-dialog-content class="mat-typography">
-    <form class="form_sec"  autocomplete="off">
+    <!-- <form class="form_sec"  autocomplete="off">
         <div class="row_sec">
             <mat-form-field appearance="outline">
                 <mat-label>Machine name</mat-label>
@@ -16,8 +16,86 @@
                 <input matInput formControlName="machine_work" type="text" placeholder="Enter machine work">
             </mat-form-field>
         </div>
-    </form>
+    </form> -->
+    <mat-card class="card_sec"> 
+
+    <div class="table_wrapper">
+
+    <table class="table report_table">
+        <thead>
+            <tr></tr>
+            <tr class="sticky">
+                <th>S.no</th>
+
+                <th>Machine Name</th>
+                <th>Mode</th>
+                <th>Route Card Number</th>
+                <th>Route Card Start Time</th>
+                <th>Route Card End Time</th>
+                <th>Target</th>
+                <th>Actual</th>
+                <th>Accept</th>
+                <th>Reject</th>
+                <th>Rework</th>
+                <th *ngIf="VAP === 'Production' ">Actions</th>
+               
+              
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let show_report of get_report; let i = index">
+                <td>{{i+1}}</td>
+
+
+                 <td>{{g_report?.machine_name || '---'}}</td>
+                
+                
+                 <td>{{show_report?.mode || '---'}}</td>
+                <td>{{show_report?.card_no || '---'}}</td>
+                <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
+                <td  *ngIf="VAP != 'Production' ">{{show_report?.tar}}</td>
+                <td   *ngIf="VAP === 'Production' ">  
+                    
+                <mat-form-field appearance="outline">
+                <input matInput placeholder="Enter Target" value="{{show_report.tar}}" >
+                </mat-form-field></td>
+
+
+                <td  *ngIf="VAP != 'Production' ">{{show_report?.actual}}</td>
+                <td *ngIf="VAP === 'Production' ">    
+                    <mat-form-field appearance="outline">
+                    <input matInput placeholder="Enter Actual" value="{{show_report.actual}}" >
+                    </mat-form-field></td>
+                    <td  *ngIf="VAP != 'Production' ">{{show_report?.accept}}</td>
+                    <td *ngIf="VAP === 'Production' ">    
+                        <mat-form-field appearance="outline">
+                        <input matInput placeholder="Enter Accept" value="{{show_report.accept}}" >
+                        </mat-form-field></td>
+                <td *ngIf="VAP != 'Production' ">{{show_report?.rejection }}</td>
+                <td *ngIf="VAP === 'Production' ">    
+                    <mat-form-field appearance="outline">
+                    <input matInput placeholder="Enter Target" value="{{show_report.rejection}}" >
+                    </mat-form-field></td>
+                <td *ngIf="VAP != 'Production' ">{{show_report?.rework }}</td>
+                <td *ngIf="VAP === 'Production' ">    
+                    <mat-form-field appearance="outline">
+                    <input matInput placeholder="Enter Rework" value="{{show_report.rework}}" >
+                    </mat-form-field></td>
+                <td   *ngIf="VAP === 'Production' " >
+
+                <a href="javascript:;" (click)="edit_view(show_report.actual)">
+                    <mat-icon class="v-align-middle display" matTooltip="Edit">Go
+                    </mat-icon>
+                </a>
+            </td>
+
+            </tr>
+
+
+            
+        </tbody>
+    </table>
+    </div>
+    </mat-card>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-raised-button color="primary"  class="filter_btn btn_orange"> Save</button>
-</mat-dialog-actions>

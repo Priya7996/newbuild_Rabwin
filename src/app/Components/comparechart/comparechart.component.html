@@ -248,29 +248,60 @@
                 </div>
                 <form [formGroup]="login" (ngSubmit)="logintest('true')" class="compare_form filter_sec" action="">
                     <div class="filter_fields">
-                        <div class="filter_field sml-input">
+
+                        
+                        <div class="filter_field date_picker" color="primary">
+
+                            <!-- <ejs-daterangepicker placeholder='Select a range' 
+                                (click)="daterangepicker.open()" formControlName="date">
+                                <e-presets>
+                                    <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
+                                    <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'>
+                                    </e-preset>
+                                    <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
+                                    <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
+                                </e-presets>
+                            </ejs-daterangepicker> -->
+
+                            <mat-form-field>
+                                <input matInput
+                                       placeholder="Choose a date"
+                                       [satDatepicker]="picker2"
+                                       formControlName="date"  (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                                <sat-datepicker #picker2 [rangeMode]="true">
+                                </sat-datepicker>
+                                <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+                            </mat-form-field>
+                        </div>
+                        <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Line" required >
+                                <mat-select placeholder="Select Module" matNativeControl required
+                                    formControlName="line" (selectionChange)="getsplit($event.value)">
                                     <mat-option value="all">All</mat-option>
+                                    <mat-option *ngFor="let mod of module_response" [value]="mod">
+                                      {{mod}}
+                                  </mat-option>
+    
                                 </mat-select>
                             </mat-form-field>
                         </div>
 
-                        <div class="filter_field">
+                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select  matNativeControl required formControlName="machine_name">
+                                <mat-select placeholder="Select Machine" matNativeControl required
+                                    formControlName="machine_name" (selectionChange)="getm($event.value)">
                                     <mat-option value="all">All</mat-option>
-
-                                    <mat-option *ngFor="let machine of machine_response" [value]="machine">
-                                    {{machine}}
-                                  </mat-option>
+    
+                                    <mat-option *ngFor="let Machine of mac_response" [value]="Machine">
+                                        {{Machine}}
+                                    </mat-option>
                                 </mat-select>
-                              </mat-form-field>
-                        </div>
+                            </mat-form-field>
+                    </div>
                         <div class="filter_field sml-input">
 
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Shift" matNativeControl required formControlName="shift_num">
+                                <mat-select placeholder="Shift" matNativeControl required formControlName="shift_num" (selectionChange)="getshift($event.value)">
                                     <mat-option value="all">All</mat-option>
 
                                     <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
@@ -282,28 +313,32 @@
 
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Operator" matNativeControl required
-                                    >
-                                    <mat-option value="all">All</mat-option>
-                                
+                                <mat-select placeholder="Select Type" matNativeControl required
+                                    formControlName="type" (selectionChange)="gettype($event.value)">
+                                    <mat-option value="Shiftwise">Shiftwise</mat-option>
+                                    <mat-option value="Operatorwise">Operatorwise</mat-option>
+    
+                                  
                                 </mat-select>
                             </mat-form-field>
                         </div>
-
-                        <div class="filter_field date_picker" color="primary">
-
-                            <ejs-daterangepicker placeholder='Select a range' 
-                                (click)="daterangepicker.open()" formControlName="date">
-                                <e-presets>
-                                    <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
-                                    <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'>
-                                    </e-preset>
-                                    <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
-                                    <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
-                                </e-presets>
-                            </ejs-daterangepicker>
+                        <div class="filter_field"  *ngIf="types === 'Operatorwise' ">
+                            <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select Operator" matNativeControl required
+                                    formControlName="operator" >
+                                    <mat-option *ngFor="let op of op_response" [value]="op">
+                                      {{op}}
+                                  </mat-option>
+                                  
+                                </mat-select>
+                            </mat-form-field>
+                            <!-- <p *ngIf="op_response.length==0">No Operators Found</p> -->
+                            <div *ngIf="op_response.length==0" class="no_data_found">
+                              <h2>No Operators found</h2>
+                            </div>
                         </div>
-                        <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Go</button>
+
+                        <button type="submit" color="primary" mat-raised-button>Go</button>
 
                     </div>
                 </form>
@@ -311,10 +346,14 @@
                 <div class="chart_sec">
                     <div class="ulitization_chart">
                         <circle-progress radius="65" outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
-                            animation="true" animationDuration="300" percent={{first[0]?.utilisation}}>
+                            animation="true" animationDuration="300"  percent={{utili1}}
+                            >
                         </circle-progress>
                         <div class="chart_text">
-                            <h3><span class="value">{{first[0]?.utilisation}}</span> %</h3>
+                            <h3><span class="value">
+                                {{utili1}}
+
+                            </span> %</h3>
                             <p>Utilization</p>
                         </div>
                     </div>
@@ -389,31 +428,51 @@
                 </div>
                 <form [formGroup]="test" (ngSubmit)="testfunction('true')" class="compare_form filter_sec" action="">
                     <div class="filter_fields">
-                        <div class="filter_field sml-input">
+
+
+                        <div class="filter_field date_picker" color="primary">
+
+                            
+                            <mat-form-field>
+                                <input matInput
+                                       placeholder="Choose a date"
+                                       [satDatepicker]="picker3"
+                                       formControlName="date"  (dateInput)="addEvent1('input', $event)" (dateChange)="addEvent1('change', $event)">
+                                <sat-datepicker #picker3 [rangeMode]="true">
+                                </sat-datepicker>
+                                <sat-datepicker-toggle matSuffix [for]="picker3"></sat-datepicker-toggle>
+                            </mat-form-field>
+                        </div>
+                        <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Line" matNativeControl required
-                                    formControlName="machine_line">
+                                <mat-select placeholder="Select Module" matNativeControl required
+                                    formControlName="line" (selectionChange)="getmodule($event.value)">
                                     <mat-option value="all">All</mat-option>
-                                
+                                    <mat-option *ngFor="let modd of response_module" [value]="modd">
+                                      {{modd}}
+                                  </mat-option>
+    
                                 </mat-select>
                             </mat-form-field>
                         </div>
 
+                       
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Machine" matNativeControl required formControlName="machine_name">
+                                <mat-select placeholder="Select Machine" matNativeControl required
+                                    formControlName="machine_name" (selectionChange)="getmm($event.value)">
                                     <mat-option value="all">All</mat-option>
-
-                                    <mat-option *ngFor="let a of machine_get" [value]="a">
-                                    {{a}}
-                                  </mat-option>
+    
+                                    <mat-option *ngFor="let MachinE of response_mac" [value]="MachinE">
+                                        {{MachinE}}
+                                    </mat-option>
                                 </mat-select>
-                              </mat-form-field>
-                        </div>
+                            </mat-form-field>
+                    </div>
                         <div class="filter_field sml-input">
 
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Shift" matNativeControl required formControlName="shift_num">
+                                <mat-select placeholder="Shift" matNativeControl required formControlName="shift_num" (selectionChange)="shiftget($event.value)">
                                     <mat-option value="all">All</mat-option>
 
                                     <mat-option *ngFor="let b of select_shift" [value]="b.shift_no">
@@ -423,40 +482,54 @@
                               </mat-form-field>
                         </div>
 
+
+                        
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Operator" matNativeControl required
-                                   >
-                                    <mat-option value="all">All</mat-option>
-                                
+                                <mat-select placeholder="Select Type" matNativeControl required
+                                    formControlName="type" (selectionChange)="gettyping($event.value)">
+                                    <mat-option value="Shiftwise">Shiftwise</mat-option>
+                                    <mat-option value="Operatorwise">Operatorwise</mat-option>
+    
+                                  
                                 </mat-select>
                             </mat-form-field>
                         </div>
 
-                        <div class="filter_field date_picker" color="primary">
-
-                            <ejs-daterangepicker placeholder='Select a range' 
-                                (click)="daterangepicker.open()" formControlName="date">
-                                <e-presets>
-                                    <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
-                                    <e-preset label="This Month" [start]='monthStart' [end]='monthEnd'>
-                                    </e-preset>
-                                    <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
-                                    <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
-                                </e-presets>
-                            </ejs-daterangepicker>
+                        <div class="filter_field"  *ngIf="typess === 'Operatorwise' ">
+                            <mat-form-field appearance="outline">
+                                <mat-select placeholder="Select Operator" matNativeControl required
+                                    formControlName="operator" >
+                                    <mat-option *ngFor="let ope of ope_response" [value]="ope">
+                                      {{ope}}
+                                  </mat-option>
+                                  
+                                </mat-select>
+                            </mat-form-field>
+                            <div *ngIf="ope_response.length==0" class="no_data_found">
+                                <h2>No Operators found</h2>
+                              </div>
+                            <!-- <p *ngIf="op_response.length==0">No Operators Found</p> -->
+                            <!-- <div *ngIf="ope_response.length==0" class="no_data_found">
+                              <h2>No Operators found</h2>
+                            </div> -->
                         </div>
-                        <button [disabled]="test.invalid" type="submit" color="primary" mat-raised-button>Go</button>
+
+                       
+                        <button  type="submit" color="primary" mat-raised-button>Go</button>
 
                     </div>
                 </form>
                 <div class="chart_sec">
                     <div class="ulitization_chart">
                         <circle-progress radius="65" outerStrokeColor="#78542C" innerStrokeColor="#1E2634"
-                            animation="true" animationDuration="300" percent={{second[0]?.utilisation}}>
+                            animation="true" animationDuration="300" percent={{secrun}}
+                            >
                         </circle-progress>
                         <div class="chart_text">
-                            <h3><span class="value">{{second[0]?.utilisation}}</span> %</h3>
+                            <h3><span class="value">
+                                {{secrun}}
+                            </span> %</h3>
                             <p>Utilization</p>
                         </div>
                     </div>

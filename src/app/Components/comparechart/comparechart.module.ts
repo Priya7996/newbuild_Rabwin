@@ -7,6 +7,7 @@ import { ComparechartComponent } from './comparechart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { DatePipe } from '@angular/common';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { SatDatepickerModule, SatNativeDateModule } from 'saturn-datepicker';
 
 
 const routes: Routes = [{ path: '', component: ComparechartComponent }];
@@ -14,7 +15,7 @@ const routes: Routes = [{ path: '', component: ComparechartComponent }];
 
 @NgModule({
   declarations: [ComparechartComponent],
-  imports: [RouterModule.forChild(routes),
+  imports: [RouterModule.forChild(routes),SatDatepickerModule, SatNativeDateModule,
     CommonModule, SharedModule, HighchartsChartModule,
     ComparechartRoutingModule,
     NgCircleProgressModule.forRoot({

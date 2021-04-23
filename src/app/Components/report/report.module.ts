@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ReportComponent, DialogOverviewDialog } from './report.component';
 import { DatePipe } from '@angular/common';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { SatDatepickerModule, SatNativeDateModule } from 'saturn-datepicker';
 const routes: Routes = [{ path: '', component: ReportComponent }];
 
@@ -12,7 +11,7 @@ const routes: Routes = [{ path: '', component: ReportComponent }];
   entryComponents: [ReportComponent, DialogOverviewDialog],
   declarations: [ReportComponent, DialogOverviewDialog],
   imports: [RouterModule.forChild(routes), SatDatepickerModule, SatNativeDateModule,
-    CommonModule, SharedModule,NgxDaterangepickerMd
+    CommonModule, SharedModule
 
   ],
   providers: [

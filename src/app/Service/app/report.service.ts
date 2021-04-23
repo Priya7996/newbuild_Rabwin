@@ -17,6 +17,13 @@ export class ReportService {
   line(data):Observable<any>{
   return this.http.get('report_filters?line=' +data)
 }
+get_rreport(id):Observable<any>{
+  return this.http.get('re_route_cards?id=' +id)
+}
+
+
+// http://3.7.120.8:3000//api/v1/re_route_cards?id=6080e7545ba6f005abd7f006
+
 
 //http://3.7.120.8:3000//api/v1/operator_filters?machine_name=VALVE-C63&&shift_num=all&&from_date=04/16/2021-04/16/2021
 // http://3.7.120.8:3000//api/v1/report_filters?line=ELECTRICAL

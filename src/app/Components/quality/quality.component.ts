@@ -15,6 +15,7 @@ export class QualityComponent implements OnInit {
   login: FormGroup;
   daterangepicker:any;
   module_response:any;
+  startDate:any;
   shift_response:any;
   get_report1:any;
   reportblock:any;
@@ -43,10 +44,11 @@ export class QualityComponent implements OnInit {
     this.nav.show()
   }
 
-  openDialog(): void {
+  openDialog(user, id): void {
     const dialogRef = this.dialog.open(Add, {
-      width: '500px',
-      data: { new: 'new' }
+      width: '900px',
+      height:'500px',
+      data: { edit_user: user, user_id: id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -189,14 +191,34 @@ export class QualityComponent implements OnInit {
 
 })
 export class Add {
-  
+  value: any;
+  get_report: any;
+  VAP:any;
+  g_report:any;
+
+  constructor(private service: ReportService,public dialogRef: MatDialogRef<Add>, @Inject(MAT_DIALOG_DATA) public data: Add, private fb: FormBuilder,) {
+    this.value = data;
+    console.log(this.value.edit_user.id.$oid);
+    this.service.get_rreport(this.value.edit_user.id.$oid).subscribe(res =>{
+      console.log(res);
+      this.g_report = res;
+
+      this.get_report = res.route_card_report;
+      console.log(this.get_report);
+      for(let i=0; i<this.get_report.length; i++){
+        console.log(this.get_report[i].mode)
+        this.VAP = this.get_report[i].mode;
+        console.log(this.VAP);
+      }
+    })
 
 
-  constructor(public dialogRef: MatDialogRef<Add>, @Inject(MAT_DIALOG_DATA) public data: Add, private fb: FormBuilder,) {
   }
 
  
-
+  edit_view(val){
+    console.log(val)
+  }
   ngOnInit() {
     
   }

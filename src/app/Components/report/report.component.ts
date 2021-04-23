@@ -212,11 +212,14 @@ export class ReportComponent implements OnInit {
         console.log(hadok)
         this.service.first_page_loading().subscribe(res => {
           this.first_loading = res; 
-          this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'M/dd/yyyy');
-          this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'M/dd/yyyy');
+          this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
+          this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
+          console.log(this.dat1,this.dat2)
           this.login.patchValue({
-           
-            date : [this.dat1,this.dat2]
+         
+
+
+            date: [{begin: this.datepipe.transform(this.dat1, 'MM/dd/yyyy'), end: this.datepipe.transform(this.dat2, 'MM/dd/yyyy')}]
           })
           localStorage.setItem('SDATE', this.first_loading['from_date']);
           localStorage.setItem('EDATE', this.first_loading['to_date']);

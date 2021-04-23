@@ -53,7 +53,7 @@
                     <div class="filter_field sml-input">
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Machine" matNativeControl required
-                                formControlName="machine_name" (selectionChange)="getm($event.value)">
+                                formControlName="machine_name" >
                                 <mat-option value="all">All</mat-option>
 
                                 <mat-option *ngFor="let Machine of mac_response" [value]="Machine">
@@ -116,8 +116,8 @@
             <div class="line_machines_list">
                 <div class="line_machine_item active" *ngFor="let qua of get_report">
                     <div class="line_mac_box">
-                         <div class="edit" (click)="openDialog()" *ngIf = "get_report1.length > 0">
-                            <mat-icon class="v-align-middle display" (click)="openDialog()">create</mat-icon>
+                         <div class="edit"  *ngIf = "get_report1.length > 0">
+                            <mat-icon class="v-align-middle display" (click)="openDialog(qua)">create</mat-icon>
                         </div>
                         <div class="machine_desc">
                             <h3>{{qua.machine_name}}</h3>

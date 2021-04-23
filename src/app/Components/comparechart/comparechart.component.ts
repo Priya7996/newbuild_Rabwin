@@ -17,7 +17,7 @@ export class ComparechartComponent implements OnInit {
   secidle:any;
   secdis:any;
   secrun:any;
-  utili1:any;
+  utili1:any; 
   utili2:any;
   utili3:any;
   public today: Date = new Date(new Date().toDateString());
@@ -44,6 +44,7 @@ export class ComparechartComponent implements OnInit {
   select_shift: any;
   report_table: any;
   test: FormGroup;
+  module_response:any;
   machine_get: any;
   first_loading: any;
   myLoader = false;
@@ -54,27 +55,122 @@ export class ComparechartComponent implements OnInit {
   new_date:any;
   first:any;
   new_date3: any;
+  mac_response:any;
   new_date2: any;
   myLoader1= false;
+  datsss:any;
   // maxDate:any;
   // minDate:any;
-
+  sdate:any;
+  edate:any;
+  ndate:any;
+  ndate1:any;
+  types:any;
+  ndate2: string;
+  op_response: any;
+  reportblock: any;
+  date: any;
+  response_module: any;
+  reportttblock: any;
+  response_mac: any;
+  typess: any;
+  ope_response: any;
+  Rdate: string;
+  Rdate2: string;
   constructor(private nav: NavbarService,private fb:FormBuilder,private service :ComparechartService,private datePipe: DatePipe) {
     this.nav.show();
   }
+  gettype(type){
 
+    this.types = type;
+    let ComShi = localStorage.getItem('COMSHHIFT');
+
+    let ComMac = localStorage.getItem('COMMACHINE');
+    this.ndate = localStorage.getItem('CSDATE');
+    this.ndate2 = localStorage.getItem('EDATE');
+    let data = type;
+    console.log(data)
+   
+    if(data === 'Operatorwise')
+    {
+
+
+      let register = {
+        "machine_name": ComMac,
+        "shift_num": ComShi,
+        "date":  this.ndate + '-' +  this.ndate2
+      }
+      this.service.operat(register).subscribe(res => {
+        console.log(res);
+        this.op_response = res;
+        this.login.patchValue({
+          operator: this.op_response[0],
+        })
+      })
+    }
+  }
+
+  gettyping(types){
+
+    this.typess = types;
+    let Rigshi = localStorage.getItem('RightSHHIFT');
+
+    let RigMAC = localStorage.getItem('RightMACHINE');
+    console.log(RigMAC);   
+    this.Rdate = localStorage.getItem('RSSDATE');
+    this.Rdate2 = localStorage.getItem('RSEDATE');
+    let data = types;
+    console.log(data)
+   
+    if(data === 'Operatorwise')
+    {
+
+
+      let register = {
+        "machine_name": RigMAC,
+        "shift_num": Rigshi,
+        "date":  this.Rdate + '-' +  this.Rdate2
+      }
+      this.service.operating(register).subscribe(res => {
+        console.log(res);
+        this.ope_response = res;
+        this.test.patchValue({
+          operator: this.ope_response[0],
+        })
+      })
+    }
+  }
   ngOnInit() {
 
 
 
     
      this.login = this.fb.group({
+      line:[""],
         machine_name:["",],
         shift_num:[""],
+        type:[""],
         date:["",],
+        operator:[""]
   
       })
-
+      this.service.getmodule().subscribe(res => {
+        this.module_response = res;
+        console.log(this.module_response);
+        this.login.patchValue({
+          line: this.module_response[0],
+  
+        })
+        this.service.line(this.module_response[0]).subscribe(res => {
+          this.mac_response=res;
+       
+          console.log(this.mac_response);
+          this.login.patchValue({
+            machine_name: this.mac_response[0],
+          })
+          localStorage.setItem('COMMACHINE', this.mac_response[0]);
+          let ComMac = localStorage.getItem('COMMACHINE');
+          console.log(ComMac);
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
         this.login.patchValue({
@@ -85,6 +181,8 @@ export class ComparechartComponent implements OnInit {
           this.login.patchValue({
             shift_num: this.shift_response[0].shift_no,
           })
+          localStorage.setItem('COMSHHIFT', this.shift_response[0].shift_no);
+
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
             this.login.patchValue({
@@ -92,14 +190,35 @@ export class ComparechartComponent implements OnInit {
             })
             // this.minDate = this.first_loading['from_date']
             // this.maxDate = this.first_loading['to_date']
+
+           
+            localStorage.setItem('CSDATE', this.first_loading['from_date']);
+            localStorage.setItem('EDATE', this.first_loading['to_date']);
+            this.ndate = localStorage.getItem('CSDATE');
+            this.ndate2= localStorage.getItem('EDATE');
+         
             this.logintest('true');
           })
         })
-    
+      })
+      })
     })
   
      
+    this.service.moduleget().subscribe(res => {
+      this.response_module = res;
+      console.log(this.response_module[0]);
+      this.test.patchValue({
+        line: this.response_module[0],
 
+      })
+      this.service.line_rigt(this.response_module[0]).subscribe(res => {
+        this.response_mac=res;
+     
+        console.log(this.response_mac);
+        this.test.patchValue({
+          machine_name: this.response_mac[0],
+        })
     this.service.machine_get().subscribe(res => {
       this.machine_get = res;
       this.test.patchValue({
@@ -117,39 +236,370 @@ export class ComparechartComponent implements OnInit {
           })
           // this.minDate = this.first_loading['from_date']
           // this.maxDate = this.first_loading['to_date']
+          localStorage.setItem('RSSDATE', this.first_pge_loading['from_date']);
+            localStorage.setItem('RSEDATE', this.first_pge_loading['to_date']);
+            this.Rdate = localStorage.getItem('RSSDATE');
+            this.Rdate2= localStorage.getItem('RSEDATE');
           this.testfunction('true');
         })
+      })
+      })
       })
   
   })
   
       
       this.test = this.fb.group({
+        line:[""],
+        type:[""],
         machine_name:["",],
         shift_num:["",],
         date:["",],
+        operator:[""]
       })    
     
   }
 
+  getsplit(val){
+    
+    this.reportblock = val;
+    
+    console.log(this.reportblock)
+    
 
+    this.service.line(this.reportblock).subscribe(res => {
+      this.mac_response=res;
+      console.log(this.mac_response[0]);
+      this.login.patchValue({
+        machine_name: this.mac_response[0],
+      })
+     
+
+      localStorage.setItem('COMMACHINE', this.mac_response[0]);
+      let ComMac = localStorage.getItem('COMMACHINE');
+      console.log(ComMac);
+   
+      })
+    }
+
+    getmodule(value){
+    
+      this.reportttblock = value;
+      
+      console.log(this.reportttblock)
+      
+  
+      this.service.line_rigt(this.reportttblock).subscribe(res => {
+        this.response_mac=res;
+        console.log(this.response_mac[0]);
+        this.test.patchValue({
+          machine_name: this.response_mac[0],
+        })
+       
+  
+        localStorage.setItem('RightMACHINE', this.response_mac[0]);
+        let RigMAC = localStorage.getItem('RightMACHINE');
+        console.log(RigMAC);
+     
+        })
+      }
+
+    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+      this.date = event.value;
+      console.log(this.date )
+      this.ndate = new DatePipe('en-US').transform(this.date.begin, 'MM/dd/yyyy');
+      this.ndate2= new DatePipe('en-US').transform(this.date.end, 'MM/dd/yyyy');
+      console.log( this.ndate,this.ndate2)
+      localStorage.setItem('CSDATE', this.ndate);
+      localStorage.setItem('EDATE', this.ndate2);
+
+
+
+    }
+    addEvent1(type: string, event: MatDatepickerInputEvent<Date>) {
+      this.datsss = event.value;
+      console.log(this.datsss )
+      this.Rdate = new DatePipe('en-US').transform(this.datsss.begin, 'MM/dd/yyyy');
+      this.Rdate2= new DatePipe('en-US').transform(this.datsss.end, 'MM/dd/yyyy');
+      console.log( this.ndate,this.ndate2)
+      localStorage.setItem('RSSDATE', this.Rdate);
+      localStorage.setItem('RSEDATE', this.Rdate2);
+
+
+
+    }
+ 
+    getm(val){
+    
+      console.log(val);
+      localStorage.setItem('COMMACHINE', val);
+      let ComMac = localStorage.getItem('COMMACHINE');
+      console.log(ComMac);
+     
+  
+    }
+    getmm(vali){
+    
+      console.log(vali);
+     
+      localStorage.setItem('RightMACHINE', vali);
+      let RigMAC = localStorage.getItem('RightMACHINE');
+      console.log(RigMAC);
+     
+  
+    }
+    getshift(shift){
+      localStorage.setItem('COMSHHIFT',shift);
+
+      let ComShi = localStorage.getItem('COMSHHIFT');
+      console.log(ComShi)
+  
+     
+    
+  
+     
+  }
+
+  shiftget(shiftss){
+    localStorage.setItem('RightSHHIFT',shiftss);
+
+    let Rigshi = localStorage.getItem('RightSHHIFT');
+    console.log(Rigshi)
+
+  }
   logintest(s){
     this.status=s;
-
+    console.log(this.login.value);
     this.myLoader = true;
     this.maxDate = this.datePipe.transform(this.maxDate);
     
     let register = this.login.value;
     if(this.status == 'true'){
-      this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
-      this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
+      if(this.login.value.type === 'Shiftwise'){
+        alert("shift");
+        let register = {
+          "machine_name": this.login.value.machine_name,
+          "shift_num": this.login.value.shift_num,
+          "date": this.ndate + '-' + this.ndate2,
+          "type":this.login.value.type
+        }
+        console.log(register);
+        this.service.overall_compare(register).subscribe(res => {
+          this.myLoader = false;
+          this.first = res.table;
+          this.get_report = res;
+          this.utili1 = res.run_time;
+          this.utili2 = res.idle_time;
+          this.utili3 = res.disconnect_time;  
+          Highcharts.chart('comparepie', {
+            chart: {
+              plotBackgroundColor: null,                                
+              plotBorderWidth: 0,
+              plotShadow: false,
+              backgroundColor: '#212226',
+              spacingBottom: 0,
+              spacingTop: 0,
+              spacingRight: 0,
+              spacingLeft: 0,
+              margin: 0,
+              height: '100%',
+      
+            },
+            navigation: {
+              buttonOptions: {
+                theme: {
+                  'stroke-width': 1,
+                  stroke: null,
+                  fill: '#0b0b0b',
+                  r: 0,
+                  states: {
+                    hover: {
+                      fill: '#1a1919'
+                    },
+                    select: {
+                      fill: '#1a1919'
+                    }
+                  }
+                }
+              }
+            },
+            title: {
+              text: '',
+      
+              align: 'center',
+              verticalAlign: 'middle',
+              style: {
+                fontSize: '14px',
+                color: 'white'
+              }
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+              point: {
+                valueSuffix: '%'
+              }
+            },
+            credits: {
+              enabled: false
+            },
+            plotOptions: {
+              pie: {
+                colors: [
+                  '#5D5D5D',
+                  '#E8BE15',
+                  '#207A24',
+                ],
+                dataLabels: {
+                  enabled: true,
+                  distance: -50,
+                  style: {
+                    fontWeight: 'bold',
+                    color: 'white'
+                  }
+                },
+      
+                size: '100%'
+              }
+            },
+            series: [{
+              type: 'pie',
+              borderWidth: 0,
+      
+              innerSize: '60%',
+              data: [
+                ['Disconnect',res.disconnect_time],
+    
+                ['Idle',res.idle_time],
+                ['Run',res.run_time],
+    
+              ]
+            }]
+      
+          });
+  
+        })
 
+      }
+
+      else if(this.login.value.type === 'Operatorwise'){
+        alert("opera");
+        let register = {
+          "machine_name": this.login.value.machine_name,
+          "shift_num": this.login.value.shift_num,
+          "date": this.ndate + '-' + this.ndate2,
+          "type":this.login.value.type,
+          "operator":this.login.value.operator
+        }
+        console.log(register);
+        this.service.overall_compare1(register).subscribe(res => {
+          this.myLoader = false;
+          this.first = res.table;
+          this.get_report = res;
+          this.utili1 = res.run_time;
+          this.utili2 = res.idle_time;
+          this.utili3 = res.disconnect_time;  
+          Highcharts.chart('comparepie', {
+            chart: {
+              plotBackgroundColor: null,                                
+              plotBorderWidth: 0,
+              plotShadow: false,
+              backgroundColor: '#212226',
+              spacingBottom: 0,
+              spacingTop: 0,
+              spacingRight: 0,
+              spacingLeft: 0,
+              margin: 0,
+              height: '100%',
+      
+            },
+            navigation: {
+              buttonOptions: {
+                theme: {
+                  'stroke-width': 1,
+                  stroke: null,
+                  fill: '#0b0b0b',
+                  r: 0,
+                  states: {
+                    hover: {
+                      fill: '#1a1919'
+                    },
+                    select: {
+                      fill: '#1a1919'
+                    }
+                  }
+                }
+              }
+            },
+            title: {
+              text: '',
+      
+              align: 'center',
+              verticalAlign: 'middle',
+              style: {
+                fontSize: '14px',
+                color: 'white'
+              }
+            },
+            tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+              point: {
+                valueSuffix: '%'
+              }
+            },
+            credits: {
+              enabled: false
+            },
+            plotOptions: {
+              pie: {
+                colors: [
+                  '#5D5D5D',
+                  '#E8BE15',
+                  '#207A24',
+                ],
+                dataLabels: {
+                  enabled: true,
+                  distance: -50,
+                  style: {
+                    fontWeight: 'bold',
+                    color: 'white'
+                  }
+                },
+      
+                size: '100%'
+              }
+            },
+            series: [{
+              type: 'pie',
+              borderWidth: 0,
+      
+              innerSize: '60%',
+              data: [
+                ['Disconnect',res.disconnect_time],
+    
+                ['Idle',res.idle_time],
+                ['Run',res.run_time],
+    
+              ]
+            }]
+      
+          });
+  
+        })
+
+      }
+
+
+else{
       let register={
         "machine_name":this.login.value.machine_name,
         "shift_num":this.login.value.shift_num,
-        "date":this.new_date + '-' + this.new_date1
+        "date":this.ndate + '-' + this.ndate2
       }
-      this.service.overall_compare(register).subscribe(res =>{
+      this.service.overall_compare2(register).subscribe(res =>{
       this.myLoader = false;
       this.first = res.table;
       this.get_report = res;
@@ -248,7 +698,7 @@ export class ComparechartComponent implements OnInit {
     })
     }
     
-   
+  }
   }
 
   testfunction(e){
@@ -256,109 +706,323 @@ export class ComparechartComponent implements OnInit {
     this.myLoader1 = true;
     let value = this.test.value;
     if(this.status == 'true'){
-      this.new_date2 = new DatePipe('en-US').transform(this.test.value.date[0], 'MM/dd/yyyy');
-      this.new_date3 = new DatePipe('en-US').transform(this.test.value.date[1], 'MM/dd/yyyy');
-
-
-      let value={
-        "machine_name":this.test.value.machine_name,
-        "shift_num":this.test.value.shift_num,
-        "date":this.new_date2 + '-' + this.new_date3
+      if(this.test.value.type === 'Shiftwise'){
+        alert("shift")
+      let value = {
+        "machine_name": this.test.value.machine_name,
+        "shift_num": this.test.value.shift_num,
+        "date": this.Rdate + '-' + this.Rdate2,
+        "type":this.test.value.type
       }
-  
-    this.service.compare_chart(value).subscribe(res=>{
-      this.myLoader1 = false;
-      this.second = res.table;
-      this.report_table = res;
-      this.secidle = res.idle_time;
-      this.secdis = res.disconnect_time;
-      this.secrun = res.run_time;
-      Highcharts.chart('comparepie2', {
-        chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: 0,
-          plotShadow: false,
-          backgroundColor: '#212226',
-          spacingBottom: 0,
-          spacingTop: 0,
-          spacingRight: 0,
-          spacingLeft: 0,
-          margin: 0,
-          height: '100%',
-        },
-        navigation: {
-          buttonOptions: {
-            theme: {
-              'stroke-width': 1,
-              stroke: null,
-              fill: '#0b0b0b',
-              r: 0,
-              states: {
-                hover: {
-                  fill: '#1a1919'
-                },
-                select: {
-                  fill: '#1a1919'
+      this.service.compare_chart(value).subscribe(res=>{
+        this.myLoader1 = false;
+        this.second = res.table;
+        this.report_table = res;
+        this.secidle = res.idle_time;
+        this.secdis = res.disconnect_time;
+        this.secrun = res.run_time;
+        Highcharts.chart('comparepie2', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            backgroundColor: '#212226',
+            spacingBottom: 0,
+            spacingTop: 0,
+            spacingRight: 0,
+            spacingLeft: 0,
+            margin: 0,
+            height: '100%',
+          },
+          navigation: {
+            buttonOptions: {
+              theme: {
+                'stroke-width': 1,
+                stroke: null,
+                fill: '#0b0b0b',
+                r: 0,
+                states: {
+                  hover: {
+                    fill: '#1a1919'
+                  },
+                  select: {
+                    fill: '#1a1919'
+                  }
                 }
               }
             }
-          }
-        },
-        title: {
-          text: '',
-          align: 'center',
-          verticalAlign: 'middle',
-          style: {
-            fontSize: '14px',
-            color: 'white'
-          }
-        },
-        tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        accessibility: {
-          point: {
-            valueSuffix: '%'
-          }
-        },
-        credits: {
-          enabled: false
-        },
-        plotOptions: {
-          pie: {
-            colors: [
-              '#5D5D5D',
-              '#E8BE15',
-              '#207A24',
-            ],
-            dataLabels: {
-              enabled: true,
-              distance: -50,
-              style: {
-                fontWeight: 'bold',
-                color: 'white'
+          },
+          title: {
+            text: '',
+            align: 'center',
+            verticalAlign: 'middle',
+            style: {
+              fontSize: '14px',
+              color: 'white'
+            }
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          accessibility: {
+            point: {
+              valueSuffix: '%'
+            }
+          },
+          credits: {
+            enabled: false
+          },
+          plotOptions: {
+            pie: {
+              colors: [
+                '#5D5D5D',
+                '#E8BE15',
+                '#207A24',
+              ],
+              dataLabels: {
+                enabled: true,
+                distance: -50,
+                style: {
+                  fontWeight: 'bold',
+                  color: 'white'
+                }
+              },
+    
+              size: '100%'
+            }
+          },
+          series: [{
+            type: 'pie',
+            borderWidth: 0,
+    
+            innerSize: '60%',
+            data: [
+              ['Disconnect',res.disconnect_time],
+  
+              ['Idle',res.idle_time],
+              ['Run',res.run_time],
+              
+            ]
+          }]
+    
+        });
+      })
+    }
+    else if(this.test.value.type === 'Operatorwise'){
+      alert("operat")
+      let value = {
+        "machine_name": this.test.value.machine_name,
+        "shift_num": this.test.value.shift_num,
+        "date": this.Rdate + '-' + this.Rdate2,
+        "type":this.login.value.type,
+        "operator":this.login.value.operator
+      }
+      this.service.compare_chart1(value).subscribe(res=>{
+        this.myLoader1 = false;
+        this.second = res.table;
+        this.report_table = res;
+        this.secidle = res.idle_time;
+        this.secdis = res.disconnect_time;
+        this.secrun = res.run_time;
+        Highcharts.chart('comparepie2', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            backgroundColor: '#212226',
+            spacingBottom: 0,
+            spacingTop: 0,
+            spacingRight: 0,
+            spacingLeft: 0,
+            margin: 0,
+            height: '100%',
+          },
+          navigation: {
+            buttonOptions: {
+              theme: {
+                'stroke-width': 1,
+                stroke: null,
+                fill: '#0b0b0b',
+                r: 0,
+                states: {
+                  hover: {
+                    fill: '#1a1919'
+                  },
+                  select: {
+                    fill: '#1a1919'
+                  }
+                }
               }
-            },
+            }
+          },
+          title: {
+            text: '',
+            align: 'center',
+            verticalAlign: 'middle',
+            style: {
+              fontSize: '14px',
+              color: 'white'
+            }
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          accessibility: {
+            point: {
+              valueSuffix: '%'
+            }
+          },
+          credits: {
+            enabled: false
+          },
+          plotOptions: {
+            pie: {
+              colors: [
+                '#5D5D5D',
+                '#E8BE15',
+                '#207A24',
+              ],
+              dataLabels: {
+                enabled: true,
+                distance: -50,
+                style: {
+                  fontWeight: 'bold',
+                  color: 'white'
+                }
+              },
+    
+              size: '100%'
+            }
+          },
+          series: [{
+            type: 'pie',
+            borderWidth: 0,
+    
+            innerSize: '60%',
+            data: [
+              ['Disconnect',res.disconnect_time],
   
-            size: '100%'
-          }
-        },
-        series: [{
-          type: 'pie',
-          borderWidth: 0,
-  
-          innerSize: '60%',
-          data: [
-            ['Disconnect',res.disconnect_time],
+              ['Idle',res.idle_time],
+              ['Run',res.run_time],
+              
+            ]
+          }]
+    
+        });
+      })
+    }
 
-            ['Idle',res.idle_time],
-            ['Run',res.run_time],
-            
-          ]
-        }]
+    else{
+
+      let value = {
+        "machine_name": this.test.value.machine_name,
+        "shift_num": this.test.value.shift_num,
+        "date": this.Rdate + '-' + this.Rdate2,
+        "type":this.login.value.type
+      }
+
+
+      this.service.compare_chart2(value).subscribe(res=>{
+        this.myLoader1 = false;
+        this.second = res.table;
+        this.report_table = res;
+        this.secidle = res.idle_time;
+        this.secdis = res.disconnect_time;
+        this.secrun = res.run_time;
+        Highcharts.chart('comparepie2', {
+          chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            backgroundColor: '#212226',
+            spacingBottom: 0,
+            spacingTop: 0,
+            spacingRight: 0,
+            spacingLeft: 0,
+            margin: 0,
+            height: '100%',
+          },
+          navigation: {
+            buttonOptions: {
+              theme: {
+                'stroke-width': 1,
+                stroke: null,
+                fill: '#0b0b0b',
+                r: 0,
+                states: {
+                  hover: {
+                    fill: '#1a1919'
+                  },
+                  select: {
+                    fill: '#1a1919'
+                  }
+                }
+              }
+            }
+          },
+          title: {
+            text: '',
+            align: 'center',
+            verticalAlign: 'middle',
+            style: {
+              fontSize: '14px',
+              color: 'white'
+            }
+          },
+          tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          accessibility: {
+            point: {
+              valueSuffix: '%'
+            }
+          },
+          credits: {
+            enabled: false
+          },
+          plotOptions: {
+            pie: {
+              colors: [
+                '#5D5D5D',
+                '#E8BE15',
+                '#207A24',
+              ],
+              dataLabels: {
+                enabled: true,
+                distance: -50,
+                style: {
+                  fontWeight: 'bold',
+                  color: 'white'
+                }
+              },
+    
+              size: '100%'
+            }
+          },
+          series: [{
+            type: 'pie',
+            borderWidth: 0,
+    
+            innerSize: '60%',
+            data: [
+              ['Disconnect',res.disconnect_time],
   
-      });
-    })
+              ['Idle',res.idle_time],
+              ['Run',res.run_time],
+              
+            ]
+          }]
+    
+        });
+      })
+    }
+      // let value={
+      //   "machine_name":this.test.value.machine_name,
+      //   "shift_num":this.test.value.shift_num,
+      //   "date":this.new_date2 + '-' + this.new_date3
+      // }
+  
+   
   }
   else{
      
