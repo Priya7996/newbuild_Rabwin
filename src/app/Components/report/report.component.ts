@@ -337,7 +337,7 @@ export class ReportComponent implements OnInit {
     // console.log(this.edate)
     if (this.status == 'true') {
       if(this.login.value.type === 'Shiftwise'){
-        alert("shift");
+        // alert("shift");
         let register = {
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
@@ -356,7 +356,7 @@ export class ReportComponent implements OnInit {
 
       }
       else if(this.login.value.type === 'Operatorwise'){
-        alert("Operat");
+        // alert("Operat");
         let register = {
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,

@@ -376,7 +376,7 @@ export class ComparechartComponent implements OnInit {
     let register = this.login.value;
     if(this.status == 'true'){
       if(this.login.value.type === 'Shiftwise'){
-        alert("shift");
+        // alert("shift");
         let register = {
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
@@ -484,7 +484,7 @@ export class ComparechartComponent implements OnInit {
       }
 
       else if(this.login.value.type === 'Operatorwise'){
-        alert("opera");
+        // alert("opera");
         let register = {
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
@@ -707,7 +707,7 @@ else{
     let value = this.test.value;
     if(this.status == 'true'){
       if(this.test.value.type === 'Shiftwise'){
-        alert("shift")
+        // alert("shift")
       let value = {
         "machine_name": this.test.value.machine_name,
         "shift_num": this.test.value.shift_num,
@@ -809,7 +809,7 @@ else{
       })
     }
     else if(this.test.value.type === 'Operatorwise'){
-      alert("operat")
+      // alert("operat")
       let value = {
         "machine_name": this.test.value.machine_name,
         "shift_num": this.test.value.shift_num,
