@@ -21,7 +21,15 @@ get_rreport(id):Observable<any>{
   return this.http.get('re_route_cards?id=' +id)
 }
 
+put_rreport(data: any):Observable<any> {
+  return this.http.put('re_reports',data);
+}
 
+
+
+// user_put(data: any, id: any):Observable<any> {
+//   return this.http.put('users/' + id, data);
+// }
 // http://3.7.120.8:3000//api/v1/re_route_cards?id=6080e7545ba6f005abd7f006
 
 

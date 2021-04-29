@@ -1,9 +1,10 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
-import { FormGroup, FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, FormBuilder,Validators,FormControl } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ReportService } from '../../Service/app/report.service';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -53,6 +54,7 @@ export class QualityComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+    this.ngOnInit();
   }
 
   openDialog2(): void {
@@ -106,6 +108,8 @@ export class QualityComponent implements OnInit {
 
   ngOnInit() {
 
+
+    
     this.login = this.fb.group({
       line:["",Validators.required],
       machine_name:["",Validators.required],
@@ -188,42 +192,108 @@ export class QualityComponent implements OnInit {
   templateUrl: 'add.html',
   styleUrls: ['./quality.component.scss']
 
-
+ 
 })
 export class Add {
   value: any;
   get_report: any;
   VAP:any;
   g_report:any;
-
+  enableEdit = false;
+  enableEditIndex = null;
+  actual:any;
+  e_id:any;
+  rejection = new FormControl('', [Validators.required]);
+  rework = new FormControl('', [Validators.required]);
+  isShown: boolean = false ;
   constructor(private service: ReportService,public dialogRef: MatDialogRef<Add>, @Inject(MAT_DIALOG_DATA) public data: Add, private fb: FormBuilder,) {
     this.value = data;
     console.log(this.value.edit_user.id.$oid);
-    this.service.get_rreport(this.value.edit_user.id.$oid).subscribe(res =>{
+    localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
+    this.e_id = localStorage.getItem('edit_id');
+
+   }
+    ngOnInit() {
+
+      this.service.get_rreport(this.e_id).subscribe(res =>{
+        console.log(res);
+        this.g_report = res;
+  
+        this.get_report = res.route_card_report;
+        let data_rc = res.route_card_report;
+        console.log(data_rc)
+        localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
+  
+        console.log(this.get_report);
+        for(let i=0; i<this.get_report.length; i++){
+          this.VAP = this.get_report[i].mode;
+          let data = this.get_report[i].mode;
+          localStorage.setItem('role',this.get_report[i].mode);
+  
+          console.log(data);}
+      })
+    
+    }
+  toggleShow(i) {
+    console.log(i)
+    this.enableEdit = true;
+    this.enableEditIndex = i;
+    console.log(i);
+  
+    if(i){
+      console.log(i)
+      this.isShown = ! this.isShown;
+    }
+ }
+ save(rep,j){
+   console.log(rep)
+   this.e_id = localStorage.getItem('edit_id');
+
+  //  this.g_report.push({'id':this.e_id});
+  //  console.log(this.g_report)
+  // var arraynew = ['Geeks', 'for', 'Geeks'];
+    var obj = {
+      id:this.e_id
+    }
+    console.log(obj)
+   console.log(this.g_report)
+   this.e_id = localStorage.getItem('edit_id');
+   console.log(this.e_id);
+   console.log(j);
+   console.log(this.rejection.value,this.rework.value);
+  console.log('rejection: ' + this.rejection.value);
+  console.log('rework: ' + this.rework.value);
+  let index = this.g_report.route_card_report.indexOf(rep);
+   console.log(index);
+  rep.rejection = parseInt(this.rejection.value);
+    rep.rework = parseInt(this.rework.value);
+    this.g_report.id = this.e_id
+     this.g_report.route_card_report[index] = rep;
+     console.log(this.g_report);
+     this.service.put_rreport(this.g_report).subscribe(res =>{
       console.log(res);
-      this.g_report = res;
+      Swal.fire("Updated Successfully")
 
-      this.get_report = res.route_card_report;
-      console.log(this.get_report);
-      for(let i=0; i<this.get_report.length; i++){
-        console.log(this.get_report[i].mode)
-        this.VAP = this.get_report[i].mode;
-        console.log(this.VAP);
-      }
-    })
+     })
+     this.dialogRef.close();
 
+     this.ngOnInit();
+ }
 
-  }
-
- 
-  edit_view(val){
+  target(val){
     console.log(val)
   }
-  ngOnInit() {
-    
+  // Swal.fire(res.phone_no[0])
+
+  savep(){
+    Swal.fire("Not access to enter Reject and rework.Because accept is 0")
+  }
+  edit1(){
+    Swal.fire("Not access to enter Reject and rework.Because accept is 0")
+
   }
  
-
+ 
   }
 
 

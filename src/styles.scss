@@ -2905,7 +2905,7 @@ table.table.report_table {
             input, .mat-select-value-text span {
                 font-family: "Barlow Condensed", sans-serif!important;
                 font-size: 18px!important;
-                color: #fff !important;
+                // color: #fff !important;
                 
             }
              
@@ -3475,9 +3475,9 @@ input:-webkit-autofill:active {
 
 }
 
-textarea, input {
-    color: #fff!important;
-}
+// textarea, input {
+//     color: #fff!important;
+// }
 body .compare_page .chart_sec .ulitization_chart {
     width: 500px;
 }
