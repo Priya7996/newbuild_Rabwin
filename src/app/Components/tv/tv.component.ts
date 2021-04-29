@@ -17,32 +17,66 @@ export class TvComponent implements OnInit {
   a_dashboard:any; 
   valuen:any; 
   data:any;
+  ltime:any;
+  s_num:any;
   myLoader = false;
   today: number = Date.now();
 
   constructor(private router:Router,private nav:NavbarService,private service: DashboardService) {
-    this.nav.hide();
+    this.nav.show();
     setInterval(() => {this.today = Date.now()}, 1);
 
 
    }
 
-  ngOnInit() {
-   this.myLoader = true;
+  ngOnInit() { 
 
     this.service.andon().pipe(untilDestroyed(this)).subscribe(res=>{
     
-       this.a_dashboard = res;
-       this.myLoader = false;
+      this.a_dashboard = res;
+      console.log(res.shift_no,res.show_time)
+      this.myLoader = false;
+      for(let i in this.a_dashboard){
+       this.ltime = this.a_dashboard[i].show_time;
+       this.s_num = this.a_dashboard[i].shift_no;
 
-       for(let i in this.a_dashboard){
-         this.valuen = this.a_dashboard[i].status;
-         for(let j in this.a_dashboard[i].status){
+       console.log(this.ltime) 
+      
+    }
+      for(let i in this.a_dashboard){
+        this.valuen = this.a_dashboard[i].status;
+        for(let j in this.a_dashboard[i].status){
 
-          this.data = this.a_dashboard[i].status[j].machine; 
-       }
+         this.data = this.a_dashboard[i].status[j].machine; 
       }
-      })
+     }
+     })
+
+    setInterval(() => {         
+      //replaced function() by ()=>
+      this.service.andon().pipe(untilDestroyed(this)).subscribe(res=>{
+    
+        this.a_dashboard = res;
+        for(let i in this.a_dashboard){
+          this.ltime = this.a_dashboard[i].show_time;
+          this.s_num = this.a_dashboard[i].shift_no;
+   
+          console.log(this.ltime) 
+         
+       }
+        for(let i in this.a_dashboard){
+          this.valuen = this.a_dashboard[i].status;
+          for(let j in this.a_dashboard[i].status){
+ 
+           this.data = this.a_dashboard[i].status[j].machine; 
+        }
+       }
+       })
+      // just testing if it is working
+    }, 30000);
+
+
+  
 
 
 

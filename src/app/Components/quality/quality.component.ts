@@ -45,11 +45,11 @@ export class QualityComponent implements OnInit {
     this.nav.show()
   }
 
-  openDialog(user, id): void {
+  openDialog(user): void {
     const dialogRef = this.dialog.open(Add, {
       width: '900px',
       height:'500px',
-      data: { edit_user: user, user_id: id }
+      data: { edit_user: user }
     });
 
     dialogRef.afterClosed().subscribe(result => {
