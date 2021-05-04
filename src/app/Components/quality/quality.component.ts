@@ -54,7 +54,7 @@ export class QualityComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
-    this.ngOnInit();
+    // this.ngOnInit();
   }
 
   openDialog2(): void {
@@ -108,7 +108,7 @@ export class QualityComponent implements OnInit {
 
   ngOnInit() {
 
-
+  
     
     this.login = this.fb.group({
       line:["",Validators.required],
@@ -173,6 +173,10 @@ export class QualityComponent implements OnInit {
         "date": this.login.value.date + '-' + this.login.value.date
       }
       console.log(register);
+      localStorage.setItem('QAMAC', register.machine_name);
+      localStorage.setItem('QASHI', register.shift_num);
+      localStorage.setItem('QADAT', register.date);
+
       this.service.overall_report_ing(register).subscribe(res => {
         this.get_report = res;
         this.get_report1 = res[0].route_card_report;
@@ -181,6 +185,8 @@ export class QualityComponent implements OnInit {
     
 
       })
+      
+
     } 
   }
 
@@ -203,15 +209,29 @@ export class Add {
   enableEditIndex = null;
   actual:any;
   e_id:any;
+  qshif:any;
+  qdat:any;
+  qmachi:any;
   rejection = new FormControl('', [Validators.required]);
   rework = new FormControl('', [Validators.required]);
   isShown: boolean = false ;
+  get_report1: any;
+  get_reporting: any;
+  datapost: any;
   constructor(private service: ReportService,public dialogRef: MatDialogRef<Add>, @Inject(MAT_DIALOG_DATA) public data: Add, private fb: FormBuilder,) {
     this.value = data;
     console.log(this.value.edit_user.id.$oid);
     localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
-    this.e_id = localStorage.getItem('edit_id');
 
+  
+    this.e_id = localStorage.getItem('edit_id');
+    this.qmachi = localStorage.getItem('QAMAC');
+
+    this.qshif = localStorage.getItem('QASHI');
+
+    this.qdat = localStorage.getItem('QADAT');
+   console.log(this.qmachi,this.qshif,this.qdat)
+ 
    }
     ngOnInit() {
 
@@ -232,6 +252,10 @@ export class Add {
   
           console.log(data);}
       })
+
+
+      
+     
     
     }
   toggleShow(i) {
@@ -275,6 +299,23 @@ export class Add {
       Swal.fire("Updated Successfully")
 
      })
+
+
+     let register = {
+      "machine_name": this.qmachi,
+      "shift_num": this.qshif,
+      "date": this.qdat
+    }
+   
+    this.service.overall_report_ing(register).subscribe(res => {
+       this.get_reporting = res;
+       this.datapost = this.get_reporting;
+       this.get_report1 = res[0].route_card_report;
+      console.log(res);
+
+  
+
+    })
      this.dialogRef.close();
 
      this.ngOnInit();
