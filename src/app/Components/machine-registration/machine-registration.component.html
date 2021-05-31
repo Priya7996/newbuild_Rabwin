@@ -9,17 +9,29 @@
         <div class="machines_collections">
             <div class="machine_prod" *ngFor="let machine of machine_list; let i = index">
                 <ul class="user_action">
-                    <li>
+
+                    <li class="ml-1">
+                        <a href="javascript:;" (click)="setting_viewnew(machine)">
+                            <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
+                        </a>
+                    </li>
+
+                    <li class="ml-1">
+                        <a href="javascript:;" (click)="setting_view_new(machine)">
+                            <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
+                        </a>
+                    </li>
+                    <!-- <li>
                         <a href="javascript:;" (click)="edit_view(machine)">
                             <mat-icon class="v-align-middle display" matTooltip="Edit">edit
                             </mat-icon>
                         </a>
-                    </li>
-                    <li class="ml-1">
+                    </li> -->
+                    <!-- <li class="ml-1">
                         <a href="javascript:;" (click)="setting_view(machine)">
                             <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="machine_no">
                     <div class="machine_no_view">

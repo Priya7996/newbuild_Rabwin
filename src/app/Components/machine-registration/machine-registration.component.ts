@@ -34,6 +34,32 @@ export class MachineRegistrationComponent implements OnInit {
       this.ngOnInit();
     });
   }
+  setting_viewnew(data2) {
+    const dialogRef = this.dialog.open(Sadd, {
+      width: '750px',
+      data: data2
+
+      // data: { serverlist: this.webApi.getServerList() }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
+
+  setting_view_new(data2) {
+    const dialogRef = this.dialog.open(Sedit, {
+      width: '400px',
+      data: data2
+
+      // data: { serverlist: this.webApi.getServerList() }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
+
   setting_view(data2) {
     const dialogRef = this.dialog.open(Add, {
       width: '400px',
@@ -211,4 +237,228 @@ export class Add {
 
 
 
+
+@Component({
+  selector: 'sadd-page',
+  templateUrl: 'sadd.html',
+  styleUrls: ['./machine-registration.component.scss']
+
+})
+export class Sadd {
+  edit_data2: any;
+  settingform: FormGroup;
+  notificationSettings: any;
+  get_load:any;
+  get_res:any;
+  get_load1:any;
+  servlo_id:any;
+  get_macro:any;
+  enableEdit:any;
+  enableEdit1:any;
+  mac_id:any;
+  operator_id = new FormControl('', [Validators.required]);
+  route_card = new FormControl('', [Validators.required]);
+  operation_number = new FormControl('', [Validators.required]);
+  idle_reason = new FormControl('', [Validators.required]);
+  rejection1 = new FormControl('', [Validators.required]);
+  rework = new FormControl('', [Validators.required]);
+
+  rejection = new FormControl('', [Validators.required]);
+  spi_id:any;
+  constructor(public dialogRef: MatDialogRef<Sadd>, @Inject(MAT_DIALOG_DATA) public data2: Add, private fb: FormBuilder, private machine: MachineService, private toast: ToastrService) {
+    this.edit_data2 = data2;
+
+    this.machine.m_get_sett(this.edit_data2.L0Name).pipe(untilDestroyed(this)).subscribe(res => {
+  
+    })
+
+    
+    this.machine.man_get_sett(this.edit_data2.L0Name).pipe(untilDestroyed(this)).subscribe(res => {
+      console.log(res[2]._id.$oid);
+      localStorage.setItem('spindle_id', res[0]._id.$oid);
+      localStorage.setItem('servlo_load', res[1]._id.$oid);
+
+      localStorage.setItem('Macro_var', res[2]._id.$oid);
+
+      this.get_load = res[0];
+      console.log(this.get_load);
+      this.get_load1 = res[1];
+      this.get_macro = res[2];
+      console.log(this.get_macro);
+  
+  
+          })
+   
+  }
+
+  keyPress(event: any) {
+    const pattern = /[0-9]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
+ save(lname){
+   console.log(lname)
+  this.spi_id = localStorage.getItem('spindle_id');
+console.log(this.spi_id);
+   console.log(this.rejection.value);
+ 
+
+
+   
+   let data = {'L1Name': lname, 'id':this.spi_id ,'max':this.rejection.value }
+
+   let data1 = {"machine_setting":data}
+   this.machine.update_spindle(this.spi_id,data1).pipe(untilDestroyed(this)).subscribe(res => {
+console.log(res);
+Swal.fire('Updated successfully')
+this.dialogRef.close();
+ 
+   })
+ }
+ notify1(val,a_axis,status,mac_name)
+ {
+   console.log(val,a_axis)
+   this.servlo_id = localStorage.getItem('servlo_load');
+   console.log(status.checked,mac_name,this.servlo_id);
+
+ 
+  //  var match = a_axis
+  // var vali = val.find( function(item) { return item[0].a_axis == match } );
+  // console.log(vali);
+
+  function getMapKeyValue(val, a_axis) {
+    if (val.hasOwnProperty(a_axis))
+       return { a_axis: a_axis, value: val[a_axis] };
+    throw new Error("Invalid map key.");
+ }
+
+   let aaxis = {'L1Name': mac_name, 'id':this.servlo_id ,'signal':val}
+   let aaxis1 = {"machine_setting":aaxis}
+
+this.machine.update_axis(this.servlo_id,aaxis1).pipe(untilDestroyed(this)).subscribe(res => {
+
+  console.log(res);
+})
+
+ }
+  toggleShow() {
+    this.enableEdit = true;
+}
+
+savemacro(macname){
+  this.mac_id = localStorage.getItem('Macro_var');
+
+  console.log(macname);
+  console.log(this.operator_id.value,this.route_card.value);
+  console.log(this.mac_id);
+
+
+  let donw = {'operator_id':this.operator_id.value,'route_card':this.route_card.value,'operation_number':this.operation_number.value,'idle_reason':this.idle_reason.value,'rejection':this.rejection1.value,'rework':this.rework.value}
+
+  let test = {'L1Name': macname, 'id':this.mac_id ,'signal':donw}
+
+
+  let volk = {"signal":donw}
+
+  console.log(volk);
+let testing ={"machine_setting":test}
+
+console.log(testing)
+  this.machine.update_macro_axis(this.mac_id,testing).pipe(untilDestroyed(this)).subscribe(res => {
+
+    console.log(res);
+  })
+}
+
+toggleShow1() {
+  this.enableEdit1 = true;
+}
+  ngOnInit() {
+
+
+  }
+ 
+
+
+
+  
+
+  
+  cancel() {
+    this.dialogRef.close();
+
+  }
+  ngOnDestroy() { }
+
+}
+
+
+
+
+
+
+@Component({
+  selector: 'sedit-page',
+  templateUrl: 'sedit.html',
+  // styleUrls: ['./user-management.component.scss']
+
+})
+export class Sedit {
+  settingform: FormGroup;
+  id: any;
+  edit_data1: any;
+  constructor(public dialogRef: MatDialogRef<Sedit>, @Inject(MAT_DIALOG_DATA) public data1: Sedit, private fb: FormBuilder, private machine: MachineService, private toast: ToastrService) {
+    this.edit_data1 = data1;
+    console.log(this.edit_data1);
+    this.id = data1.id.$oid;
+   
+
+  }
+
+
+  ngOnInit() {
+    this.settingform = this.fb.group({
+      L1Name: [this.edit_data1.L0Name],
+      operator_id: ["",],
+      route_card: ["",],
+      operation_number: ["",],
+      idle_reason: ["",],
+      rejection: ["",],
+      rework: ["",],
+   
+
+
+    })
+  }
+
+  submit()
+  {
+    console.log( this.settingform.value)
+    let data = {
+      "L1Name": this.settingform.value.L1Name,
+      "operator_id": this.settingform.value.operator_id,
+      "route_card" : this.settingform.value.route_card,
+      "operation_number" : this.settingform.value.operation_number,
+      "idle_reason" : this.settingform.value.idle_reason,
+      "rejection" : this.settingform.value.rejection,
+      "rework" : this.settingform.value.rework,
+
+    }
+
+    this.machine.add_m_set_ing(data).pipe(untilDestroyed(this)).subscribe(res => {
+      this.toast.success('Added Successfully')
+      this.dialogRef.close();
+    });
+    console.log(data)
+  }
+  cancel() {
+    this.dialogRef.close();
+
+  }
+
+
+  ngOnDestroy() { }
+}
 

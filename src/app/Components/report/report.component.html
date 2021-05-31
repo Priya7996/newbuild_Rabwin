@@ -18,7 +18,7 @@
                         </e-presets>
                     </ejs-daterangepicker> -->
 
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                       <input matInput
                              placeholder="Choose a date"
                              [satDatepicker]="picker2"
@@ -26,6 +26,15 @@
                       <sat-datepicker #picker2 [rangeMode]="true">
                       </sat-datepicker>
                       <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+                  </mat-form-field> -->
+
+
+                  <mat-form-field class="date_select" (click)="picker.open()">
+                    <input matInput placeholder="Choose a date" class="date_select" formControlName="date"
+                      [satDatepicker]="picker" [max]="maxDate" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                    <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+                    <sat-datepicker #picker [rangeMode]="true">
+                    </sat-datepicker>
                   </mat-form-field>
 
                 </div>

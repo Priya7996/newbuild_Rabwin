@@ -49,13 +49,12 @@
                     </div>
                     <div class="filter_field date_picker" color="primary">
                       
-
-                        <mat-form-field appearance="fill">
-                            <input matInput [matDatepicker]="picker" formControlName="from_date"
-                            (click)="picker.open()"  placeholder='Select Date'>
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                          </mat-form-field>
+                      <mat-form-field>
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="from_date" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                      </mat-form-field>
                     </div>
 
                     <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
@@ -86,7 +85,7 @@
                             <th>Route Card Number</th>
                             <th>Route Card Start Time</th>
                             <th>Route Card End Time</th>
-                            <th>Duration</th>
+                            <!-- <th>Duration</th> -->
                             <th>Target</th>
                             <th>Actual</th>
                             <th>Accept</th>
@@ -120,7 +119,8 @@
                             <td>{{show_report?.card_no || '---'}}</td>
                             <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                             <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
-                            <td>{{g_report?.duration || '---'}}</td>
+                            <!-- <td>{{g_report?.duration || '---'}}</td> -->
+                            <!-- <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}} -{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}} </td> -->
                             <td>{{show_report?.tar}}</td>
 
                             <td>{{show_report?.actual}}</td>

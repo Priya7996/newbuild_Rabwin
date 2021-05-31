@@ -5,7 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ReportService } from '../../Service/app/report.service';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2'
-
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-quality',
@@ -17,25 +17,12 @@ export class QualityComponent implements OnInit {
   daterangepicker:any;
   module_response:any;
   startDate:any;
+  fiesr_date:any;
   shift_response:any;
   get_report1:any;
   reportblock:any;
   mac_response:any;
-  public today: Date = new Date(new Date().toDateString());
-  public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
-  public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
-    - (new Date().getDay() + 7) % 7))).getDate() + 6)).toDateString())
-    ;
-  public monthStart: Date = new Date(new Date(new Date().setDate(1)).toDateString());
-  public monthEnd: Date = this.today;
-  public lastStart: Date = new Date(new Date(new Date(new Date().setMonth(new Date().getMonth() - 1)).setDate(1)).toDateString());
-  public lastEnd: Date = this.today;
-  public yearStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - 365)).toDateString());
-  public yearEnd: Date = this.today;
-  public currentYear: number = this.today.getFullYear();
-  public currentMonth: number = this.today.getMonth();
-  public maxDate: Object = new Date();
-  public minDate: Object = new Date(new Date().setMonth(new Date().getMonth() - 1));
+  date:any;
   new_date: string;
   new_date1: string;
   status: string;
@@ -105,7 +92,9 @@ export class QualityComponent implements OnInit {
    
       })
     }
-
+    addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+      this.date = event.value;
+    }
   ngOnInit() {
 
   
@@ -142,12 +131,14 @@ export class QualityComponent implements OnInit {
           })
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
-            console.log(res)
+            console.log(res.from_date)
             console.log(this.first_loading['from_date'] )
-
+            this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
+            console.log(this.fiesr_date);
             this.login.patchValue({
               // date : [this.first_loading]
-              date : this.first_loading['from_date']
+              
+              date : this.fiesr_date
 
             })
             this.logintest('true');

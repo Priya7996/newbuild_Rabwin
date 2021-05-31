@@ -40,8 +40,16 @@
 
           <!-- Symbol Column -->
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef> Date </th>
-            <td mat-cell *matCellDef="let element"> {{element.enddate | date:'dd-MM-yyyy'}} </td>
+            <th mat-header-cell *matHeaderCellDef> Start Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedate | date:'HH:mm:ss'}} </td>
+          </ng-container>
+
+
+          
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="enddate">
+            <th mat-header-cell *matHeaderCellDef> End Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.enddate | date:'HH:mm:ss'}} </td>
           </ng-container>
 
 

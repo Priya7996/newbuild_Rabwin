@@ -1,0 +1,126 @@
+<h2 mat-dialog-title>Spindle Load</h2>
+<table class="tableflow">
+    <tr>
+        <!-- <th>#</th> -->
+        <th>Machine Name</th>
+        <th>Value</th>
+        <th>Max</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr>
+        <!-- <td>{{i+1}}</td> -->
+        <td>{{get_load.L1Name}}</td>
+        <td>{{get_load.value}}</td>
+        <td>{{get_load.max}} 
+            <input  class="textlo" *ngIf="enableEdit" [formControl]="rejection">
+        </td>
+        <td (click)="toggleShow()">Edit</td>
+        <td (click)="save(get_load.L1Name)">Save</td>
+
+    </tr>
+</table>
+
+
+
+<!-- <h2 mat-dialog-title>Servo Load</h2> -->
+<!-- <table class="tableflow">
+    <tr>
+        <th>Machine Name</th>
+        <th>Value</th>
+        <th>Signal</th>
+    </tr>
+
+    <tr >
+        <td>{{get_load1.L1Name}}</td>
+        <td>
+            <p>{{get_load1.value[0]}}</p>
+            <p>{{get_load1.value[1]}}</p>
+            <p>{{get_load1.value[2]}}</p>
+            <p>{{get_load1.value[3]}}</p>
+            <p>{{get_load1.value[4]}}</p>
+
+        </td>
+        <td>
+            <p>a_axis</p>
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].a_axis == true" (change)="notify1(get_load1.signal,'a_axis',$event,get_load1.L1Name)"></mat-slide-toggle> 
+
+            <p>b_axis</p>
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].b_axis == true" (change)="notify(b_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+
+            <p>x_axis</p>
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].x_axis == true" (change)="notify(x_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+
+            <p>y_axis</p>
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].y_axis == true" (change)="notify(y_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+
+            <p>z_axis</p>
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].z_axis == true" (change)="notify(z_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+        </td>
+    </tr>
+</table> -->
+
+
+
+
+
+<h2 mat-dialog-title>Macro Value</h2>
+<table class="tableflow">
+    <tr>
+        <th>Machine Name</th>
+        <th>Value</th>
+        <th>Signal</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr>
+        <td>{{get_macro.L1Name}}</td>
+        <td>
+            <p>{{get_macro.value[0]}}</p>
+            <p>{{get_macro.value[1]}}</p>
+            <p>{{get_macro.value[2]}}</p>
+            <p>{{get_macro.value[3]}}</p>
+            <p>{{get_macro.value[4]}}</p>
+
+        </td>
+
+        <td>
+            <p>operator_id : {{get_macro.signal[0].operator_id}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operator_id" value="{{get_macro.signal[0].operator_id}}"  (keypress)="keyPress($event)">
+                </span>
+            </p>
+            <p>route_card : {{get_macro.signal[1].route_card}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="route_card" value="{{get_macro.signal[1].route_card}}"  (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>operation_number : {{get_macro.signal[2].operation_number}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operation_number" value="{{get_macro.signal[2].operation_number}}"  (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>idle_reason : {{get_macro.signal[3].idle_reason}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="idle_reason" value="{{get_macro.signal[3].idle_reason}}"  (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>rejection : {{get_macro.signal[4].rejection}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rejection1" value="{{get_macro.signal[4].rejection}}"  (keypress)="keyPress($event)">
+                </span>
+            </p>
+            <p>rework : {{get_macro.signal[5].rework}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rework"   value="{{get_macro.signal[5].rework}}" (keypress)="keyPress($event)">
+                </span>
+            </p>
+
+
+        </td>
+        <td (click)="toggleShow1()">Edit</td>
+        <td (click)="savemacro(get_macro.L1Name)">Save</td>
+
+    </tr>
+</table>
+

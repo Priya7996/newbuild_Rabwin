@@ -5,10 +5,11 @@ import { MatSort,MatTableDataSource,} from '@angular/material';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
-import { ExportService } from '../shared/export.service';
+import { ExportService } from '../shared/export.service'; 
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 @Component({
-  selector: 'app-efficiency',
+  selector: 'app-efficiency', 
   templateUrl: './efficiency.component.html',
   styleUrls: ['./efficiency.component.scss']
 })
@@ -17,9 +18,12 @@ export class EfficiencyComponent implements OnInit {
   dataSource = new MatTableDataSource();
   type: any;
   result:any;
+  date:any;
+  fiesr_date:any;
   reportblock:any;
   mac_response:any;
   myLoader = false;
+  
   daterangepicker:any;
   export_excel: any[] = [];
   module_response:any;
@@ -52,12 +56,15 @@ export class EfficiencyComponent implements OnInit {
   constructor(private datepipe: DatePipe, private nav: NavbarService, private service: ReportService, private fb: FormBuilder, private exportService: ExportService) {
     this.nav.show()
   }
-
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.date = event.value;
+  }
 
   ngOnInit() {
 
    
     this.login = this.fb.group({
+      line:["",],
       machine_name: [""],
       shift_num: [""],
       from_date: [""],
@@ -67,26 +74,34 @@ export class EfficiencyComponent implements OnInit {
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
       console.log(this.module_response);
-      // this.login.patchValue({
-      //   line: this.module_response[0],
+      this.login.patchValue({
+        line: this.module_response[0],
 
-      // })
-     
+      })
+      this.service.line(this.module_response[0]).subscribe(res => {
+        this.mac_response=res;
+    
+        console.log(this.mac_response);
+        this.login.patchValue({
+          machine_name: this.mac_response[0],
+        })
     this.service.getmachines().subscribe(res => {
       this.machine_response = res;
-      // this.login.patchValue({
-      //   machine_name: this.machine_response[0], 
-      // })
+      this.login.patchValue({
+        machine_name: this.machine_response[0], 
+      })
       this.service.getshift().subscribe(res => {
         this.shift_response = res;
-        // this.login.patchValue({
-        //   shift_num: this.shift_response[0].shift_no,
-        // })
+        this.login.patchValue({
+          shift_num: this.shift_response[0].shift_no,
+        })
         this.service.first_page_loading().subscribe(res => {
           this.first_loading = res;
-          // this.login.patchValue({
-          //   date : [this.first_loading['from_date'],this.first_loading['from_date']]
-          // })
+          this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
+          console.log(this.fiesr_date)
+          this.login.patchValue({
+            from_date : this.fiesr_date
+          })
 
 
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
@@ -98,9 +113,9 @@ export class EfficiencyComponent implements OnInit {
           // })
           // this.minDate = this.first_loading['from_date']
           // this.maxDate = this.first_loading['to_date']
-          // this.logintest('true');
+           this.logintest('true');
         })
-    
+      })
     })
   })
     })
@@ -179,6 +194,8 @@ export class EfficiencyComponent implements OnInit {
     this.status = s;
     this.myLoader = true;
     console.log(this.login.value)
+    this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
+console.log(this.login.value.from_date)
     // this.maxDate = this.datepipe.transform(this.maxDate);
     
     if (this.status == 'true') {
@@ -188,7 +205,7 @@ export class EfficiencyComponent implements OnInit {
       let register = {
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
-        "from_date": this.new_date + '-' + this.new_date1
+        "from_date": this.new_date+ '-' + this.new_date1
       }
       console.log(register)
       this.service.overallll_report(register).subscribe(res => {

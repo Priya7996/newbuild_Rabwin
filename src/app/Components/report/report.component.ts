@@ -3,7 +3,7 @@ import { NavbarService } from '../../Nav/navbar.service';
 import { ReportService } from '../../Service/app/report.service';
 import { MatSort,MatTableDataSource,} from '@angular/material';
 import { MatDatepickerInputEvent} from '@angular/material/datepicker';
-
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from 'saturn-datepicker'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -20,7 +20,8 @@ declare var gtag;
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  styleUrls: ['./report.component.scss'],
+
 })
 export class ReportComponent implements OnInit {
   displayedColumns: string[] = ['position', 'date', 'line', 'machine_name','shift_num','time','operator','operator_id','root_card','target','actual','accept','reject','rework','efficiency','utilisation','run_time','idle_time','alarm_time','disconnect','duration'];
@@ -219,8 +220,12 @@ export class ReportComponent implements OnInit {
          
 
 
-            date: [{begin: this.datepipe.transform(this.dat1, 'MM/dd/yyyy'), end: this.datepipe.transform(this.dat2, 'MM/dd/yyyy')}]
+            date: [{begin: this.datepipe.transform(this.first_loading.from_date, 'yyyy-MM-dd'), end: this.datepipe.transform(this.first_loading.to_date, 'yyyy-MM-dd')}]
           })
+
+          // this.stamps = { begin: this.datepipe.transform(begin, 'yyyy-MM-dd'), end: this.datepipe.transform(end, 'yyyy-MM-dd') };
+
+          
           localStorage.setItem('SDATE', this.first_loading['from_date']);
           localStorage.setItem('EDATE', this.first_loading['to_date']);
           this.sdate = localStorage.getItem('SDATE');

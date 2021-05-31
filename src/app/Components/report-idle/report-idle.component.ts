@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { ExportService } from '../shared/export.service';
 import Swal from 'sweetalert2';    
 import { map } from 'rxjs/operators';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 declare var gtag;
 @Component({ 
@@ -19,6 +20,7 @@ export class ReportIdleComponent implements OnInit {
   loop:any;
   totl:any;
   dates:any;
+  date:any;
   data:any;
   no_data:any;
   public today: Date = new Date(new Date().toDateString());
@@ -46,6 +48,7 @@ export class ReportIdleComponent implements OnInit {
   startDate:any;
   status: string;
 myLoader = false;
+fiesr_date:any;
  export_excel: any[] = [];
   new_date: string;
   new_date1: any;
@@ -135,10 +138,11 @@ myLoader = false;
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
             console.log(this.first_loading['from_date'] )
+            this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
 
             this.login.patchValue({
               // date : [this.first_loading]
-              date : this.first_loading['from_date']
+              date : this.fiesr_date
 
             })
             console.log(this.login.value.date,this.first_loading['from_date'])
@@ -186,7 +190,9 @@ myLoader = false;
   })
 
  }  
-
+ addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+  this.date = event.value;
+}
   logintest(s) { 
 
     this.status = s;

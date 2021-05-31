@@ -155,25 +155,64 @@
                 </div>
                 
                 <div class="axis_chart bg">
-                    <div class="circle_chart">
+                    <div class="circle_chart" *ngIf="axis1">
                         <circle-progress radius="90" percent={{servo_load}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
                             <h3><span class="value">{{servo_load}}</span> %</h3>
                         </div>
-                        <span class="chart_sub_title">X Axis</span>
+                        <span class="chart_sub_title">{{axis1}}</span>
                     </div>
-                    <div class="circle_chart">
+                    <div class="circle_chart" *ngIf="axis2">
                         <circle-progress radius="90" percent={{servo_load1}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
                         <div class="chart_text">
                             <h3><span class="value">{{servo_load1}}</span> %</h3>
                         </div>
-                        <span class="chart_sub_title">Y Axis</span>
+                        <span class="chart_sub_title">{{axis2}}</span>
+                    </div>
+
+                    <div class="circle_chart" *ngIf="axis3">
+                        <circle-progress radius="90" percent={{servo_load2}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
+                            animation="true" animationDuration="300">
+                        </circle-progress>
+                        <div class="chart_text">
+                            <h3><span class="value">{{servo_load2}}</span> %</h3>
+                        </div>
+                        <span class="chart_sub_title">{{axis3}}</span>
                     </div>
                 </div>
+
+
+
+                <div class="axis_chart bg">
+                  
+                    <div class="circle_chart" *ngIf="axis4">
+                        <circle-progress radius="90" percent={{servo_load3}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
+                            animation="true" animationDuration="300">
+                        </circle-progress>
+                        <div class="chart_text">
+                            <h3><span class="value">{{servo_load3}}</span> %</h3>
+                        </div>
+                        <span class="chart_sub_title">{{axis4}}</span>
+                    </div>
+
+                    <div class="circle_chart" *ngIf="axis5">
+                        <circle-progress radius="90" percent={{servo_load4}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
+                            animation="true" animationDuration="300">
+                        </circle-progress>
+                        <div class="chart_text">
+                            <h3><span class="value">{{servo_load4}}</span> %</h3>
+                        </div>
+                        <span class="chart_sub_title">{{axis5}}</span>
+                    </div>
+                </div>
+
+
+
+
             </div>
             </div>
         </div>

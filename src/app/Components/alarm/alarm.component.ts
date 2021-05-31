@@ -14,14 +14,14 @@ declare var gtag;
   styleUrls: ['./alarm.component.scss']
 })
 export class AlarmComponent implements OnInit {
-  alarmHistory: any;
+  alarmHistory: any; 
   pageNo: any;
   page_size= 20;
   searchText :any =[];
   reason:any;
     pageSizeOptions:any;
   total_count: any;
-  displayedColumns: string[] = [ 'machine', 'alarmtype', 'axis','date','time'];
+  displayedColumns: string[] = [ 'machine', 'alarmtype', 'axis','date','enddate','time'];
   dataSource = new MatTableDataSource();
   myLoader = false;
   public doFilter = (value: string) => {
@@ -55,7 +55,7 @@ export class AlarmComponent implements OnInit {
    })
   }
   pageEvent(e){
-    this.myLoader = false;
+    this.myLoader = true;
    
     this.pageNo = e.pageIndex+1;
     this.alarmService.alarm_history(this.pageNo,this.searchText).pipe(untilDestroyed(this)).subscribe( res => {

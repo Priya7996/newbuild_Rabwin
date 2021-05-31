@@ -850,7 +850,7 @@
 }
 .machinestatus_sec{
   display: flex;
-  flex-wrap: wrap;
+  //flex-wrap: wrap;
   // width: 60%;
 }
 progress.run::-moz-progress-bar { background:#04C984; }
@@ -863,7 +863,9 @@ progress.disconnect::-moz-progress-bar { background: #939393; }
 progress.disconnect::-webkit-progress-value { background:#A8A8A8; }
 progress.disconnect { color: #939393; }
 .machinestatus_sec_inner {
+  
   display: flex;
+  flex-wrap: wrap;
   // margin-left: 30px;
 }
 .line_desc{

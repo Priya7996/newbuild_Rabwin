@@ -14,15 +14,18 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class DashboardlineComponent implements OnInit {
   Highcharts = Highcharts;
-
+  axis2:any;
   login: FormGroup;
   lname:any;
+  axis1:any;
   servo_load:any;
   servo_load1:any;
   operator:any;
   alname:any;
   myLoader = false;
-
+  servo_load2:any;
+  servo_load3:any;
+  servo_load4:any;
   fline:any;
   fname:any;
   utlization:any;
@@ -31,6 +34,9 @@ export class DashboardlineComponent implements OnInit {
   disconnect:any;
   reason:any;
   eff:any;
+  axis3:any;
+  axis4:any;
+  axis5:any;
   spindle_load:any;
   constructor(private service: DashboardService,private route:ActivatedRoute,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show();
@@ -54,8 +60,19 @@ export class DashboardlineComponent implements OnInit {
     this.service.pie(this.fline,this.fname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.operator = res;
         this.eff = res.effe;
+        this.axis1 = res.sv_axis[0]
+        this.axis2 = res.sv_axis[1]
+        this.axis3 = res.sv_axis[2]
+        this.axis4 = res.sv_axis[3]
+        this.axis5 = res.sv_axis[4]
+
+        console.log(this.axis1,this.axis2,this.axis3,this.axis4,this.axis5);
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
+        this.servo_load2 = res.servo_load[2]
+        this.servo_load3 = res.servo_load[3]
+        this.servo_load4 = res.servo_load[4]
+        console.log(this.servo_load,this.servo_load1,this.servo_load2,this.servo_load3,this.servo_load4)
         this.spindle_load = res.spendle_load[0]
         this.myLoader = false;
         var container = Highcharts.chart('container2', {
@@ -600,9 +617,18 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
 
         this.operator = res;
+
+        this.axis1 = res.sv_axis[0]
+        this.axis2 = res.sv_axis[1]
+        this.axis3 = res.sv_axis[2]
+        this.axis4 = res.sv_axis[3]
+        this.axis5 = res.sv_axis[4]
         this.spindle_load = res.spendle_load[0]
         this.servo_load = res.servo_load[0]
         this.servo_load1 = res.servo_load[1]
+        this.servo_load2 = res.servo_load[2]
+        this.servo_load3 = res.servo_load[3]
+        this.servo_load4 = res.servo_load[4]
         var container = Highcharts.chart('container2', {
           credits: {
             enabled: false
