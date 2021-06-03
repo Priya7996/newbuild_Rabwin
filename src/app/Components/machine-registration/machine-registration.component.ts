@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class MachineRegistrationComponent implements OnInit {
 
   machine_list: any;
-  myLoader = false;
+  myLoader = false; 
   constructor(private fb: FormBuilder, private nav: NavbarService, public dialog: MatDialog, private machine: MachineService) {
     this.nav.show()
   }
@@ -253,6 +253,7 @@ export class Sadd {
   get_load1:any;
   servlo_id:any;
   get_macro:any;
+  myLoader1:any;
   enableEdit:any;
   enableEdit1:any;
   mac_id:any;
@@ -272,7 +273,8 @@ export class Sadd {
   
     })
 
-    
+    this.myLoader1 = true;
+
     this.machine.man_get_sett(this.edit_data2.L0Name).pipe(untilDestroyed(this)).subscribe(res => {
       console.log(res[2]._id.$oid);
       localStorage.setItem('spindle_id', res[0]._id.$oid);
@@ -285,8 +287,15 @@ export class Sadd {
       this.get_load1 = res[1];
       this.get_macro = res[2];
       console.log(this.get_macro);
-  
-  
+      this.operator_id = new FormControl(this.get_macro.signal[0].operator_id, [Validators.required]);
+      this.route_card = new FormControl(this.get_macro.signal[1].route_card, [Validators.required]);
+      this.operation_number = new FormControl(this.get_macro.signal[2].operation_number, [Validators.required]);
+      this.idle_reason = new FormControl(this.get_macro.signal[3].idle_reason, [Validators.required]);
+      this.rejection1 = new FormControl(this.get_macro.signal[4].rejection, [Validators.required]);
+      this.rework = new FormControl(this.get_macro.signal[5].rework, [Validators.required]);
+      this.myLoader1 = false;
+
+
           })
    
   }
@@ -308,10 +317,13 @@ console.log(this.spi_id);
 
    
    let data = {'L1Name': lname, 'id':this.spi_id ,'max':this.rejection.value }
+   this.myLoader1 = true;
 
    let data1 = {"machine_setting":data}
    this.machine.update_spindle(this.spi_id,data1).pipe(untilDestroyed(this)).subscribe(res => {
 console.log(res);
+this.myLoader1 = false;
+
 Swal.fire('Updated successfully')
 this.dialogRef.close();
  
@@ -357,19 +369,46 @@ savemacro(macname){
 
   let donw = {'operator_id':this.operator_id.value,'route_card':this.route_card.value,'operation_number':this.operation_number.value,'idle_reason':this.idle_reason.value,'rejection':this.rejection1.value,'rework':this.rework.value}
 
-  let test = {'L1Name': macname, 'id':this.mac_id ,'signal':donw}
+  let empty =[]
+
+  let operator_id = {'operator_id':this.operator_id.value}
+  let route_card = {'route_card':this.route_card.value}
+  let operation_number = {'operation_number':this.operation_number.value}
+  let idle_reason = {'idle_reason':this.idle_reason.value}
+  let rejection = {'rejection':this.rejection1.value}
+  let rework = {'rework':this.rework.value}
 
 
-  let volk = {"signal":donw}
+  empty.push(operator_id)
+  empty.push(route_card)
+  empty.push(operation_number)
+  empty.push(idle_reason)
+  empty.push(rejection)
+  empty.push(rework)
+
+  console.log(empty);
+  let value =[]
+  console.log(donw);
+  value.push(donw)
+  console.log(value)
+  let volk = {"signal":empty}
+  let test = {'L1Name': macname, 'id':this.mac_id ,'signal':empty,'value':value}
 
   console.log(volk);
 let testing ={"machine_setting":test}
 
 console.log(testing)
+this.myLoader1 = true;
+
   this.machine.update_macro_axis(this.mac_id,testing).pipe(untilDestroyed(this)).subscribe(res => {
 
     console.log(res);
+    Swal.fire("updated successfully")
+    this.dialogRef.close();
+
   })
+  this.myLoader1 = false;
+
 }
 
 toggleShow1() {

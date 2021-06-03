@@ -16,12 +16,12 @@ export class ReportIldeService {
  }
  getmodule():Observable<any>{
   return this.http.get('module_filters')
-}
+} 
 line(data):Observable<any>{
   return this.http.get('report_filters?line=' +data)
 }
  overall_report(register):Observable<any>{
-   return this.http.get('idle_reports?machine=' + register.machine +'&&shift=' +register.shift +'&&date='+ register.date )
+   return this.http.get('idle_reports?machine=' + register.machine +'&&module='+ register.module +'&&shift=' +register.shift +'&&date='+ register.date )
  }
  first_page_loading():Observable<any>{
    return this.http.get('previous_shift')

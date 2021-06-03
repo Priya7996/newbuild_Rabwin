@@ -21,6 +21,8 @@ export class ComparechartComponent implements OnInit {
   secrun:any;
   utili1:any; 
   utili2:any;
+  dat1:any;
+  dat2:any;
   utili3:any;
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
@@ -61,6 +63,8 @@ export class ComparechartComponent implements OnInit {
   new_date2: any;
   myLoader1= false;
   datsss:any;
+  datpre1:any;
+  datpre2:any;
   // maxDate:any;
   // minDate:any;
   sdate:any;
@@ -79,7 +83,7 @@ export class ComparechartComponent implements OnInit {
   ope_response: any;
   Rdate: string;
   Rdate2: string;
-  constructor(private nav: NavbarService,private fb:FormBuilder,private service :ComparechartService,private datePipe: DatePipe) {
+  constructor(private nav: NavbarService,private fb:FormBuilder,private service :ComparechartService,private datepipe: DatePipe) {
     this.nav.show();
   }
   gettype(type){
@@ -179,7 +183,7 @@ export class ComparechartComponent implements OnInit {
           machine_name: this.machine_response[0],
         })
         this.service.getshift().subscribe(res => {
-          this.shift_response = res;
+          this.shift_response = res; 
           this.login.patchValue({
             shift_num: this.shift_response[0].shift_no,
           })
@@ -187,11 +191,18 @@ export class ComparechartComponent implements OnInit {
 
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
+
+            this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
+            this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
+            console.log(this.dat1,this.dat2)
             this.login.patchValue({
-              date : [this.first_loading['from_date'],this.first_loading['to_date']]
+           
+  
+  
+              date: {begin: this.datepipe.transform(this.dat1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.dat2, 'yyyy-MM-dd')}
             })
-            // this.minDate = this.first_loading['from_date']
-            // this.maxDate = this.first_loading['to_date']
+            
+           
 
            
             localStorage.setItem('CSDATE', this.first_loading['from_date']);
@@ -206,7 +217,8 @@ export class ComparechartComponent implements OnInit {
       })
     })
   
-     
+   
+    
     this.service.moduleget().subscribe(res => {
       this.response_module = res;
       console.log(this.response_module[0]);
@@ -224,7 +236,7 @@ export class ComparechartComponent implements OnInit {
     this.service.machine_get().subscribe(res => {
       this.machine_get = res;
       this.test.patchValue({
-        machine_name: this.machine_response[0],
+        machine_name: this.machine_get[0],
       })
       this.service.shift_get().subscribe(res => {
         this.select_shift = res;
@@ -233,11 +245,17 @@ export class ComparechartComponent implements OnInit {
         })
         this.service.right_first_page_loading().subscribe(res => {
           this.first_pge_loading = res;
+          this.datpre1 = new DatePipe('en-US').transform(this.first_pge_loading.from_date, 'yyyy-MM-dd');
+          this.datpre2 = new DatePipe('en-US').transform(this.first_pge_loading.to_date, 'yyyy-MM-dd');
+          console.log(this.datpre1,this.datpre2)
           this.test.patchValue({
-            date : [this.first_pge_loading['from_date'],this.first_pge_loading['to_date']]
+           
+  
+  
+            date: {begin: this.datepipe.transform(this.datpre1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.datpre2, 'yyyy-MM-dd')}
           })
-          // this.minDate = this.first_loading['from_date']
-          // this.maxDate = this.first_loading['to_date']
+          
+       
           localStorage.setItem('RSSDATE', this.first_pge_loading['from_date']);
             localStorage.setItem('RSEDATE', this.first_pge_loading['to_date']);
             this.Rdate = localStorage.getItem('RSSDATE');
@@ -251,14 +269,14 @@ export class ComparechartComponent implements OnInit {
   })
   
       
-      this.test = this.fb.group({
-        line:[""],
-        type:[""],
-        machine_name:["",],
-        shift_num:["",],
-        date:["",],
-        operator:[""]
-      })    
+  this.test = this.fb.group({
+    line:[""],
+    type:[""],
+    machine_name:["",],
+    shift_num:["",],
+    date:["",],
+    operator:[""]
+  })   
     
   }
 
@@ -373,13 +391,14 @@ export class ComparechartComponent implements OnInit {
     this.status=s;
     console.log(this.login.value);
     this.myLoader = true;
-    this.maxDate = this.datePipe.transform(this.maxDate);
+    this.maxDate = this.datepipe.transform(this.maxDate);
     
     let register = this.login.value;
     if(this.status == 'true'){
       if(this.login.value.type === 'Shiftwise'){
         // alert("shift");
         let register = {
+          "module": this.login.value.line,
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
           "date": this.ndate + '-' + this.ndate2,
@@ -488,6 +507,7 @@ export class ComparechartComponent implements OnInit {
       else if(this.login.value.type === 'Operatorwise'){
         // alert("opera");
         let register = {
+          "module":this.login.value.line,
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
           "date": this.ndate + '-' + this.ndate2,
@@ -597,6 +617,7 @@ export class ComparechartComponent implements OnInit {
 
 else{
       let register={
+        "module":this.login.value.line,
         "machine_name":this.login.value.machine_name,
         "shift_num":this.login.value.shift_num,
         "date":this.ndate + '-' + this.ndate2
@@ -707,10 +728,12 @@ else{
     this.status=e;
     this.myLoader1 = true;
     let value = this.test.value;
+    console.log(this.test.value);
     if(this.status == 'true'){
       if(this.test.value.type === 'Shiftwise'){
         // alert("shift")
       let value = {
+        "module":this.test.value.line,
         "machine_name": this.test.value.machine_name,
         "shift_num": this.test.value.shift_num,
         "date": this.Rdate + '-' + this.Rdate2,
@@ -813,6 +836,7 @@ else{
     else if(this.test.value.type === 'Operatorwise'){
       // alert("operat")
       let value = {
+        "module":this.test.value.line,
         "machine_name": this.test.value.machine_name,
         "shift_num": this.test.value.shift_num,
         "date": this.Rdate + '-' + this.Rdate2,
@@ -917,6 +941,7 @@ else{
     else{
 
       let value = {
+        "module":this.test.value.line,
         "machine_name": this.test.value.machine_name,
         "shift_num": this.test.value.shift_num,
         "date": this.Rdate + '-' + this.Rdate2,

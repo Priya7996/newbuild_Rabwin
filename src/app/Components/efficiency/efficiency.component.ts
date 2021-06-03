@@ -136,10 +136,12 @@ export class EfficiencyComponent implements OnInit {
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
-    
+      this.login.patchValue({
+        machine_name: this.mac_response[0],
+      })
     
    
-      })
+      }) 
     }
   export(){
    let register = {
@@ -203,6 +205,7 @@ console.log(this.login.value.from_date)
       this.new_date1 = new DatePipe('en-US').transform(this.login.value.from_date, 'MM/dd/yyyy');
       console.log(this.new_date , this.new_date1)
       let register = {
+        "module":this.login.value.line,
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         "from_date": this.new_date+ '-' + this.new_date1

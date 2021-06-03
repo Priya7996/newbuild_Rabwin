@@ -34,7 +34,7 @@ export class ComparechartService {
     return this.http.get('machine_list')
  }
  getshift():Observable<any>{
-   return this.http.get('shifts')
+   return this.http.get('shifts') 
  }
  machine_get():Observable<any>{
    return this.http.get('machine_list')
@@ -44,22 +44,22 @@ export class ComparechartService {
   return this.http.get('shifts')
 }
  overall_compare(register):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type)
+  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type)
 }
 overall_compare1(register):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type + '&&operator_id=' + register.operator)
+  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type + '&&operator_id=' + register.operator)
 }
 overall_compare2(register):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + 'Shiftwise' )
+  return this.http.get('compare_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + 'Shiftwise' )
 }
 compare_chart(value):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + value.type)
+  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&module='+ value.module +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + value.type)
 }
 compare_chart1(value):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + value.type + '&&operator_id=' + value.operator)
+  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&module='+ value.module  +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + value.type + '&&operator_id=' + value.operator)
 }
 compare_chart2(value):Observable<any>{
-  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + 'Shiftwise')
+  return this.http.get('compare_report?machine_name=' + value.machine_name +'&&module='+ value.module +'&&shift_num=' +value.shift_num +'&&from_date='+ value.date + '&&select_type=' + 'Shiftwise')
 }
 first_page_loading():Observable<any>{
   return this.http.get('previous_shift')

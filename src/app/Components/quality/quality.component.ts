@@ -28,6 +28,8 @@ export class QualityComponent implements OnInit {
   status: string;
   get_report: any;
   first_loading: any;
+  public maxDate: Object = new Date();
+
   constructor(private datepipe: DatePipe,private service: ReportService,public dialog: MatDialog,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show()
   }
@@ -154,11 +156,12 @@ export class QualityComponent implements OnInit {
   logintest(s) {
     this.status = s;
 
-    console.log(this.login.value.date);
+    console.log(this.login.value);
     if (this.status == 'true') {
       this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
 
       let register = {
+        "module":this.login.value.line,
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         "date": this.login.value.date + '-' + this.login.value.date

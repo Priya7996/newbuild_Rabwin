@@ -266,13 +266,13 @@
                             <mat-form-field>
                                 <input matInput
                                        placeholder="Choose a date"
-                                       [satDatepicker]="picker2"
-                                       formControlName="date"  (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                                       [satDatepicker]="picker2" 
+                                       formControlName="date"  [max]="maxDate" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
                                 <sat-datepicker #picker2 [rangeMode]="true">
                                 </sat-datepicker>
                                 <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
                             </mat-form-field>
-                        </div>
+                        </div> 
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
                                 <mat-select placeholder="Select Module" matNativeControl required
@@ -313,7 +313,7 @@
 
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Select Type" matNativeControl required
+                                <mat-select placeholder="Shiftwise" matNativeControl required
                                     formControlName="type" (selectionChange)="gettype($event.value)">
                                     <mat-option value="Shiftwise">Shiftwise</mat-option>
                                     <mat-option value="Operatorwise">Operatorwise</mat-option>
@@ -334,8 +334,8 @@
                             </mat-form-field>
                             <!-- <p *ngIf="op_response.length==0">No Operators Found</p> -->
                             <div *ngIf="op_response.length==0" class="no_data_found">
-                              <h2>No Operators found</h2>
-                            </div>
+                                <h2>No Operators found</h2>
+                              </div>
                         </div>
 
                         <button type="submit" color="primary" mat-raised-button>Go</button>
@@ -397,6 +397,8 @@
                                 <th>#</th>
                                 <th>Machine Name</th>
                                 <th>Parts Produced</th>
+                                <th>Operator Name</th>
+                                <th>Operator Id</th>
                                 <th>Utilization(%)</th>
                                 <th>Run Time</th>
                                 <th>Idle Time</th>
@@ -408,6 +410,8 @@
                                 <td>{{i+1}}</td>
                                 <td>{{show_table?.machine_name}}</td>
                                 <td>{{show_table?.part_count}}</td>
+                                <td>SENTHIL KUMARESAN</td>
+                                <td>BC124GJF879</td>
                                 <td>{{show_table?.utilisation}}</td>
                                 <td>{{show_table?.run_time}}</td>
                                 <td>{{show_table?.idle_time}}</td>
@@ -437,7 +441,7 @@
                                 <input matInput
                                        placeholder="Choose a date"
                                        [satDatepicker]="picker3"
-                                       formControlName="date"  (dateInput)="addEvent1('input', $event)" (dateChange)="addEvent1('change', $event)">
+                                       formControlName="date" (dateInput)="addEvent1('input', $event)" (dateChange)="addEvent1('change', $event)">
                                 <sat-datepicker #picker3 [rangeMode]="true">
                                 </sat-datepicker>
                                 <sat-datepicker-toggle matSuffix [for]="picker3"></sat-datepicker-toggle>
@@ -486,7 +490,7 @@
                         
                         <div class="filter_field">
                             <mat-form-field appearance="outline">
-                                <mat-select placeholder="Select Type" matNativeControl required
+                                <mat-select placeholder="Shiftwise" matNativeControl required
                                     formControlName="type" (selectionChange)="gettyping($event.value)">
                                     <mat-option value="Shiftwise">Shiftwise</mat-option>
                                     <mat-option value="Operatorwise">Operatorwise</mat-option>
@@ -573,6 +577,8 @@
                                 <th>#</th>
                                 <th>Machine Name</th>
                                 <th>Parts Produced</th>
+                                <th>Operator Name</th>
+                                <th>Operator Id</th>
                                 <th>Utilization(%)</th>
                                 <th>Run Time</th>
                                 <th>Idle Time</th>
@@ -584,6 +590,8 @@
                                 <td>{{i+1}}</td>
                                 <td>{{show_right?.machine_name}}</td>
                                  <td>{{show_right?.part_count}}</td>
+                                 <td>SENTHIL KUMARESAN</td>
+                                 <td>BC124GJF879</td>
                                  <td>{{show_right?.utilisation}}</td>
                                  <td>{{show_right?.run_time}}</td>
                                 <td>{{show_right?.idle_time}}</td>

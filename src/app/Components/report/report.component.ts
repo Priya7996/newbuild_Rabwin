@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
 import { ReportService } from '../../Service/app/report.service';
-import { MatSort,MatTableDataSource,} from '@angular/material';
+import { MatSort,MatTableDataSource,} from '@angular/material'; 
 import { MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from 'saturn-datepicker'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -73,6 +73,7 @@ export class ReportComponent implements OnInit {
   types: any;
   sdate: string;
   edate: string;
+
   constructor(private datepipe: DatePipe, private nav: NavbarService, private service: ReportService, public dialog: MatDialog, private fb: FormBuilder, private exportService: ExportService) {
     this.nav.show();
    
@@ -110,6 +111,7 @@ export class ReportComponent implements OnInit {
     
     console.log(this.reportblock)
     
+    localStorage.setItem('MODULELOG', this.reportblock);
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
@@ -131,8 +133,10 @@ export class ReportComponent implements OnInit {
       console.log(date)
     }
     gettype(type){
-
+      console.log(type);
        this.types = type;
+       let hadokmodule = localStorage.getItem('MODULELOG');
+       console.log(hadokmodule)
       let hadok = localStorage.getItem('SHHIFT');
       console.log(hadok)
       let hadokmac = localStorage.getItem('MACHINE');
@@ -148,6 +152,7 @@ export class ReportComponent implements OnInit {
 
 
         let register = {
+          "module":hadokmodule,
           "machine_name": hadokmac,
           "shift_num": hadok,
           "date":  this.sdate + '-' +  this.edate
@@ -183,6 +188,9 @@ export class ReportComponent implements OnInit {
         line: this.module_response[0],
 
       })
+      localStorage.setItem('MODULELOG', this.module_response[0]);
+      let hadokmodule = localStorage.getItem('MODULELOG');
+      console.log(hadokmodule);
       this.service.line(this.module_response[0]).subscribe(res => {
         this.mac_response=res;
         // let data =  this.mac_response;
@@ -220,7 +228,7 @@ export class ReportComponent implements OnInit {
          
 
 
-            date: [{begin: this.datepipe.transform(this.first_loading.from_date, 'yyyy-MM-dd'), end: this.datepipe.transform(this.first_loading.to_date, 'yyyy-MM-dd')}]
+            date: {begin: this.datepipe.transform(this.dat1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.dat2, 'yyyy-MM-dd')}
           })
 
           // this.stamps = { begin: this.datepipe.transform(begin, 'yyyy-MM-dd'), end: this.datepipe.transform(end, 'yyyy-MM-dd') };
@@ -232,7 +240,7 @@ export class ReportComponent implements OnInit {
           console.log(this.sdate);
           this.edate = localStorage.getItem('EDATE');
           console.log(this.edate)
-   
+         
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
           // 'dd/MM/yyyy');
           // this.new_date1 = new DatePipe('en-US').transform(this.first_loading['to_date'], 
@@ -329,6 +337,7 @@ export class ReportComponent implements OnInit {
  }
   logintest(s) {
     this.status = s;
+    console.log(this.login.value)
     this.myLoader = true;
     // console.log(this.login.value)
     // this.begin = new DatePipe('en-US').transform(this.login.value.date.begin, 'MM/dd/yyyy');
@@ -344,6 +353,7 @@ export class ReportComponent implements OnInit {
       if(this.login.value.type === 'Shiftwise'){
         // alert("shift");
         let register = {
+          "module":this.login.value.line,
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
           "date": this.sdate + '-' + this.edate,
@@ -363,6 +373,7 @@ export class ReportComponent implements OnInit {
       else if(this.login.value.type === 'Operatorwise'){
         // alert("Operat");
         let register = {
+          "module":this.login.value.line,
           "machine_name": this.login.value.machine_name,
           "shift_num": this.login.value.shift_num,
           "date": this.sdate + '-' + this.edate,
@@ -383,6 +394,8 @@ export class ReportComponent implements OnInit {
       else{
      
       let register = {
+        "module":this.login.value.line,
+
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         "date": this.sdate + '-' + this.edate,

@@ -1,3 +1,9 @@
+<div *ngIf="myLoader" class="spinner">
+    <img src="assets/images/spinner.gif">
+</div>
+
+
+
 <h2 mat-dialog-title>Spindle Load</h2>
 <table class="tableflow">
     <tr>
@@ -23,8 +29,8 @@
 
 
 
-<!-- <h2 mat-dialog-title>Servo Load</h2> -->
-<!-- <table class="tableflow">
+<h2 mat-dialog-title>Servo Load</h2>
+<table class="tableflow">
     <tr>
         <th>Machine Name</th>
         <th>Value</th>
@@ -58,7 +64,7 @@
             <mat-slide-toggle  [checked] = "get_load1.signal[0].z_axis == true" (change)="notify(z_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
         </td>
     </tr>
-</table> -->
+</table>
 
 
 
@@ -87,32 +93,32 @@
         <td>
             <p>operator_id : {{get_macro.signal[0].operator_id}}
 
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operator_id" value="{{get_macro.signal[0].operator_id}}"  (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operator_id"  (keypress)="keyPress($event)">
                 </span>
             </p>
             <p>route_card : {{get_macro.signal[1].route_card}}
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="route_card" value="{{get_macro.signal[1].route_card}}"  (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="route_card"   (keypress)="keyPress($event)">
                 </span>
 
             </p>
             <p>operation_number : {{get_macro.signal[2].operation_number}}
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operation_number" value="{{get_macro.signal[2].operation_number}}"  (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operation_number"   (keypress)="keyPress($event)">
                 </span>
 
             </p>
             <p>idle_reason : {{get_macro.signal[3].idle_reason}}
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="idle_reason" value="{{get_macro.signal[3].idle_reason}}"  (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="idle_reason"   (keypress)="keyPress($event)">
                 </span>
 
             </p>
             <p>rejection : {{get_macro.signal[4].rejection}}
 
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rejection1" value="{{get_macro.signal[4].rejection}}"  (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rejection1"   (keypress)="keyPress($event)">
                 </span>
             </p>
             <p>rework : {{get_macro.signal[5].rework}}
 
-                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rework"   value="{{get_macro.signal[5].rework}}" (keypress)="keyPress($event)">
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rework" (keypress)="keyPress($event)">
                 </span>
             </p>
 

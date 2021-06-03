@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { ExportService } from '../shared/export.service';
 import Swal from 'sweetalert2';    
 import { MatSort,MatTableDataSource,} from '@angular/material';
+import { MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 declare var gtag;
  
@@ -36,6 +37,7 @@ declare var gtag;
       machine_response: any;
       shift_response: any;
      pageNo: any;
+     date:any;
       page_size= 10;     
 register:any;
 startDate:any;
@@ -45,18 +47,30 @@ startDate:any;
       login: FormGroup;
      get_report: any;
      report: any;
+     dat2:any;
       first_loading: any;
      daterangepicker:any;
      reportblock:any;
     status: string;
     myLoader = false;
+    dat1:any;
       export_excel: any[] = [];
       new_date: string;
       new_date1: any;
       mac_response:any;
       module_response:any;
-      constructor(private nav:NavbarService,private datePipe: DatePipe,private service:IdleReasonService,private fb:FormBuilder,private exportService: ExportService  ) { 
+      constructor(private nav:NavbarService,private datepipe: DatePipe,private service:IdleReasonService,private fb:FormBuilder,private exportService: ExportService  ) { 
         this.nav.show()
+      }
+
+
+      addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+        this.date = event.value;
+        console.log(this.date )
+      
+
+
+
       }
         ngOnInit() {
 
@@ -99,11 +113,15 @@ console.log(gtag);
                 shift_num: this.shift_response[0].shift_no,
               })
              
-                  this.service.first_page_loading().subscribe(res => {
-                    this.first_loading = res;
-                   this.login.patchValue({
-                    date : [this.first_loading['from_date'],this.first_loading['to_date']]
-                  })
+          this.service.first_page_loading().subscribe(res => {
+            this.first_loading = res;
+        this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
+        this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
+        console.log(this.dat1,this.dat2)
+        this.login.patchValue({
+         
+           date: {begin: this.datepipe.transform(this.dat1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.dat2, 'yyyy-MM-dd')}
+        })
                    // this.minDate = this.first_loading['from_date'][m
                  // this.maxDate = this.first_loading['to_date'][m
                
@@ -188,9 +206,10 @@ console.log(gtag);
        if (this.status == 'true') {
         // this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
         // this.new_date1 = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
-        this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
-        this.new_date1 = new DatePipe('en-US').transform(this.login.value.date[1], 'MM/dd/yyyy');
+        this.new_date = new DatePipe('en-US').transform(this.login.value.date.begin, 'MM/dd/yyyy');
+        this.new_date1 = new DatePipe('en-US').transform(this.login.value.date.end, 'MM/dd/yyyy');
         let register = {
+          "module":this.login.value.line,
             "machine_name": this.login.value.machine_name,
            "shift_num": this.login.value.shift_num,
           //  "date": this.new_date + '-' + this.new_date1

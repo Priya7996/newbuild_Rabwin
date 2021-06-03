@@ -196,9 +196,10 @@ fiesr_date:any;
   logintest(s) { 
 
     this.status = s;
-   
+   console.log(this.login.value)
     this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
          let register = {
+           "module":this.login.value.line,
         "machine": this.login.value.machine_name,
         "shift": this.login.value.shift_num,
         "date": this.login.value.date + '-' + this.login.value.date

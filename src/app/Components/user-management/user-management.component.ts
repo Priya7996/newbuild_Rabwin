@@ -178,7 +178,7 @@ export class User {
     if (this.value.new) {
       this.user.user_create(this.userForm.value).pipe(untilDestroyed(this)).subscribe(res => {
         this.dialogRef.close();
-        Swal.fire(res.phone_no[0])
+        Swal.fire("Created Suceesfully")
 
       })
     } else {

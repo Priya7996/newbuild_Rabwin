@@ -41,28 +41,28 @@ put_rreport(data: any):Observable<any> {
  }
 
  operat(register):Observable<any>{
-   return this.http.get('operator_filters?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date)
+   return this.http.get('operator_filters?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date)
  }
   getshift():Observable<any>{
     return this.http.get('shifts')
   }
   overall_report(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type)
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type)
   }
   first_page_loading():Observable<any>{
     return this.http.get('previous_shift')
   }
   overallll_report(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.from_date )
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.from_date )
   }
   overall_report_ing(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date )
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date )
   }
   overallls_report(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + 'Shiftwise')
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + 'Shiftwise')
   }
   overall_report_op(register):Observable<any>{
-    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type + '&&operator_id=' + register.operator)
+    return this.http.get('overall_report?machine_name=' + register.machine_name +'&&module='+ register.module +'&&shift_num=' +register.shift_num +'&&from_date='+ register.date + '&&select_type=' + register.type + '&&operator_id=' + register.operator)
   }
 
 }

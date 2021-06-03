@@ -51,9 +51,8 @@
        
 
           <div class="filter_field date_picker" color="primary">
-            <!-- <label>Select Date</label> -->
-            <!-- <ejs-daterangepicker id='daterangepicker' placeholder='Select a range' [startDate]='start' [endDate]='end'></ejs-daterangepicker> -->
-            <ejs-daterangepicker placeholder='Select a range' formControlName="date"
+           
+            <!-- <ejs-daterangepicker placeholder='Select a range' formControlName="date"
                 (click)="daterangepicker.open()">
                 <e-presets>
                     <e-preset label="This Week" [start]='weekStart' [end]='weekEnd'></e-preset>
@@ -61,7 +60,16 @@
                     <e-preset label="Last Month" [start]='lastStart' [end]='lastEnd'></e-preset>
                     <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
                 </e-presets>
-            </ejs-daterangepicker>
+            </ejs-daterangepicker> -->
+
+            
+            <mat-form-field class="date_select" (click)="picker.open()">
+              <input matInput placeholder="Choose a date" class="date_select" formControlName="date"
+                [satDatepicker]="picker" [max]="maxDate" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+              <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+              <sat-datepicker #picker [rangeMode]="true">
+              </sat-datepicker>
+            </mat-form-field>
         </div>
           <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
         </div>
