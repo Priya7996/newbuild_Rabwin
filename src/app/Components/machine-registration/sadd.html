@@ -1,4 +1,4 @@
-<div *ngIf="myLoader" class="spinner">
+<div *ngIf="myLoader1" class="spinner">
     <img src="assets/images/spinner.gif">
 </div>
 
@@ -52,16 +52,16 @@
             <mat-slide-toggle  [checked] = "get_load1.signal[0].a_axis == true" (change)="notify1(get_load1.signal,'a_axis',$event,get_load1.L1Name)"></mat-slide-toggle> 
 
             <p>b_axis</p>
-            <mat-slide-toggle  [checked] = "get_load1.signal[0].b_axis == true" (change)="notify(b_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].b_axis == true" ></mat-slide-toggle> 
 
             <p>x_axis</p>
-            <mat-slide-toggle  [checked] = "get_load1.signal[0].x_axis == true" (change)="notify(x_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].x_axis == true" ></mat-slide-toggle> 
 
             <p>y_axis</p>
-            <mat-slide-toggle  [checked] = "get_load1.signal[0].y_axis == true" (change)="notify(y_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].y_axis == true" ></mat-slide-toggle> 
 
             <p>z_axis</p>
-            <mat-slide-toggle  [checked] = "get_load1.signal[0].z_axis == true" (change)="notify(z_axis,$event,get_load1.L1Name)"></mat-slide-toggle> 
+            <mat-slide-toggle  [checked] = "get_load1.signal[0].z_axis == true" ></mat-slide-toggle> 
         </td>
     </tr>
 </table>

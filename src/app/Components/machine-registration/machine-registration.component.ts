@@ -253,7 +253,8 @@ export class Sadd {
   get_load1:any;
   servlo_id:any;
   get_macro:any;
-  myLoader1:any;
+  myLoader1 = false; 
+
   enableEdit:any;
   enableEdit1:any;
   mac_id:any;
