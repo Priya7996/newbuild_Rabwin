@@ -23,7 +23,7 @@ export class EfficiencyComponent implements OnInit {
   reportblock:any;
   mac_response:any;
   myLoader = false;
-  
+  fina:any;
   daterangepicker:any;
   export_excel: any[] = [];
   module_response:any;
@@ -220,6 +220,8 @@ console.log(this.login.value.from_date)
         }
         this.g_report = res[0];
         this.get_report = res[0].route_card_report;
+        this.fina = res;
+        console.log(this.fina)
         // this.dataSource = new MatTableDataSource(this.get_report);
      
 

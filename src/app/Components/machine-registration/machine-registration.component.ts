@@ -254,7 +254,7 @@ export class Sadd {
   servlo_id:any;
   get_macro:any;
   myLoader1 = false; 
-
+  signal:FormGroup;
   enableEdit:any;
   enableEdit1:any;
   mac_id:any;
@@ -264,7 +264,12 @@ export class Sadd {
   idle_reason = new FormControl('', [Validators.required]);
   rejection1 = new FormControl('', [Validators.required]);
   rework = new FormControl('', [Validators.required]);
-
+  a_axis = new FormControl('', [Validators.required]);
+  b_axis = new FormControl('', [Validators.required]);
+  x_axis = new FormControl('', [Validators.required]);
+  y_axis = new FormControl('', [Validators.required]);
+  z_axis = new FormControl('', [Validators.required]);
+ 
   rejection = new FormControl('', [Validators.required]);
   spi_id:any;
   constructor(public dialogRef: MatDialogRef<Sadd>, @Inject(MAT_DIALOG_DATA) public data2: Add, private fb: FormBuilder, private machine: MachineService, private toast: ToastrService) {
@@ -287,6 +292,12 @@ export class Sadd {
       console.log(this.get_load);
       this.get_load1 = res[1];
       this.get_macro = res[2];
+      this.a_axis = new FormControl(this.get_load1.signal[0].a_axis, [Validators.required]);
+      this.b_axis = new FormControl(this.get_load1.signal[0].b_axis, [Validators.required]);
+      this.x_axis = new FormControl(this.get_load1.signal[0].x_axis, [Validators.required]);
+      this.y_axis = new FormControl(this.get_load1.signal[0].y_axis, [Validators.required]);
+      this.z_axis = new FormControl(this.get_load1.signal[0].z_axis, [Validators.required]);
+
       console.log(this.get_macro);
       this.operator_id = new FormControl(this.get_macro.signal[0].operator_id, [Validators.required]);
       this.route_card = new FormControl(this.get_macro.signal[1].route_card, [Validators.required]);
@@ -300,7 +311,21 @@ export class Sadd {
           })
    
   }
+  Slide(){
+    this.servlo_id = localStorage.getItem('servlo_load');
+    console.log(this.servlo_id);
+   let GOD = {'a_axis':this.a_axis.value,'b_axis':this.b_axis.value,'x_axis':this.x_axis.value,'y_axis':this.y_axis.value,z_axis:this.z_axis.value}
 
+
+    let checked =[]
+
+    checked.push(GOD)
+    console.log(checked);
+
+
+
+
+  }
   keyPress(event: any) {
     const pattern = /[0-9]/;
     let inputChar = String.fromCharCode(event.charCode);
@@ -333,19 +358,8 @@ this.dialogRef.close();
  notify1(val,a_axis,status,mac_name)
  {
    console.log(val,a_axis)
-   this.servlo_id = localStorage.getItem('servlo_load');
-   console.log(status.checked,mac_name,this.servlo_id);
-
- 
-  //  var match = a_axis
-  // var vali = val.find( function(item) { return item[0].a_axis == match } );
-  // console.log(vali);
-
-  function getMapKeyValue(val, a_axis) {
-    if (val.hasOwnProperty(a_axis))
-       return { a_axis: a_axis, value: val[a_axis] };
-    throw new Error("Invalid map key.");
- }
+  //  this.servlo_id = localStorage.getItem('servlo_load');
+  //  console.log(status.checked,mac_name,this.servlo_id);
 
    let aaxis = {'L1Name': mac_name, 'id':this.servlo_id ,'signal':val}
    let aaxis1 = {"machine_setting":aaxis}
@@ -356,6 +370,7 @@ this.machine.update_axis(this.servlo_id,aaxis1).pipe(untilDestroyed(this)).subsc
 })
 
  }
+
   toggleShow() {
     this.enableEdit = true;
 }

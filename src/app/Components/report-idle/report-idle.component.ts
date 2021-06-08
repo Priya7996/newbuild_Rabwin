@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 
 declare var gtag;
+declare var Highcharts: any;
+
 @Component({ 
   selector: 'app-report-idle',
   templateUrl: './report-idle.component.html',
@@ -22,6 +24,9 @@ export class ReportIdleComponent implements OnInit {
   dates:any;
   date:any;
   data:any;
+  chartlist: boolean;
+  reportList: boolean;
+  chart_pie:any;
   no_data:any;
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
@@ -154,6 +159,77 @@ fiesr_date:any;
       })
       })
       })
+
+
+    
+
+
+
+  }
+
+  chart(){
+    this.chartlist = true;
+    this.reportList = false;
+    console.log(this.login.value);
+    this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
+    let volko_chart = {
+      "module":this.login.value.line,
+   "machine": this.login.value.machine_name,
+   "shift": this.login.value.shift_num,
+   "date": this.login.value.date + '-' + this.login.value.date
+ }
+   console.log(volko_chart);
+
+   this.service.Idle_chart(volko_chart).subscribe(res => {
+     this.chart_pie = res;
+     console.log(this.chart_pie);
+     Highcharts.chart('comparepie2', {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: 'Idle Reason chart' 
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      accessibility: {
+        point: {
+          valueSuffix: '%'
+        }
+      },
+      credits: {
+           enabled: false
+           },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            connectorColor: 'silver'
+          }
+        }
+      },
+      series: [{
+        name: 'Share',
+        data: this.chart_pie
+
+        // this.chart_pie
+          //  { name: 'Internet Explorer', y: 11.84 },
+          //  { name: 'Firefox', y: 10.85 },
+          // { name: 'Edge', y: 4.67 },
+          // { name: 'Safari', y: 4.18 },
+          // { name: 'Other', y: 7.05 }
+        
+      }]
+    });
+   })
+
   }
       export(){
    let register = {
@@ -194,7 +270,8 @@ fiesr_date:any;
   this.date = event.value;
 }
   logintest(s) { 
-
+    this.reportList = true;
+    this.chartlist = false;
     this.status = s;
    console.log(this.login.value)
     this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');

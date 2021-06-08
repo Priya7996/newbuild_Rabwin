@@ -26,6 +26,8 @@ line(data):Observable<any>{
  first_page_loading():Observable<any>{
    return this.http.get('previous_shift')
  }
-
+ Idle_chart(chart):Observable<any>{
+  return this.http.get('idle_report_chart?machine=' + chart.machine +'&&module='+ chart.module +'&&shift=' +chart.shift +'&&date='+ chart.date )
+}
   
 }

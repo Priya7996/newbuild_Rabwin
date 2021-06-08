@@ -2156,7 +2156,7 @@ table.table.report_table {
      -moz-align-items: center;
       -ms-align-items: center;
       -o-align-items: center;
-       align-items: center;    
+       align-items: baseline;    
         }
         .line_list{
              -webkit-flex-wrap: wrap;
@@ -3337,6 +3337,23 @@ body .componentForm .time_field_bg{
 .cdk-overlay-dark-backdrop {
     background: rgba(103, 105, 106, 0.9);
 }
+
+
+.mat-dialog-container {
+    display: block;
+    padding: 24px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    overflow: scroll;
+    outline: 0;
+    width: 100%;
+    height: auto !important;
+    min-height: inherit;
+    max-height: inherit;
+    color: whitesmoke;
+
+}
+
 .mat-dialog-container{
     border-radius: 15px;
 }
@@ -3548,4 +3565,8 @@ body .compare_page .chart_sec .ulitization_chart {
    background: #4a4a4a;
    border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+rect.highcharts-background {
+    fill: rgb(203, 216, 216) !important;
 }

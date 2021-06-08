@@ -15,6 +15,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class DashboardlineComponent implements OnInit {
   Highcharts = Highcharts;
   axis2:any;
+  sp_mac_value:any;
   login: FormGroup;
   lname:any;
   axis1:any;
@@ -68,6 +69,7 @@ export class DashboardlineComponent implements OnInit {
 
         console.log(this.axis1,this.axis2,this.axis3,this.axis4,this.axis5);
         this.servo_load = res.servo_load[0]
+        this.sp_mac_value = res.sp_max_val;
         this.servo_load1 = res.servo_load[1]
         this.servo_load2 = res.servo_load[2]
         this.servo_load3 = res.servo_load[3]

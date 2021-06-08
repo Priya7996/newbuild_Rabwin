@@ -25,7 +25,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Machine" matNativeControl required
                                 formControlName="machine_name">
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
 
                                 <mat-option *ngFor="let machine of mac_response" [value]="machine">
                                     {{machine}}
@@ -40,6 +40,7 @@
                             <mat-select placeholder="Select Shift" matNativeControl required
                                 formControlName="shift_num">
                                 <!-- <mat-option value="all">All</mat-option> -->
+                                <mat-option value="all">All</mat-option>
 
                                 <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
                                     {{shift.shift_no}}
@@ -97,8 +98,9 @@
                           
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let show_report of get_report; let i = index">
+                    <tbody *ngFor="let gating of fina;let i = index">
+                      <!-- {{gating.accept}} -->
+                        <tr *ngFor="let show_report of gating.route_card_report">
                             <td>{{i+1}}</td>
                             <td>{{g_report?.date | date:'dd-MM-yyyy'}}</td>
 

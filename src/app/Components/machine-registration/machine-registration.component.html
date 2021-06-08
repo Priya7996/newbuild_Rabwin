@@ -16,7 +16,7 @@
                         </a>
                     </li>
 
-                    <li class="ml-1">
+                    <li class="ml-1" *ngIf="machine.tag_result == false">
                         <a href="javascript:;" (click)="setting_view_new(machine)">
                             <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
                         </a>

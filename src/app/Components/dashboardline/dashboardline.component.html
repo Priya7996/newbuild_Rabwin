@@ -151,6 +151,7 @@
                     <!-- <figure class="highcharts-figure">
                         <div id="container-speed" class="chart-container"></div>
                     </figure> -->
+                    <span class="chart_sub_title">Max value : {{sp_mac_value}}</span><br>
                     <span class="chart_sub_title">Spindle Load</span>
                 </div>
                 
@@ -199,7 +200,7 @@
                         <span class="chart_sub_title">{{axis4}}</span>
                     </div>
 
-                    <div class="circle_chart" *ngIf="axis5">
+                    <div class="circle_chart"  *ngIf="axis5">
                         <circle-progress radius="90" percent={{servo_load4}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>
