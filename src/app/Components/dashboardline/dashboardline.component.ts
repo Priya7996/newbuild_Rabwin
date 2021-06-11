@@ -60,6 +60,7 @@ export class DashboardlineComponent implements OnInit {
 
     this.service.pie(this.fline,this.fname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.operator = res;
+        console.log(res.sp_max_val)
         this.eff = res.effe;
         this.axis1 = res.sv_axis[0]
         this.axis2 = res.sv_axis[1]
@@ -67,14 +68,12 @@ export class DashboardlineComponent implements OnInit {
         this.axis4 = res.sv_axis[3]
         this.axis5 = res.sv_axis[4]
 
-        console.log(this.axis1,this.axis2,this.axis3,this.axis4,this.axis5);
         this.servo_load = res.servo_load[0]
         this.sp_mac_value = res.sp_max_val;
         this.servo_load1 = res.servo_load[1]
         this.servo_load2 = res.servo_load[2]
         this.servo_load3 = res.servo_load[3]
         this.servo_load4 = res.servo_load[4]
-        console.log(this.servo_load,this.servo_load1,this.servo_load2,this.servo_load3,this.servo_load4)
         this.spindle_load = res.spendle_load[0]
         this.myLoader = false;
         var container = Highcharts.chart('container2', {
@@ -619,6 +618,7 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
 
         this.operator = res;
+        this.sp_mac_value = res.sp_max_val;
 
         this.axis1 = res.sv_axis[0]
         this.axis2 = res.sv_axis[1]

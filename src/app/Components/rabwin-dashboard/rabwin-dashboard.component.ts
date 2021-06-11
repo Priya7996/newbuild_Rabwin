@@ -37,13 +37,11 @@ export class RabwinDashboardComponent implements OnInit {
        this.a_dashboard = res;
       //  this.s_num = res.shift_no[0];
       //  this.ltime = res.show_time;
-       console.log(res.shift_no,res.show_time)
        this.myLoader = false;
        for(let i in this.a_dashboard){
         this.ltime = this.a_dashboard[i].show_time;
         this.s_num = this.a_dashboard[i].shift_no;
 
-        console.log(this.ltime)
        
      }
        for(let i in this.a_dashboard){

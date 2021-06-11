@@ -91,10 +91,8 @@ export class ReportComponent implements OnInit {
 
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.date = event.value;
-        console.log(this.date )
         this.sdate = new DatePipe('en-US').transform(this.date.begin, 'MM/dd/yyyy');
         this.edate= new DatePipe('en-US').transform(this.date.end, 'MM/dd/yyyy');
-        console.log( this.sdate,this.edate)
         localStorage.setItem('SDATE', this.sdate);
         localStorage.setItem('EDATE', this.edate);
 
@@ -103,25 +101,21 @@ export class ReportComponent implements OnInit {
       }
   choosedDate(val){
     
-     console.log(val)
   }
   getsplit(val){
     
     this.reportblock = val;
     
-    console.log(this.reportblock)
     
     localStorage.setItem('MODULELOG', this.reportblock);
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
-      console.log(this.mac_response[0]);
       this.login.patchValue({
         machine_name: this.mac_response[0],
       })
       localStorage.setItem('MACHINE', this.mac_response[0]);
       let hadokmac = localStorage.getItem('MACHINE');
-      console.log(hadokmac);
    
       })
     }
@@ -130,23 +124,15 @@ export class ReportComponent implements OnInit {
 
     getdate(date){
       
-      console.log(date)
     }
     gettype(type){
-      console.log(type);
        this.types = type;
        let hadokmodule = localStorage.getItem('MODULELOG');
-       console.log(hadokmodule)
       let hadok = localStorage.getItem('SHHIFT');
-      console.log(hadok)
       let hadokmac = localStorage.getItem('MACHINE');
-      console.log(hadokmac);
       this.sdate = localStorage.getItem('SDATE');
-      console.log(this.sdate);
       this.edate = localStorage.getItem('EDATE');
-      console.log(this.edate)
       let data = type;
-      console.log(data)
       if(data === 'Operatorwise')
       {
 
@@ -157,9 +143,7 @@ export class ReportComponent implements OnInit {
           "shift_num": hadok,
           "date":  this.sdate + '-' +  this.edate
         }
-        console.log(register)
         this.service.operat(register).subscribe(res => {
-          console.log(res);
           this.op_response = res;
           this.login.patchValue({
             operator: this.op_response[0],
@@ -183,26 +167,21 @@ export class ReportComponent implements OnInit {
     
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
-      console.log(this.module_response);
       this.login.patchValue({
         line: this.module_response[0],
 
       })
       localStorage.setItem('MODULELOG', this.module_response[0]);
       let hadokmodule = localStorage.getItem('MODULELOG');
-      console.log(hadokmodule);
       this.service.line(this.module_response[0]).subscribe(res => {
         this.mac_response=res;
         // let data =  this.mac_response;
         // console.log(data)
-        console.log(this.mac_response);
         this.login.patchValue({
           machine_name: this.mac_response[0],
         })
         localStorage.setItem('MACHINE', this.mac_response[0]);
         let hadokmac = localStorage.getItem('MACHINE');
-        console.log(hadokmac);
-      console.log(this.mac_response[0]);
 
 
     // this.service.getmachines().subscribe(res => {
@@ -218,12 +197,10 @@ export class ReportComponent implements OnInit {
         localStorage.setItem('SHHIFT', this.shift_response[0].shift_no);
 
         let hadok = localStorage.getItem('SHHIFT');
-        console.log(hadok)
         this.service.first_page_loading().subscribe(res => {
           this.first_loading = res; 
           this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
           this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
-          console.log(this.dat1,this.dat2)
           this.login.patchValue({
          
 
@@ -237,9 +214,7 @@ export class ReportComponent implements OnInit {
           localStorage.setItem('SDATE', this.first_loading['from_date']);
           localStorage.setItem('EDATE', this.first_loading['to_date']);
           this.sdate = localStorage.getItem('SDATE');
-          console.log(this.sdate);
           this.edate = localStorage.getItem('EDATE');
-          console.log(this.edate)
          
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
           // 'dd/MM/yyyy');
@@ -267,19 +242,16 @@ export class ReportComponent implements OnInit {
     localStorage.setItem('SHHIFT',shift);
 
     let hadok = localStorage.getItem('SHHIFT');
-    console.log(hadok)
   
 
    
 }
   getm(val){
     
-    console.log(val);
     localStorage.setItem('MACHINE', val);
 
     
     let hadokmac = localStorage.getItem('MACHINE');
-        console.log(hadokmac);
 
   }
   export(){
@@ -337,7 +309,6 @@ export class ReportComponent implements OnInit {
  }
   logintest(s) {
     this.status = s;
-    console.log(this.login.value)
     this.myLoader = true;
     // console.log(this.login.value)
     // this.begin = new DatePipe('en-US').transform(this.login.value.date.begin, 'MM/dd/yyyy');
@@ -359,7 +330,6 @@ export class ReportComponent implements OnInit {
           "date": this.sdate + '-' + this.edate,
           "type":this.login.value.type
         }
-        console.log(register);
         this.service.overall_report(register).subscribe(res => {
           this.myLoader = false;
           this.get_report = res;
@@ -380,7 +350,6 @@ export class ReportComponent implements OnInit {
           "type":this.login.value.type,
           "operator":this.login.value.operator
         }
-        console.log(register);
         this.service.overall_report_op(register).subscribe(res => {
           this.myLoader = false;
           this.get_report = res;
@@ -400,7 +369,6 @@ export class ReportComponent implements OnInit {
         "shift_num": this.login.value.shift_num,
         "date": this.sdate + '-' + this.edate,
       }
-      console.log(register);
       this.service.overallls_report(register).subscribe(res => {
         this.myLoader = false;
         this.get_report = res;

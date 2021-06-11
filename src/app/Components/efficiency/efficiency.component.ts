@@ -73,7 +73,6 @@ export class EfficiencyComponent implements OnInit {
 
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
-      console.log(this.module_response);
       this.login.patchValue({
         line: this.module_response[0],
 
@@ -81,7 +80,6 @@ export class EfficiencyComponent implements OnInit {
       this.service.line(this.module_response[0]).subscribe(res => {
         this.mac_response=res;
     
-        console.log(this.mac_response);
         this.login.patchValue({
           machine_name: this.mac_response[0],
         })
@@ -98,7 +96,6 @@ export class EfficiencyComponent implements OnInit {
         this.service.first_page_loading().subscribe(res => {
           this.first_loading = res;
           this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
-          console.log(this.fiesr_date)
           this.login.patchValue({
             from_date : this.fiesr_date
           })
@@ -131,7 +128,6 @@ export class EfficiencyComponent implements OnInit {
     
     this.reportblock = val;
     
-    console.log(this.reportblock)
     
 
     this.service.line(this.reportblock).subscribe(res => {
@@ -195,33 +191,26 @@ export class EfficiencyComponent implements OnInit {
   logintest(s) {
     this.status = s;
     this.myLoader = true;
-    console.log(this.login.value)
     this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
-console.log(this.login.value.from_date)
-    // this.maxDate = this.datepipe.transform(this.maxDate);
     
     if (this.status == 'true') {
       this.new_date = new DatePipe('en-US').transform(this.login.value.from_date, 'MM/dd/yyyy');
       this.new_date1 = new DatePipe('en-US').transform(this.login.value.from_date, 'MM/dd/yyyy');
-      console.log(this.new_date , this.new_date1)
       let register = {
         "module":this.login.value.line,
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         "from_date": this.new_date+ '-' + this.new_date1
       }
-      console.log(register)
       this.service.overallll_report(register).subscribe(res => {
         this.myLoader = false;
         this.result = res.length;
-        console.log(this.result)
         if(this.result == '0'){
           Swal.fire("No Efficiency Report Found")
         }
         this.g_report = res[0];
         this.get_report = res[0].route_card_report;
         this.fina = res;
-        console.log(this.fina)
         // this.dataSource = new MatTableDataSource(this.get_report);
      
 

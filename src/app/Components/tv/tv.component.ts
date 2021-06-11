@@ -34,13 +34,11 @@ export class TvComponent implements OnInit {
     this.service.andon().pipe(untilDestroyed(this)).subscribe(res=>{
     
       this.a_dashboard = res;
-      console.log(res.shift_no,res.show_time)
       this.myLoader = false;
       for(let i in this.a_dashboard){
        this.ltime = this.a_dashboard[i].show_time;
        this.s_num = this.a_dashboard[i].shift_no;
 
-       console.log(this.ltime) 
       
     }
       for(let i in this.a_dashboard){
@@ -61,7 +59,6 @@ export class TvComponent implements OnInit {
           this.ltime = this.a_dashboard[i].show_time;
           this.s_num = this.a_dashboard[i].shift_no;
    
-          console.log(this.ltime) 
          
        }
         for(let i in this.a_dashboard){

@@ -75,7 +75,6 @@ export class TrendchartComponent implements OnInit {
    
   }
   testfunc(s){
-    console.log(s);
     this.status=s;
 
     this.myLoader = true;

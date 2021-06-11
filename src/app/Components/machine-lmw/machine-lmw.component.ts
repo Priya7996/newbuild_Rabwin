@@ -25,7 +25,6 @@ export class MachineLmwComponent implements OnInit {
 
    this.myLoader=true;
    this.service.machine_lmw().subscribe(res =>{
-      console.log(res);
       this.myLoader=false;
 
       this.machine_list = res;
@@ -36,7 +35,6 @@ export class MachineLmwComponent implements OnInit {
   }
   oee(name,id) {
 
-    console.log(name,id);
     localStorage.setItem('machine_id',id);
     localStorage.setItem('machine_name',name);
     this.router.navigate(['/oee_dashboard'], { queryParams: { machine_name: name } });

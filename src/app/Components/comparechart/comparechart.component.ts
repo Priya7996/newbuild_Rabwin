@@ -95,7 +95,6 @@ export class ComparechartComponent implements OnInit {
     this.ndate = localStorage.getItem('CSDATE');
     this.ndate2 = localStorage.getItem('EDATE');
     let data = type;
-    console.log(data)
    
     if(data === 'Operatorwise')
     {
@@ -107,7 +106,6 @@ export class ComparechartComponent implements OnInit {
         "date":  this.ndate + '-' +  this.ndate2
       }
       this.service.operat(register).subscribe(res => {
-        console.log(res);
         this.op_response = res;
         this.login.patchValue({
           operator: this.op_response[0],
@@ -122,11 +120,9 @@ export class ComparechartComponent implements OnInit {
     let Rigshi = localStorage.getItem('RightSHHIFT');
 
     let RigMAC = localStorage.getItem('RightMACHINE');
-    console.log(RigMAC);   
     this.Rdate = localStorage.getItem('RSSDATE');
     this.Rdate2 = localStorage.getItem('RSEDATE');
     let data = types;
-    console.log(data)
    
     if(data === 'Operatorwise')
     {
@@ -138,7 +134,6 @@ export class ComparechartComponent implements OnInit {
         "date":  this.Rdate + '-' +  this.Rdate2
       }
       this.service.operating(register).subscribe(res => {
-        console.log(res);
         this.ope_response = res;
         this.test.patchValue({
           operator: this.ope_response[0],
@@ -162,7 +157,6 @@ export class ComparechartComponent implements OnInit {
       })
       this.service.getmodule().subscribe(res => {
         this.module_response = res;
-        console.log(this.module_response);
         this.login.patchValue({
           line: this.module_response[0],
   
@@ -170,13 +164,11 @@ export class ComparechartComponent implements OnInit {
         this.service.line(this.module_response[0]).subscribe(res => {
           this.mac_response=res;
        
-          console.log(this.mac_response);
           this.login.patchValue({
             machine_name: this.mac_response[0],
           })
           localStorage.setItem('COMMACHINE', this.mac_response[0]);
           let ComMac = localStorage.getItem('COMMACHINE');
-          console.log(ComMac);
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
         this.login.patchValue({
@@ -194,7 +186,6 @@ export class ComparechartComponent implements OnInit {
 
             this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
             this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
-            console.log(this.dat1,this.dat2)
             this.login.patchValue({
            
   
@@ -221,7 +212,6 @@ export class ComparechartComponent implements OnInit {
     
     this.service.moduleget().subscribe(res => {
       this.response_module = res;
-      console.log(this.response_module[0]);
       this.test.patchValue({
         line: this.response_module[0],
 
@@ -229,7 +219,6 @@ export class ComparechartComponent implements OnInit {
       this.service.line_rigt(this.response_module[0]).subscribe(res => {
         this.response_mac=res;
      
-        console.log(this.response_mac);
         this.test.patchValue({
           machine_name: this.response_mac[0],
         })
@@ -247,7 +236,6 @@ export class ComparechartComponent implements OnInit {
           this.first_pge_loading = res;
           this.datpre1 = new DatePipe('en-US').transform(this.first_pge_loading.from_date, 'yyyy-MM-dd');
           this.datpre2 = new DatePipe('en-US').transform(this.first_pge_loading.to_date, 'yyyy-MM-dd');
-          console.log(this.datpre1,this.datpre2)
           this.test.patchValue({
            
   
@@ -284,12 +272,10 @@ export class ComparechartComponent implements OnInit {
     
     this.reportblock = val;
     
-    console.log(this.reportblock)
     
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
-      console.log(this.mac_response[0]);
       this.login.patchValue({
         machine_name: this.mac_response[0],
       })
@@ -297,7 +283,6 @@ export class ComparechartComponent implements OnInit {
 
       localStorage.setItem('COMMACHINE', this.mac_response[0]);
       let ComMac = localStorage.getItem('COMMACHINE');
-      console.log(ComMac);
    
       })
     }
@@ -306,12 +291,10 @@ export class ComparechartComponent implements OnInit {
     
       this.reportttblock = value;
       
-      console.log(this.reportttblock)
       
   
       this.service.line_rigt(this.reportttblock).subscribe(res => {
         this.response_mac=res;
-        console.log(this.response_mac[0]);
         this.test.patchValue({
           machine_name: this.response_mac[0],
         })
@@ -319,17 +302,14 @@ export class ComparechartComponent implements OnInit {
   
         localStorage.setItem('RightMACHINE', this.response_mac[0]);
         let RigMAC = localStorage.getItem('RightMACHINE');
-        console.log(RigMAC);
      
         })
       }
 
     addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
       this.date = event.value;
-      console.log(this.date )
       this.ndate = new DatePipe('en-US').transform(this.date.begin, 'MM/dd/yyyy');
       this.ndate2= new DatePipe('en-US').transform(this.date.end, 'MM/dd/yyyy');
-      console.log( this.ndate,this.ndate2)
       localStorage.setItem('CSDATE', this.ndate);
       localStorage.setItem('EDATE', this.ndate2);
 
@@ -338,10 +318,8 @@ export class ComparechartComponent implements OnInit {
     }
     addEvent1(type: string, event: MatDatepickerInputEvent<Date>) {
       this.datsss = event.value;
-      console.log(this.datsss )
       this.Rdate = new DatePipe('en-US').transform(this.datsss.begin, 'MM/dd/yyyy');
       this.Rdate2= new DatePipe('en-US').transform(this.datsss.end, 'MM/dd/yyyy');
-      console.log( this.ndate,this.ndate2)
       localStorage.setItem('RSSDATE', this.Rdate);
       localStorage.setItem('RSEDATE', this.Rdate2);
 
@@ -351,20 +329,16 @@ export class ComparechartComponent implements OnInit {
  
     getm(val){
     
-      console.log(val);
       localStorage.setItem('COMMACHINE', val);
       let ComMac = localStorage.getItem('COMMACHINE');
-      console.log(ComMac);
      
   
     }
     getmm(vali){
     
-      console.log(vali);
      
       localStorage.setItem('RightMACHINE', vali);
       let RigMAC = localStorage.getItem('RightMACHINE');
-      console.log(RigMAC);
      
   
     }
@@ -372,7 +346,6 @@ export class ComparechartComponent implements OnInit {
       localStorage.setItem('COMSHHIFT',shift);
 
       let ComShi = localStorage.getItem('COMSHHIFT');
-      console.log(ComShi)
   
      
     
@@ -384,12 +357,10 @@ export class ComparechartComponent implements OnInit {
     localStorage.setItem('RightSHHIFT',shiftss);
 
     let Rigshi = localStorage.getItem('RightSHHIFT');
-    console.log(Rigshi)
 
   }
   logintest(s){
     this.status=s;
-    console.log(this.login.value);
     this.myLoader = true;
     this.maxDate = this.datepipe.transform(this.maxDate);
     
@@ -404,7 +375,6 @@ export class ComparechartComponent implements OnInit {
           "date": this.ndate + '-' + this.ndate2,
           "type":this.login.value.type
         }
-        console.log(register);
         this.service.overall_compare(register).subscribe(res => {
           this.myLoader = false;
           this.first = res.table;
@@ -514,7 +484,6 @@ export class ComparechartComponent implements OnInit {
           "type":this.login.value.type,
           "operator":this.login.value.operator
         }
-        console.log(register);
         this.service.overall_compare1(register).subscribe(res => {
           this.myLoader = false;
           this.first = res.table;
@@ -728,7 +697,6 @@ else{
     this.status=e;
     this.myLoader1 = true;
     let value = this.test.value;
-    console.log(this.test.value);
     if(this.status == 'true'){
       if(this.test.value.type === 'Shiftwise'){
         // alert("shift")

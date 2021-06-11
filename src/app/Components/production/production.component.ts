@@ -40,11 +40,9 @@ export class ProductionComponent implements OnInit {
   total_count = 0;
   constructor(private toast:ToastrService,private datepipe: DatePipe, private service: ProductionService,  private fb: FormBuilder) {
 
-    console.log(localStorage.getItem('machine_name'))
     let name = localStorage.getItem('machine_name');
 
     this.marvel = localStorage.getItem('machine_name');
-    console.log(this.marvel)
 
     this.myLoader = true;
     this.pageNo =1;
@@ -52,9 +50,7 @@ export class ProductionComponent implements OnInit {
    this.last = res.parts;
    this.myLoader = false;
 
-  console.log( this.last)
    this.edit = res.parts.L1Name;
-   console.log(this.edit);
    this.total_count = res.count;
    });
 
@@ -62,16 +58,13 @@ export class ProductionComponent implements OnInit {
    
   }
   pageEvent(e){
-   console.log(e);
     this.pageNo = e.pageIndex+1;
     this.myLoader = true;
     this.service.namakkal(this.marvel,this.pageNo).subscribe( res => {
       this.last = res.parts;
    this.myLoader = false;
 
-  console.log( this.last)
-   this.edit = res.parts.L1Name;
-   console.log(this.edit);
+  this.edit = res.parts.L1Name;
    this.total_count = res.count;
 
     })
@@ -104,9 +97,7 @@ export class ProductionComponent implements OnInit {
       this.last = res.parts;
       this.myLoader = false;
    
-     console.log( this.last)
       this.edit = res.parts.L1Name;
-      console.log(this.edit);
       this.total_count = res.count;
       });
     this.service.getmachines().subscribe(res => {
@@ -137,9 +128,7 @@ export class ProductionComponent implements OnInit {
 
   synclox(){
     this.marvel = localStorage.getItem('machine_name');
-    console.log(this.marvel);
     this.service.syncing(this.marvel).subscribe(res =>{ 
-      console.log(res);
       Swal.fire(res['message'])
       location.reload()
        this.last = res;
@@ -152,11 +141,8 @@ export class ProductionComponent implements OnInit {
     this.pageNo =1;
 
     let name = localStorage.getItem('machine_name');
-    console.log(name)
-    console.log(localStorage.getItem('machine'))
     // this.maxDate = this.datepipe.transform(this.maxDate);
     // console.log(this.minDate)
-    console.log(this.login.value)
     if (this.status == 'true') {
       // this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
       this.new_date = new DatePipe('en-US').transform(this.login.value.date, 'dd/MM/yyyy');
@@ -181,8 +167,6 @@ export class ProductionComponent implements OnInit {
         this.get_report = res.parts; 
         // this.myLoader = true;
         this.edit = res.parts.is_verified;  
-        console.log(this.edit);  
-        console.log(this.last)
         this.total_count = res.count;
 
       })
@@ -193,32 +177,24 @@ export class ProductionComponent implements OnInit {
   }
 
   pageEvents(e){
-    console.log(this.register);
     this.myLoader = false;
-   console.log(e);
     this.pageNo = e.pageIndex+1;
     this.service.overall_report(this.register,this.pageNo).subscribe( res => {
       this.get_report = res.parts; 
       // this.myLoader = true;
       this.edit = res.parts.is_verified;  
-      console.log(this.edit);  
-      console.log(this.last)
       this.total_count = res.count;
     })
   }
   edit_count(id,verified,acept,lock){
-    console.log(id,verified,acept);
     this.vvalue = acept;
-    console.log(this.vvalue)
    if (acept === 1) {
    
 
     let data = {'production_result_id':id,'accept_count': 2}
-    console.log(data);
     
     
     this.service.accept1(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Reject Count updated successfully")
       }
@@ -233,8 +209,6 @@ export class ProductionComponent implements OnInit {
         this.get_report = res.parts; 
         // this.myLoader = true;
         this.edit = res.parts.is_verified;  
-        console.log(this.edit);  
-        console.log(this.last)
         this.total_count = res.count;
 
       })
@@ -243,10 +217,8 @@ export class ProductionComponent implements OnInit {
   } else {
    
     let data = {'production_result_id':id,'accept_count': 1}
-    console.log(data);
     
     this.service.reject1(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Accept Count updated successfully")
       }
@@ -262,8 +234,6 @@ export class ProductionComponent implements OnInit {
         this.get_report = res.parts; 
         // this.myLoader = true;
         this.edit = res.parts.is_verified;  
-        console.log(this.edit);  
-        console.log(this.last)
         this.total_count = res.count;
 
       })
@@ -274,18 +244,14 @@ export class ProductionComponent implements OnInit {
    
   }
    this.acept = this.reject;
-   console.log(this.reject)
    this.acept = 2;
-   console.log(this.acept)
   }
   accept_count(id){
     this.accept = 1;
     
-    console.log(id,this.accept );
     let data = {'production_result_id':id,'accept_count': this.accept}
 
     this.service.accept(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Accept Count updated successfully")
       }
@@ -300,8 +266,6 @@ export class ProductionComponent implements OnInit {
       this.get_report = res.parts; 
       // this.myLoader = true;
       this.edit = res.parts.is_verified;  
-      console.log(this.edit);  
-      console.log(this.last)
       this.total_count = res.count;
 
     })
@@ -309,11 +273,9 @@ export class ProductionComponent implements OnInit {
   reject_count(id){
    
     this.accept = 2;
-    console.log(id,this.accept );
     let data = {'production_result_id':id,'accept_count': this.accept }
 
     this.service.reject(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Reject Count updated successfully")
       }
@@ -328,8 +290,6 @@ export class ProductionComponent implements OnInit {
       this.get_report = res.parts; 
       // this.myLoader = true;
       this.edit = res.parts.is_verified;  
-      console.log(this.edit);  
-      console.log(this.last)
       this.total_count = res.count;
 
     })
@@ -338,11 +298,9 @@ export class ProductionComponent implements OnInit {
   acceptt_count(id){
     this.accept = 1;
     
-    console.log(id,this.accept );
     let data = {'production_result_id':id,'accept_count': this.accept}
 
     this.service.accept(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Accept Count updated successfully")
       }
@@ -356,9 +314,7 @@ export class ProductionComponent implements OnInit {
       this.last = res.parts;
       this.myLoader = false;
    
-     console.log( this.last)
       this.edit = res.parts.L1Name;
-      console.log(this.edit);
       this.total_count = res.count;
       });
     
@@ -366,11 +322,9 @@ export class ProductionComponent implements OnInit {
   rejectt_count(id){
    
     this.accept = 2;
-    console.log(id,this.accept );
     let data = {'production_result_id':id,'accept_count': this.accept }
 
     this.service.reject(data).subscribe(res =>{
-      console.log(res);
       if(res === true){
         this.toast.success("Reject Count updated successfully")
       }
@@ -383,9 +337,7 @@ export class ProductionComponent implements OnInit {
       this.last = res.parts;
       this.myLoader = false;
    
-     console.log( this.last)
       this.edit = res.parts.L1Name;
-      console.log(this.edit);
       this.total_count = res.count;
       });
   }

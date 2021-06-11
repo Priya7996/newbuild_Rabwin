@@ -25,26 +25,22 @@ liveoee;
   shift_response:any;
   newmachine:any;
   constructor(private route:ActivatedRoute,private service:OeeDashboardService,private fb:FormBuilder) {
-   console.log(localStorage.getItem('machine_name'))
     let name = localStorage.getItem('machine_name');
 this.newmachine=localStorage.getItem('machine')
 this.myLoader= true;
 this.machine = this.route.snapshot.queryParamMap.get('machine_name');
 
-console.log(this.machine)
 if(this.machine){
  this.myLoader = false;
 localStorage.setItem('machine_name',this.machine);
      this.myLoader= true;
      this.service.live(this.machine).subscribe(res =>{
-     console.log(res);
     this.myLoader= false;
      this.liveoee = res;
      }) 
 }
 else{
  this.service.live(this.newmachine).subscribe(res =>{
-     console.log(res);
     this.myLoader= false;
      this.liveoee = res;
      }) }
@@ -57,10 +53,8 @@ else{
 
 
     this.machine_class= localStorage.getItem('machine');
-     console.log(this.machine_class)
      this.reason = localStorage.getItem('reason');
      let machine = localStorage.getItem('machine_name')
-     console.log(machine)
 
     this.login = this.fb.group({
       
@@ -99,13 +93,11 @@ logintest(val){
 
   this.myLoader = true;
   let name = localStorage.getItem('machine_name');
-  console.log(val)
   let register = {
         "machine":name,
         "shift_num": this.login.value.shift_num,
         "date": this.login.value.date
       }
-     console.log(register);
      this.myLoader= true;
   this.service.overall_report(register).subscribe(res => {
   this.myLoader = false;

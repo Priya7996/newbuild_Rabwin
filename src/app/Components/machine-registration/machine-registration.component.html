@@ -11,14 +11,20 @@
                 <ul class="user_action">
 
                     <li class="ml-1">
-                        <a href="javascript:;" (click)="setting_viewnew(machine)">
-                            <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
+                        <a href="javascript:;" (click)="setting_viewnew(machine)" *ngIf="machine.tag_result1 == true">
+                            <mat-icon class="v-align-middle display" matTooltip="Edit Spindle and Servo Load Axis">autorenew                            </mat-icon>
                         </a>
                     </li>
 
-                    <li class="ml-1" *ngIf="machine.tag_result == false">
-                        <a href="javascript:;" (click)="setting_view_new(machine)">
-                            <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
+                    <li class="ml-1" >
+                        <a href="javascript:;" (click)="setting_view_new(machine)" *ngIf="machine.tag_result == false">
+                            <mat-icon class="v-align-middle display" matTooltip="Macro Create">settings                            </mat-icon>
+                        </a>
+                    </li>
+
+                    <li class="ml-1" >
+                        <a href="javascript:;" (click)="setting_view(machine)" *ngIf="machine.tag_result == true">
+                            <mat-icon class="v-align-middle display" matTooltip="Edit Macro">offline_bolt                            </mat-icon>
                         </a>
                     </li>
                     <!-- <li>
@@ -27,11 +33,11 @@
                             </mat-icon>
                         </a>
                     </li> -->
-                    <!-- <li class="ml-1">
-                        <a href="javascript:;" (click)="setting_view(machine)">
-                            <mat-icon class="v-align-middle display" matTooltip="Setting">settings                            </mat-icon>
+                    <li class="ml-1">
+                        <a href="javascript:;" (click)="setting_spiesd_view(machine)" *ngIf="machine.tag_result1 == false">
+                            <mat-icon class="v-align-middle display" matTooltip="Activate Servo Load and Spindle Speed">donut_large                            </mat-icon>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
                 <div class="machine_no">
                     <div class="machine_no_view">

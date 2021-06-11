@@ -1,35 +1,64 @@
-<h2 mat-dialog-title>Setting</h2>
-<div class="close_modal">
-    <mat-icon mat-dialog-close (click)="cancel()" class="v-align-middle display" matTooltip="Close">close
-    </mat-icon>
+<div *ngIf="myLoader1" class="spinner">
+    <img src="assets/images/spinner.gif">
 </div>
-<mat-dialog-content class="mat-typography">
-    <form [formGroup]="settingform" class="form_sec"  autocomplete="off">
-        <div class="row_sec">
-            <mat-form-field appearance="outline">
-                <mat-label>Machine Name</mat-label>
-                <input matInput formControlName="machine" type="text" readonly>
-            </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Mean Time</mat-label>
-                <input matInput formControlName="mean_time" type="number" min="1" class="mean_time" required>
-                <mat-error *ngIf="settingform.controls['mean_time'].errors?.required">Mean Time is Required
-                </mat-error>
-                <mat-error *ngIf="settingform.controls['mean_time'].errors?.max">Please Enter value less than 60
-                </mat-error>
-                <mat-error *ngIf="settingform.controls['mean_time'].errors?.min">Please Enter value greater than
-                    5
-                </mat-error>
-            </mat-form-field>
-        </div>
-    </form>
 
-</mat-dialog-content>
+<h2 mat-dialog-title>Macro Value</h2>
+<table class="tableflow">
+    <tr>
+        <th>Machine Name</th>
+        <th>Value</th>
+        <th>Signal</th>
+        <th>Actions</th>
+    </tr>
 
-<mat-dialog-actions align="end">
-    <mat-slide-toggle *ngIf="notificationSettings?.status" [checked]=notificationSettings.data.active
-        (change)="status($event)"></mat-slide-toggle>
-    <button mat-raised-button color="primary" type="submit" class="filter_btn btn_orange ml-16" (click)="submit()">
-        Save</button>
-</mat-dialog-actions>
+    <tr>
+        <td>{{get_macro.L1Name}}</td>
+        <td>
+            <p>{{get_macro.value[0]}}</p>
+            <p>{{get_macro.value[1]}}</p>
+            <p>{{get_macro.value[2]}}</p>
+            <p>{{get_macro.value[3]}}</p>
+            <p>{{get_macro.value[4]}}</p>
+
+        </td>
+
+        <td>
+            <p>operator_id : {{get_macro.signal[0].operator_id}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operator_id"  (keypress)="keyPress($event)">
+                </span>
+            </p>
+            <p>route_card : {{get_macro.signal[1].route_card}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="route_card"   (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>operation_number : {{get_macro.signal[2].operation_number}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="operation_number"   (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>idle_reason : {{get_macro.signal[3].idle_reason}}
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="idle_reason"   (keypress)="keyPress($event)">
+                </span>
+
+            </p>
+            <p>rejection : {{get_macro.signal[4].rejection}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rejection1"   (keypress)="keyPress($event)">
+                </span>
+            </p>
+            <p>rework : {{get_macro.signal[5].rework}}
+
+                <span><input  class="textlo" *ngIf="enableEdit1" [formControl]="rework" (keypress)="keyPress($event)">
+                </span>
+            </p>
+
+
+        </td>
+        <td (click)="toggleShow1()">Edit</td>
+        <td (click)="savemacro(get_macro.L1Name)">Save</td>
+
+    </tr>
+</table>

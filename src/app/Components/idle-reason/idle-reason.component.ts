@@ -66,7 +66,6 @@ startDate:any;
 
       addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
         this.date = event.value;
-        console.log(this.date )
       
 
 
@@ -76,7 +75,6 @@ startDate:any;
 
           
 gtag('config', 'G-JRVTCZ20DE');
-console.log(gtag);
 
          this.login = this.fb.group({
             line:[""],
@@ -89,16 +87,13 @@ console.log(gtag);
 
           this.service.getmodule().subscribe(res => {
             this.module_response = res;
-            console.log(this.module_response);
             this.login.patchValue({
               line: this.module_response[0],
       
             })
             this.service.line(this.module_response[0]).subscribe(res => {
               this.mac_response=res;
-              // let data =  this.mac_response;
-              // console.log(data)
-              console.log(this.mac_response);
+            
               this.login.patchValue({
                 machine_name: this.mac_response[0],
               })
@@ -117,7 +112,6 @@ console.log(gtag);
             this.first_loading = res;
         this.dat1 = new DatePipe('en-US').transform(this.first_loading.from_date, 'yyyy-MM-dd');
         this.dat2 = new DatePipe('en-US').transform(this.first_loading.to_date, 'yyyy-MM-dd');
-        console.log(this.dat1,this.dat2)
         this.login.patchValue({
          
            date: {begin: this.datepipe.transform(this.dat1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.dat2, 'yyyy-MM-dd')}
@@ -139,18 +133,14 @@ console.log(gtag);
     
         this.reportblock = val;
         
-        console.log(this.reportblock)
         
     
         this.service.line(this.reportblock).subscribe(res => {
           this.mac_response=res;
-          console.log(this.mac_response[0]);
           this.login.patchValue({
             machine_name: this.mac_response[0],
           })
-          // localStorage.setItem('MACHINE', this.mac_response[0]);
-          // let hadokmac = localStorage.getItem('MACHINE');
-          // console.log(hadokmac);
+        
        
           })
         }
@@ -167,7 +157,6 @@ console.log(gtag);
   this.service.overall_report(register).subscribe(res => {
     // this.myLoader = false;
     this.get_report = res;
-    console.log(this.get_report);
     if(this.get_report.length==0){
       Swal.fire('Exporting!, No Data Found')
     }else{
@@ -201,8 +190,6 @@ console.log(gtag);
         this.myLoader = true;
 
      // this.maxDate = this.datepipe.transform(this.maxDate);
-       console.log(this.minDate)
-    console.log(this.login.value)
        if (this.status == 'true') {
         // this.new_date = new DatePipe('en-US').transform(this.login.value.date[0], 'MM/dd/yyyy');
         // this.new_date1 = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
@@ -216,7 +203,6 @@ console.log(gtag);
           "date":this.new_date + '-' + this.new_date1,
           "line":this.login.value.line
         }
-        console.log(register);
 
                    this.register= register;
 
@@ -233,12 +219,9 @@ console.log(gtag);
 
 
   pageEvent(e){
-    console.log(this.register);
-   console.log(e);
     this.pageNo = e.pageIndex+1;
     this.myLoader = true;
     this.service.overall_report(this.register).subscribe( res => {
-      console.log(res);
       this.myLoader = false;
       this.get_report = res.parts;
     })

@@ -90,12 +90,10 @@ fiesr_date:any;
     
     this.reportblock = val;
     
-    console.log(this.reportblock)
     
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
-      console.log(this.mac_response[0]);
       this.login.patchValue({
         machine_name: this.mac_response[0],
       })
@@ -118,7 +116,6 @@ fiesr_date:any;
 
       this.service.getmodule().subscribe(res => {
         this.module_response = res;
-        console.log(this.module_response);
         this.login.patchValue({
           line: this.module_response[0],
   
@@ -126,7 +123,6 @@ fiesr_date:any;
         this.service.line(this.module_response[0]).subscribe(res => {
           this.mac_response=res;
       
-          console.log(this.mac_response);
           this.login.patchValue({
             machine_name: this.mac_response[0],
           })
@@ -142,7 +138,6 @@ fiesr_date:any;
           })
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
-            console.log(this.first_loading['from_date'] )
             this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
 
             this.login.patchValue({
@@ -150,7 +145,6 @@ fiesr_date:any;
               date : this.fiesr_date
 
             })
-            console.log(this.login.value.date,this.first_loading['from_date'])
   
            
             this.logintest('true');
@@ -170,7 +164,6 @@ fiesr_date:any;
   chart(){
     this.chartlist = true;
     this.reportList = false;
-    console.log(this.login.value);
     this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
     let volko_chart = {
       "module":this.login.value.line,
@@ -178,11 +171,9 @@ fiesr_date:any;
    "shift": this.login.value.shift_num,
    "date": this.login.value.date + '-' + this.login.value.date
  }
-   console.log(volko_chart);
 
    this.service.Idle_chart(volko_chart).subscribe(res => {
      this.chart_pie = res;
-     console.log(this.chart_pie);
      Highcharts.chart('comparepie2', {
       chart: {
         plotBackgroundColor: null,
@@ -273,7 +264,6 @@ fiesr_date:any;
     this.reportList = true;
     this.chartlist = false;
     this.status = s;
-   console.log(this.login.value)
     this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
          let register = {
            "module":this.login.value.line,
@@ -281,7 +271,6 @@ fiesr_date:any;
         "shift": this.login.value.shift_num,
         "date": this.login.value.date + '-' + this.login.value.date
       }
-      console.log(register)
  this.myLoader = true;
 
       this.service.overall_report(register).subscribe(res => {

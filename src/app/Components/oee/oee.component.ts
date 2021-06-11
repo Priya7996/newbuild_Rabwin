@@ -26,10 +26,8 @@ export class OeeComponent implements OnInit {
   ngOnInit() {
 
     this.service.oee().subscribe(res => {
-      console.log(res);
       this.oee = res;
       this.idle = res.idle_run_rate
-      console.log(this.idle);
 
       this.dataSource = new MatTableDataSource(this.oee);
 
@@ -138,29 +136,23 @@ export class Add {
       .toString()
       .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     // }
-    // console.log(result)
     return result;
   };
 
   toSeconds = hours => {
     let a = hours.split(':');
     let seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-    console.log(seconds)
     return seconds;
   }
 
   ngOnInit() {
-    console.log(this.value)
     this.service.operator().subscribe(res => {
-      console.log(res);
       this.operator_list = res;
     })
     this.service.component().subscribe(res => {
-      console.log(res);
       this.component_list = res;
     })
     this.service.machines().subscribe(res => {
-      console.log(res);
       this.machine_response = res;
       // for (let i = 0; i < this.machine_response.length; i++) {
       //   if (this.value.edit_shift.machine_name == this.machine_response[i].name) {
@@ -172,7 +164,6 @@ export class Add {
     })
 
     this.service.shift().subscribe(res => {
-      console.log(res);
       this.shift_response = res;
       // for (let i = 0; i < this.shift_response.length; i++) {
       //   if (this.value.edit_shift.shift_num == this.shift_response[i].shift_no) {
@@ -212,9 +203,7 @@ export class Add {
   }
 
   getcomponent(id) {
-    console.log(id);
     this.service.componentById(id).subscribe(res => {
-      console.log(res);
       this.idle_run_rate.controls[0].patchValue({ program_number: res.program_number, run_rate: res.time_run_rate })
     })
   }
@@ -245,7 +234,6 @@ export class Add {
   }
 
   getShiftTime(event) {
-    console.log(event.value.actual_hour)
     this.actual_hour = event.value.actual_hour;
     // this.toSeconds(event.value.total_hour)
     this.login.patchValue({
@@ -259,7 +247,6 @@ export class Add {
   }
   timeCalculation(i) {
     let time = this.toSeconds(this.idle_run_rate.controls[i]['controls'].run_rate.value) * this.idle_run_rate.controls[i]['controls'].count.value;
-    console.log(time)
     this.idle_run_rate.controls[i].patchValue({ cycle_time: this.toHoursMinutesSeconds(time) })
     this.count = 0;
     this.time = 0;
@@ -267,7 +254,6 @@ export class Add {
       // if (i === index) {
       if (field.value.count) {
         this.count += parseInt(field.value.count);
-        console.log(this.count)
         this.login.patchValue({
           target: this.count
         })
@@ -277,11 +263,7 @@ export class Add {
         })
       }
       if (field.value.cycle_time) {
-        console.log(this.toSeconds(field.value.cycle_time))
         this.time += this.toSeconds(field.value.cycle_time);
-        console.log(this.time)
-        console.log(this.actual_hour)
-        console.log(this.toSeconds(this.actual_hour))
         this.balance = this.toSeconds(this.actual_hour) - this.time;
         this.login.patchValue({
           total_runtime: this.toHoursMinutesSeconds(this.time),
@@ -318,10 +300,8 @@ export class Add {
         this.dialogRef.close();
       })
     } else {
-      console.log(this.value.edit_shift, this.value.shift_id)
       this.service.shift_put(
         this.login.value.edit_shift, this.value.shift_id).subscribe(res => {
-          console.log(res);
           this.dialogRef.close();
         })
     }

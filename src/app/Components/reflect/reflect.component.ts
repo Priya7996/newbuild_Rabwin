@@ -16,7 +16,6 @@ export class ReflectComponent implements OnInit {
     this.myLoader= true;
 
     this.service.get_reason().subscribe(res =>{
-      console.log(res);
       
       this.myLoader= false;
 
@@ -25,21 +24,15 @@ export class ReflectComponent implements OnInit {
   }
 routes(reason,id){
 
-  console.log(localStorage.getItem('machine_name'))
 
-  console.log(localStorage.getItem('machine_id'));
   let name = localStorage.getItem('machine_name');
   let machineID = localStorage.getItem('machine_id')
-  console.log(reason,id)
   let data = {'reason':reason, 'reason_id':id, 'machine_name':name, 'machine_id':machineID}
-  console.log(data);
 
   this.myLoader= true;
   this.service.redirect(data).subscribe(res =>{
-     console.log(res);
      this.myLoader= false;
 
-     console.log(res.machine)
      localStorage.setItem('machine',res.machine)
           //localStorage.setItem('machine',res.machine)
 

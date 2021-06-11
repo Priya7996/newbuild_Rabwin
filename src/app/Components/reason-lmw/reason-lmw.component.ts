@@ -22,7 +22,6 @@ export class ReasonLmwComponent implements OnInit {
   }
 
   delete_view(id){
-    console.log(id);
      Swal.fire({
        title: 'Are you sure want to delete?',
        icon: 'warning',
@@ -32,7 +31,6 @@ export class ReasonLmwComponent implements OnInit {
      }).then((result) => {
        if (result.value) {
          this.service.delete_reason(id).subscribe(res => {
-           console.log(res)
            this.ngOnInit();
  
            this.toast.success('Deleted Successfully');
@@ -41,7 +39,6 @@ export class ReasonLmwComponent implements OnInit {
  
          }, );
          this.service.idle_reason().subscribe(res =>{
-           console.log(res);
            this.reason_table = res;
          })
        }
@@ -73,7 +70,6 @@ export class ReasonLmwComponent implements OnInit {
     this.serverDialogRef.close();
   }
   edit_view(data1){
-    console.log(data1)
     this. dialogRef = this.dialog.open(Edit, {
       width: '',
       data:data1
@@ -89,7 +85,6 @@ export class ReasonLmwComponent implements OnInit {
     this.myLoader = true;
 
     this.service.idle_reason().subscribe(res =>{
-      console.log(res);
       this.myLoader = false;
 
       this.reason_table = res;
@@ -120,9 +115,7 @@ export class User {
     this.is_active = true;
     // this.reasonform["is_active"] = this.is_active;
     let data = {'reason': this.reasonform.value.reason, 'is_active': this.is_active,'code':this.reasonform.value.code}
-    console.log(data)
     this.service.post_api(data).subscribe(res =>{
-      console.log(res);
       this.dialogRef.close();
       this.toast.success('Created Successfully')
     })
@@ -157,7 +150,6 @@ export class User {
     reasonforum:FormGroup
     constructor(private toast:ToastrService,private service:ReasonLmwService,public dialogRef: MatDialogRef<Edit>, @Inject(MAT_DIALOG_DATA) public data1: any,private fb:FormBuilder ) {
       this.edit_data1 = data1;
-      console.log(this.edit_data1);
 
     }
 
@@ -170,11 +162,9 @@ export class User {
     }
     
     submit(){
-      console.log(this.reasonforum.value,this.edit_data1.id.$oid);
       this.is_active = true;
     // this.reasonform["is_active"] = this.is_active;
       let data = { 'is_active': this.is_active,'reason': this.reasonforum.value.reason,'code':this.reasonforum.value.code}
-      console.log(data)
       this.service.put_api(this.edit_data1.id.$oid,data).subscribe(res =>{
         this.dialogRef.close();
         this.toast.success('Updated Successfully')

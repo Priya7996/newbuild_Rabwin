@@ -36,25 +36,19 @@ export class DashboardComponent implements OnInit {
   refresh(){
     // location.reload();
     this.live = true;
-    console.log(this.live);
     this.myLoader = true;
     this.service.getmachines1(this.live).pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.fourth = res.fourth;
-      console.log(this.fourth);
       for(let i in this.fourth){
 
         // console.log(i)
        this.chart_loop = this.fourth[i].reason;
-       console.log(this.chart_loop)
 
 
       }
       this.myLoader = false;
       this.list_machine = res;
       this.time = res.time;
-      console.log(this.time)
-      console.log(this.list_machine.third[0][1])
     
 
 
@@ -348,7 +342,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     this.service.machine_count().pipe(untilDestroyed(this)).subscribe(res=>{
-      console.log(res);
       this.count_machine = res;
      
     })
@@ -365,22 +358,17 @@ export class DashboardComponent implements OnInit {
      
     this.myLoader = true;
     this.service.getmachines().pipe(untilDestroyed(this)).subscribe(res => {
-      console.log(res);
       this.fourth = res.fourth;
-      console.log(this.fourth);
       for(let i in this.fourth){
 
         // console.log(i)
        this.chart_loop = this.fourth[i].reason;
-       console.log(this.chart_loop)
 
 
       }
       this.myLoader = false;
       this.list_machine = res;
       this.time = res.time;
-      console.log(this.time)
-      console.log(this.list_machine.third[0][1])
     
 
 

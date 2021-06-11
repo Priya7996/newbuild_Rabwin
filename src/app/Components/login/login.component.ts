@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
 
     this.service.true().pipe(untilDestroyed(this)).subscribe(res=>{
       this.Signup = res;
-      console.log(this.Signup)
     })
 
 

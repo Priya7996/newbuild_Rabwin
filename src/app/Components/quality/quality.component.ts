@@ -81,12 +81,10 @@ export class QualityComponent implements OnInit {
     
     this.reportblock = val;
     
-    console.log(this.reportblock)
     
 
     this.service.line(this.reportblock).subscribe(res => {
       this.mac_response=res;
-      console.log(this.mac_response[0]);
       this.login.patchValue({
         machine_name: this.mac_response[0],
       })
@@ -113,7 +111,6 @@ export class QualityComponent implements OnInit {
 
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
-      console.log(this.module_response);
       this.login.patchValue({
         line: this.module_response[0],
 
@@ -122,7 +119,6 @@ export class QualityComponent implements OnInit {
         this.mac_response=res;
         // let data =  this.mac_response;
         // console.log(data)
-        console.log(this.mac_response);
         this.login.patchValue({
           machine_name: this.mac_response[0],
         })
@@ -133,10 +129,7 @@ export class QualityComponent implements OnInit {
           })
           this.service.first_page_loading().subscribe(res => {
             this.first_loading = res;
-            console.log(res.from_date)
-            console.log(this.first_loading['from_date'] )
             this.fiesr_date = new DatePipe('en-US').transform(res.from_date, 'yyyy-MM-dd');
-            console.log(this.fiesr_date);
             this.login.patchValue({
               // date : [this.first_loading]
               
@@ -156,7 +149,6 @@ export class QualityComponent implements OnInit {
   logintest(s) {
     this.status = s;
 
-    console.log(this.login.value);
     if (this.status == 'true') {
       this.login.value.date = new DatePipe('en-US').transform(this.login.value.date, 'MM/dd/yyyy');
 
@@ -166,7 +158,6 @@ export class QualityComponent implements OnInit {
         "shift_num": this.login.value.shift_num,
         "date": this.login.value.date + '-' + this.login.value.date
       }
-      console.log(register);
       localStorage.setItem('QAMAC', register.machine_name);
       localStorage.setItem('QASHI', register.shift_num);
       localStorage.setItem('QADAT', register.date);
@@ -174,7 +165,6 @@ export class QualityComponent implements OnInit {
       this.service.overall_report_ing(register).subscribe(res => {
         this.get_report = res;
         this.get_report1 = res[0].route_card_report;
-        console.log(this.get_report1);
 
     
 
@@ -214,7 +204,6 @@ export class Add {
   datapost: any;
   constructor(private service: ReportService,public dialogRef: MatDialogRef<Add>, @Inject(MAT_DIALOG_DATA) public data: Add, private fb: FormBuilder,) {
     this.value = data;
-    console.log(this.value.edit_user.id.$oid);
     localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
 
   
@@ -224,27 +213,23 @@ export class Add {
     this.qshif = localStorage.getItem('QASHI');
 
     this.qdat = localStorage.getItem('QADAT');
-   console.log(this.qmachi,this.qshif,this.qdat)
  
    }
     ngOnInit() {
 
       this.service.get_rreport(this.e_id).subscribe(res =>{
-        console.log(res);
         this.g_report = res;
   
         this.get_report = res.route_card_report;
         let data_rc = res.route_card_report;
-        console.log(data_rc)
         localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
   
-        console.log(this.get_report);
         for(let i=0; i<this.get_report.length; i++){
           this.VAP = this.get_report[i].mode;
           let data = this.get_report[i].mode;
           localStorage.setItem('role',this.get_report[i].mode);
   
-          console.log(data);}
+        }
       })
 
 
@@ -253,18 +238,14 @@ export class Add {
     
     }
   toggleShow(i) {
-    console.log(i)
     this.enableEdit = true;
     this.enableEditIndex = i;
-    console.log(i);
   
     if(i){
-      console.log(i)
       this.isShown = ! this.isShown;
     }
  }
  save(rep,j){
-   console.log(rep)
    this.e_id = localStorage.getItem('edit_id');
 
   //  this.g_report.push({'id':this.e_id});
@@ -273,23 +254,14 @@ export class Add {
     var obj = {
       id:this.e_id
     }
-    console.log(obj)
-   console.log(this.g_report)
+  
    this.e_id = localStorage.getItem('edit_id');
-   console.log(this.e_id);
-   console.log(j);
-   console.log(this.rejection.value,this.rework.value);
-  console.log('rejection: ' + this.rejection.value);
-  console.log('rework: ' + this.rework.value);
   let index = this.g_report.route_card_report.indexOf(rep);
-   console.log(index);
   rep.rejection = parseInt(this.rejection.value);
     rep.rework = parseInt(this.rework.value);
     this.g_report.id = this.e_id
      this.g_report.route_card_report[index] = rep;
-     console.log(this.g_report);
      this.service.put_rreport(this.g_report).subscribe(res =>{
-      console.log(res);
       Swal.fire("Updated Successfully")
 
      })
@@ -305,7 +277,6 @@ export class Add {
        this.get_reporting = res;
        this.datapost = this.get_reporting;
        this.get_report1 = res[0].route_card_report;
-      console.log(res);
 
   
 
@@ -316,7 +287,6 @@ export class Add {
  }
 
   target(val){
-    console.log(val)
   }
   // Swal.fire(res.phone_no[0])
 
