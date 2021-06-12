@@ -140,7 +140,12 @@
                     </figure> -->
                     <!-- <div id="container2" class="chart-container"></div> -->
 
+                    <!-- *ngIf="spi_count > 0" -->
                     <div class="circle_chart">
+                        <h2 (click)="openDialog(spid_check_line,spid_check_machine)"  *ngIf="spi_count > '0'">
+                        <mat-icon class="vtr">opacity</mat-icon>
+                    </h2>
+                        <!-- <p (click)="openDialog(spid_check_line,spid_check_machine)" >cli</p> -->
                         <circle-progress radius="90" percent={{spindle_load}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
                             animation="true" animationDuration="300">
                         </circle-progress>

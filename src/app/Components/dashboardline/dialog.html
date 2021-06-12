@@ -1,0 +1,22 @@
+   <div *ngIf="myLoader1" class="spinner">
+        <img src="assets/images/spinner.gif">
+    </div>
+
+
+<h4>Spindle Count : {{spindlecount}}</h4>
+
+
+<table>
+    <tr>
+        <th>S.NO</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Reached Value</th>
+    </tr>
+    <tr *ngFor="let VAPMS of sppivaluedle; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{VAPMS[0] | date:'dd-MM-yyyy ; HH:mm:ss'}}</td>
+        <td>{{VAPMS[1] | date:'dd-MM-yyyy ; HH:mm:ss'}}</td>
+        <td>{{VAPMS[2]}}</td>
+    </tr>
+</table>

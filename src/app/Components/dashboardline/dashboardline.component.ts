@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject} from '@angular/core';
 import { NavbarService } from '../../Nav/navbar.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 declare var Highcharts: any;
 import { DashboardService } from '../../Service/app/dashboard.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { ActivatedRoute } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -15,6 +16,9 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class DashboardlineComponent implements OnInit {
   Highcharts = Highcharts;
   axis2:any;
+  spi_count:any;
+  spid_check_line:any;
+  spid_check_machine:any;
   sp_mac_value:any;
   login: FormGroup;
   lname:any;
@@ -39,7 +43,9 @@ export class DashboardlineComponent implements OnInit {
   axis4:any;
   axis5:any;
   spindle_load:any;
-  constructor(private service: DashboardService,private route:ActivatedRoute,private nav: NavbarService, private fb: FormBuilder,) {
+
+ 
+  constructor(public dialog: MatDialog,private service: DashboardService,private route:ActivatedRoute,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show();
     this.lname = this.route.snapshot.queryParamMap.get('line_name');
     
@@ -60,7 +66,11 @@ export class DashboardlineComponent implements OnInit {
 
     this.service.pie(this.fline,this.fname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.operator = res;
-        console.log(res.sp_max_val)
+        this.spi_count = res.sp_log_over_res.count;
+        console.log(this.spi_count);
+        this.spid_check_line = res.line;
+        this.spid_check_machine = res.machine;
+        console.log(this.spid_check_line,this.spid_check_machine)
         this.eff = res.effe;
         this.axis1 = res.sv_axis[0]
         this.axis2 = res.sv_axis[1]
@@ -341,7 +351,17 @@ export class DashboardlineComponent implements OnInit {
 
     })
   }
+  openDialog(line,mac): void {
+    const dialogRef = this.dialog.open(Dialog, {
+      width: '30%',
+      height: '50%',
+      data: { line: line, mac: mac }
 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
   ngOnInit() {
 //     var gaugeOptions = {
 //       chart: {
@@ -618,8 +638,12 @@ export class DashboardlineComponent implements OnInit {
         this.myLoader = false;
 
         this.operator = res;
+        this.spi_count = res.sp_log_over_res.count;
+        console.log(this.spi_count);
         this.sp_mac_value = res.sp_max_val;
-
+        this.spid_check_line = res.line;
+        this.spid_check_machine = res.machine;
+        console.log(this.spid_check_line,this.spid_check_machine)
         this.axis1 = res.sv_axis[0]
         this.axis2 = res.sv_axis[1]
         this.axis3 = res.sv_axis[2]
@@ -761,6 +785,53 @@ export class DashboardlineComponent implements OnInit {
   ngOnDestroy() { }
 
 }
+
+
+
+@Component({
+  selector: 'dialog-page',
+  templateUrl: 'dialog.html',
+  styleUrls: ['./dashboardline.component.scss']
+
+})
+export class Dialog {
+  value:any;
+  myLoader1 = false;
+
+  sppivaluedle:any;
+  spindlecount:any;
+  sppivalue:any;
+  constructor(public dialogRef: MatDialogRef<Dialog>, @Inject(MAT_DIALOG_DATA) public data: any, private service: DashboardService, private fb: FormBuilder) {
+    this.value = data;
+    console.log(this.value);
+    this.myLoader1 = true;
+   this.service.pie(this.value.line,this.value.mac).pipe(untilDestroyed(this)).subscribe(res=>{
+     console.log(res);
+     this.myLoader1 = false;
+
+     this.spindlecount = res.sp_log_over_res.count;
+     this.sppivalue = res.sp_log_over_res;
+     this.sppivaluedle = res.sp_log_over_res.value;
+
+     console.log(this.sppivalue);
+
+    })
+
+
+  }
+
+  
+  ngOnInit() {
+   
+  }
+ 
+ 
+  ngOnDestroy() { }
+
+
+}
+
+
 
 
 

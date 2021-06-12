@@ -55,6 +55,39 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+
+  .page_title_sec .sub_title .display {
+    margin-right: 11px;
+    margin-bottom: -28px;
+    color: #A8A8A8;
+}
+.vtr{
+  color: #A8A8A8;
+
+}
+
+
+.spinner {
+  background: #262932;
+  height: 100vh;
+  opacity: 0.9;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  z-index: 999;
+}
+
+.spinner img {
+  width: 90px;
+  margin-top: -130px;
+}
+
   progress.run::-moz-progress-bar { background:#04C984; }
   progress.run::-webkit-progress-value { background:#04C984; }
   progress.run { color:#04C984; }

@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 import { DashboardlineRoutingModule } from './dashboardline-routing.module';
-import { DashboardlineComponent } from './dashboardline.component';
+import { DashboardlineComponent,Dialog } from './dashboardline.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 const routes: Routes = [{ path: '', component: DashboardlineComponent }];
 
 @NgModule({
-  declarations: [DashboardlineComponent],
+  declarations: [DashboardlineComponent,Dialog],
   imports: [
     CommonModule,RouterModule.forChild(routes),
     DashboardlineRoutingModule, SharedModule,HighchartsChartModule,
@@ -27,7 +27,9 @@ const routes: Routes = [{ path: '', component: DashboardlineComponent }];
         ""
       ],
     })
-  ]
+  ],
+  entryComponents:[Dialog]
+
 })
 export class DashboardlineModule { }
 
