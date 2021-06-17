@@ -53,21 +53,21 @@
                 <td>{{show_report?.rout_start | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                 <td>{{show_report?.rout_end | date:'yyyy-MM-dd ; HH:mm:ss'}}</td>
                 <td >{{show_report?.tar}}</td>
-                <td >{{show_report?.actual}}</td>
+                <td >{{show_report?.actual}}</td> 
                 <td>{{show_report?.accept}}</td>
                    
                 <td>{{show_report?.rejection }}
                    
-                    <input  class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rejection"></td>
+                    <input  placeholder="Enter Rejection" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rejection" required></td>
               
                 <td>{{show_report?.rework }}
                    
-                    <input  class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rework">
+                    <input  placeholder="Enter Rework" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rework" required>
 
                 </td>
                 
             <td *ngIf="show_report?.mode === 'Production'">
-                <p  *ngIf="show_report?.accept > 0" (click)="toggleShow(i)">Edit</p>
+                <p  *ngIf="show_report?.accept > 0" (click)="toggleShow(i,show_report)">Edit</p>
                 <p *ngIf="show_report?.accept == 0" (click)="edit1()">Edit</p>
 
                 <p  *ngIf="show_report?.accept > 0" (click)="save(show_report,i+1)">Save</p>

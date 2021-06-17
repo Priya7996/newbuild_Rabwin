@@ -353,11 +353,11 @@ export class DashboardlineComponent implements OnInit {
   }
   openDialog(line,mac): void {
     const dialogRef = this.dialog.open(Dialog, {
-      width: '30%',
-      height: '50%',
+      width: '7500px',
+      height: '580px',
       data: { line: line, mac: mac }
 
-    });
+    }); 
 
     dialogRef.afterClosed().subscribe(result => {
     });

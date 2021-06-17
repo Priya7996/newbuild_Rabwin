@@ -64,10 +64,30 @@
 }
 .vtr{
   color: #A8A8A8;
+  cursor: pointer;
 
 }
+.volkom{
+  width: 25px;
+  cursor: pointer;
+  color: #A8A8A8;
 
+}
+.awseome{
+  color: #A8A8A8;
+}
+// .tadbel_data_view{
+//   font-size: larger;
+//   font-weight: bolder;
+// }
 
+td {
+  font-size: xx-large;
+}
+th{
+  font-size: xx-large;
+
+}
 .spinner {
   background: #262932;
   height: 100vh;

@@ -73,7 +73,8 @@ export class MachineRegistrationComponent implements OnInit {
 
   setting_view(data2) {
     const dialogRef = this.dialog.open(Add, {
-      width: '750px',
+      width: '850px',
+      // height:'550px',
       data: data2
 
       // data: { serverlist: this.webApi.getServerList() }
