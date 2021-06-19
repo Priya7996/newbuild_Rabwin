@@ -4,6 +4,7 @@
     -ms-display: flex;
     -o-display: flex;
      display: flex;
+    
     .col{
         width: calc(100% /1);
         padding: 0;
@@ -13,15 +14,22 @@
         a {
             i {
                 cursor: pointer;
-                font-size: 20px;
+                font-size: 20px; 
                 margin-left: 5px;
             }
         }
     }
+    .volkomn{
+        width: 99px;
+        margin-left: 145px;
+
+    }
     .shift_card{
         padding: 15px;
+        // background: url(../../../assets/images/bg_login.jpg) no-repeat;
+
         margin-bottom: 15px;
-        // background: #f7941e;
+         background: #f7941e;
         text-align: center;
         color: #fff;
         position: relative;
@@ -33,9 +41,7 @@
             cursor: pointer;
         }
         .play_circle{
-            i{
-                font-size: 100px;
-            }
+           width: 10px;
         }
         h2{
             font-size: 1.5rem;
@@ -214,4 +220,12 @@
         margin-bottom: 10px;
     }
 }
+}
+
+i.material-icons {
+    color: whitesmoke;
+}
+
+.imgae{
+    width: 25px;
 }

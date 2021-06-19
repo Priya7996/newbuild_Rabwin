@@ -222,7 +222,6 @@ export class Add {
   
         this.get_report = res.route_card_report;
         this.rejection = new FormControl(this.get_report.rejection, [Validators.required]);
-       console.log(this.rejection);
         let data_rc = res.route_card_report;
         localStorage.setItem('edit_id', this.value.edit_user.id.$oid);
   
@@ -240,19 +239,16 @@ export class Add {
     
     }
   toggleShow(i,val) {
-    console.log(i,val);
     this.enableEdit = true; 
     this.enableEditIndex = i;
     this.rejection = new FormControl(val.rejection, [Validators.required]);
     this.rework = new FormControl(val.rework, [Validators.required]);
 
-    console.log(this.rejection);
     if(i){
       this.isShown = ! this.isShown;
     }
  }
  save(rep,j){
-   console.log(rep);
    this.e_id = localStorage.getItem('edit_id');
 
   //  this.g_report.push({'id':this.e_id});

@@ -56,7 +56,7 @@ export class SidebarComponent implements OnInit {
       this.count_machine = res.shift_data;
       if(this.count_machine === false){
           Swal.fire({
-            title: 'REgister Shift',
+            title: 'Register Shift',
             // type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Ok',

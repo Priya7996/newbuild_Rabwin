@@ -233,13 +233,25 @@
 
                   <ng-container matColumnDef="operator">
                     <th mat-header-cell *matHeaderCellDef>Operator Name</th>
-                    <td mat-cell *matCellDef="let element"> {{element.operator || '---'}} </td>
+                    <td mat-cell *matCellDef="let element"> 
+                      <span *ngIf="element.operator.length === 0">No Operator Name</span>
+                      <span *ngIf="element.operator.length != 0">{{element.operator}}</span>
+                    
+                    </td>
                   </ng-container>
 
 
                   <ng-container matColumnDef="operator_id">
                     <th mat-header-cell *matHeaderCellDef>Operator ID</th>
-                    <td mat-cell *matCellDef="let element"> {{element.operator_id || '---'}} </td>
+                    <td mat-cell *matCellDef="let element"> 
+                      
+                      <span *ngIf="element.operator_id.length === 0">No Operator Id</span>
+                      <span *ngIf="element.operator_id.length != 0">{{element.operator_id}}</span>
+
+                      <!-- {{element.operator_id || '---'}}  -->
+                    </td>
+
+
                   </ng-container>
 
                   <ng-container matColumnDef="root_card">

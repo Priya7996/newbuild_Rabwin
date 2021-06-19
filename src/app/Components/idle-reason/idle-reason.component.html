@@ -169,7 +169,12 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="operator">
             <th mat-header-cell *matHeaderCellDef>Operator Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.operator || '---'}} </td>
+            <td mat-cell *matCellDef="let element"> 
+              <span *ngIf="element.operator.length === 0">No Operator Name</span>
+              <span *ngIf="element.operator.length != 0">{{element.operator}}</span>
+              <!-- {{element.operator || '---'}} -->
+            
+            </td>
           </ng-container>
 
             <ng-container matColumnDef="availability">

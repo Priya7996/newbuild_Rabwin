@@ -141,6 +141,7 @@ export class EfficiencyComponent implements OnInit {
     }
   export(){
    let register = {
+        "module":this.login.value.line,
         "machine_name": this.login.value.machine_name,
         "shift_num": this.login.value.shift_num,
         "from_date": this.new_date + '-' + this.new_date1
@@ -162,8 +163,8 @@ export class EfficiencyComponent implements OnInit {
          "Line":this.get_report[i].line || '---',
          "Machine Name":this.g_report.machine_name || '---',
 
-         "Operator Name":this.g_report.operator[0] || '---',
-         "Operator Id":this.g_report.operator_id[0] || '---',
+         "Operator Name":this.g_report.operator[0] || 'No Operator Name',
+         "Operator Id":this.g_report.operator_id[0] || 'No Operator Id',
          "Mode":this.get_report[i].mode || '---',
 
          "Route Card Number": this.get_report[i].card_no || '---',
