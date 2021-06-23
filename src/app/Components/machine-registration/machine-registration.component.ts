@@ -47,20 +47,21 @@ export class MachineRegistrationComponent implements OnInit {
   }
   setting_viewnew(data2) {
     const dialogRef = this.dialog.open(Sadd, {
-      width: '750px',
+      width: '950px',
+
       data: data2
 
       // data: { serverlist: this.webApi.getServerList() }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
+      this.ngOnInit(); 
     });
   }
 
 
   setting_view_new(data2) {
     const dialogRef = this.dialog.open(Sedit, {
-      width: '400px',
+      width: '700px',
       data: data2
 
       // data: { serverlist: this.webApi.getServerList() }
@@ -73,8 +74,8 @@ export class MachineRegistrationComponent implements OnInit {
 
   setting_view(data2) {
     const dialogRef = this.dialog.open(Add, {
-      width: '850px',
-      // height:'550px',
+      width: '950px',
+      //  height:'650px',
       data: data2
 
       // data: { serverlist: this.webApi.getServerList() }
@@ -321,8 +322,11 @@ export class Sadd {
 
     this.machine.m_get_sett(this.edit_data2.L0Name).pipe(untilDestroyed(this)).subscribe(res => {
   localStorage.setItem('spindle_id', res[0]._id.$oid);
-  localStorage.setItem('servlo_load', res[1]._id.$oid);
+  localStorage.setItem('servlo_load', res[1]._id.$oid); 
   this.get_load = res[0];
+
+  this.rejection = new FormControl(this.get_load.max, [Validators.required]);
+
   this.get_load1 = res[1];
   this.a_axis = new FormControl(this.get_load1.signal[0].a_axis, [Validators.required]);
   this.b_axis = new FormControl(this.get_load1.signal[0].b_axis, [Validators.required]);

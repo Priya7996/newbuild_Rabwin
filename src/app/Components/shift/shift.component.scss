@@ -1,15 +1,15 @@
 .shift_sec {
-      -webkit-display: flex;
-    -moz-display: flex;
-    -ms-display: flex;
-    -o-display: flex;
-     display: flex;
+    //   -webkit-display: flex;
+    // -moz-display: flex;
+    // -ms-display: flex;
+    // -o-display: flex;
+    //  display: flex;
     
     .col{
         width: calc(100% /1);
         padding: 0;
         &:last-child{
-            margin-left: 10px;
+            margin-left: 0px;
         }
         a {
             i {
@@ -20,19 +20,21 @@
         }
     }
     .volkomn{
-        width: 99px;
-        margin-left: 145px;
-
+        width: 100px;
+        margin: auto;
     }
     .shift_card{
         padding: 15px;
         // background: url(../../../assets/images/bg_login.jpg) no-repeat;
-
+        width: 800px;
         margin-bottom: 15px;
          background: #f7941e;
         text-align: center;
         color: #fff;
+        margin: auto;
         position: relative;
+        height: 333px;
+        // height:350px;
     .shift{
         .edit{
             position: absolute;
@@ -40,9 +42,7 @@
             top: 10px;
             cursor: pointer;
         }
-        .play_circle{
-           width: 10px;
-        }
+       
         h2{
             font-size: 1.5rem;
             margin-bottom: 0;
@@ -83,6 +83,12 @@
 
     }
 }
+}
+
+.shift_sec .col {
+    width: calc(135% /2);
+    margin: auto !important;
+    padding: 0;
 }
 
     // responsive
@@ -228,4 +234,12 @@ i.material-icons {
 
 .imgae{
     width: 25px;
+}
+
+h2.sub_title {
+    margin-left: 194px;
+    font-size: 20px;
+    color: #fff;
+    font-family: "Mulish",sans-serif;
+    font-weight: 700;
 }
