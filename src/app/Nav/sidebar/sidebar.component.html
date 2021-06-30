@@ -6,7 +6,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button> -->
       <div class="company_name">
-        <button class="d-lg-none d-sm-block" type="button" aria-label="Toggle sidenav" mat-icon-button
+        <button  type="button" aria-label="Toggle sidenav" mat-icon-button
           (click)="drawer.toggle()">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
@@ -40,9 +40,14 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
+ 
   <!-- <mat-sidenav #drawer class="sidenav scroller" mode="side" opened *ngIf="nav.visible"> -->
   <mat-sidenav #drawer class="sidenav scroller" mode="side" opened  *ngIf="nav.visible">
 
+     <button  type="button" aria-label="Toggle sidenav" mat-icon-button
+  (click)="drawer.toggle()">
+  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+</button>
     <div>
       <mat-nav-list *ngIf="rolename === 'QA'" class="sidenav_view">
         <a href="javascript:;" class="sidenav_logo">

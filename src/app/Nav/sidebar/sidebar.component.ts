@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 })
 export class SidebarComponent implements OnInit {
   count_machine:any;
+    opened: boolean;
+
   show1: boolean;
   @Input()navStatus: boolean;
   available:any;
