@@ -81,6 +81,11 @@ form{
     }
 }
 
+.filter_sec .filter_fields .filter_field .mat-form-field {
+    max-width: 100%;
+    width: 214px;
+}
+
 
 @media (max-width: 1440px) {
     ul.pie_charts_utilizations li {

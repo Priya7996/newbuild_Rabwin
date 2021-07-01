@@ -1,92 +1,92 @@
 #vumeter{
-    height: 100px;
+  height: 100px;
 }
 .overall_efficiency{
-    .circle_chart{
-        margin-top:-30px;
-        ::ng-deep svg.ng-star-inserted {
-            margin-bottom: -21px;
-        }
-    }
+  .circle_chart{
+      margin-top:-30px;
+      ::ng-deep svg.ng-star-inserted {
+          margin-bottom: -21px;
+      }
+  }
 }
 .dashboardline_page .right_side .utilization_load .spindle_loader.bg {
-    padding: 0px 16px 16px;
+  padding: 0px 16px 16px;
 }
 .dashboardline_item_right{
-    float: right;
+  float: right;
 }
 .dashboardline_item_left{
-    float: left;
+  float: left;
 }
 .grid-list {
-    display: grid;
-    overflow-y: scroll;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr;
-    grid-column-gap: 5px;
-    grid-row-gap: 5px;
-    max-width:50%;
-    height: calc(100vh - 200px);
-  }
-  .grid-list-item {
-    background-color: #ccc;
+  display: grid;
+  overflow-y: scroll;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  max-width:50%;
+  height: calc(100vh - 200px);
+}
+.grid-list-item {
+  background-color: #ccc;
+  display: flex;
+  padding: 0.5em;
+  margin-bottom: 20px;
+  height: 100%;
+}
+.grid-list-content {
+  width: 100%;
+}
+.inner_card{
     display: flex;
-    padding: 0.5em;
-    margin-bottom: 20px;
-    height: 100%;
-  }
-  .grid-list-content {
-    width: 100%;
-  }
-  .inner_card{
-      display: flex;
-      width: 50%;
-  }
-  .dashboardline_page .dashboardline_list.left_side .dashboardline_item{
-    width: 92%!important;
-  }
+    width: 50%;
+}
+.dashboardline_page .dashboardline_list.left_side .dashboardline_item{
+  width: 92%;
+}
 #highcharts-12sizde-0{
-    height: 104px!important;
+  height: 104px!important;
 } 
 .blocks{
-  color: white;
+color: white;
 }
 .machinestatus_sec{
-    display: flex;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  flex-wrap: wrap;
+}
 
 
-  .page_title_sec .sub_title .display {
-    margin-right: 11px;
-    margin-bottom: -28px;
-    color: #A8A8A8;
+.page_title_sec .sub_title .display {
+  margin-right: 11px;
+  margin-bottom: -28px;
+  color: #A8A8A8;
 }
 .vtr{
-  color: #A8A8A8;
-  cursor: pointer;
+color: #A8A8A8;
+cursor: pointer;
 
 }
 .trpiu{
-  display: inline;
-  text-indent: 50px;
-  letter-spacing: 3px;
+display: inline;
+text-indent: 50px;
+letter-spacing: 3px;
 
 }
 .volkomn{
-  width: 25px;
-  cursor: pointer;
-  color: #A8A8A8;
+width: 25px;
+cursor: pointer;
+color: #A8A8A8;
 }
 .volkom{
-  width: 35px;
-  cursor: pointer;
-  color: #A8A8A8;
-  margin-left: 15px;
+width: 35px;
+cursor: pointer;
+color: #A8A8A8;
+margin-left: 15px;
 
 }
 .awseome{
-  color: #A8A8A8;
+color: #A8A8A8;
 }
 // .tadbel_data_view{
 //   font-size: larger;
@@ -94,39 +94,39 @@
 // }
 
 td {
-  font-size: xx-large;
+font-size: xx-large;
 }
 th{
-  font-size: xx-large;
+font-size: xx-large;
 
 }
 .spinner {
-  background: #262932;
-  height: 100vh;
-  opacity: 0.9;
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: auto;
-  z-index: 999;
+background: #262932;
+height: 100vh;
+opacity: 0.9;
+position: fixed;
+display: flex;
+align-items: center;
+justify-content: center;
+top: 0;
+left: 0;
+right: 0;
+width: auto;
+z-index: 999;
 }
 
 .spinner img {
-  width: 90px;
-  margin-top: -130px;
+width: 90px;
+margin-top: -130px;
 }
 
-  progress.run::-moz-progress-bar { background:#04C984; }
-  progress.run::-webkit-progress-value { background:#04C984; }
-  progress.run { color:#04C984; }
-  progress.idle::-moz-progress-bar { background: #FEAD01; }
-  progress.idle::-webkit-progress-value { background: #FEAD01; }
-  progress.idle { color: #FEAD01; }
-  progress.disconnect::-moz-progress-bar { background: #939393; }
-  progress.disconnect::-webkit-progress-value { background:#A8A8A8; }
-  progress.disconnect { color: #939393; }
-   
+progress.run::-moz-progress-bar { background:#04C984; }
+progress.run::-webkit-progress-value { background:#04C984; }
+progress.run { color:#04C984; }
+progress.idle::-moz-progress-bar { background: #FEAD01; }
+progress.idle::-webkit-progress-value { background: #FEAD01; }
+progress.idle { color: #FEAD01; }
+progress.disconnect::-moz-progress-bar { background: #939393; }
+progress.disconnect::-webkit-progress-value { background:#A8A8A8; }
+progress.disconnect { color: #939393; }
+ 

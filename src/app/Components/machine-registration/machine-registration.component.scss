@@ -2,9 +2,15 @@
 .tableflow{
     color: whitesmoke;
     width: 100%;
-    height: 100%;
+    // height: 100%;
 
 }
+
+table.tableflow h5 {
+    cursor: pointer;
+}
+
+
 
 .mat-dialog-container {
     display: block;

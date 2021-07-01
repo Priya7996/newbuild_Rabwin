@@ -58,11 +58,11 @@
                    
                 <td>{{show_report?.rejection }}
                    
-                    <input  placeholder="Enter Rejection" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rejection" required></td>
+                    <input  placeholder="Enter Rejection" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rejection" required  (keypress)="keyPress($event)"></td>
               
                 <td>{{show_report?.rework }}
                    
-                    <input  placeholder="Enter Rework" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rework" required>
+                    <input  placeholder="Enter Rework" class="textlo" *ngIf="enableEdit && enableEditIndex == i" [formControl]="rework"  (keypress)="keyPress($event)" required>
 
                 </td>
                 

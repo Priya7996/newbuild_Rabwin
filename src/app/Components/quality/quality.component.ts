@@ -37,7 +37,7 @@ export class QualityComponent implements OnInit {
   openDialog(user): void {
     const dialogRef = this.dialog.open(Add, {
       width: '900px',
-      height:'500px',
+      height:'auto',
       data: { edit_user: user }
     });
 
@@ -215,6 +215,14 @@ export class Add {
     this.qdat = localStorage.getItem('QADAT');
  
    }
+
+   keyPress(event: any) {
+    const pattern = /[0-9]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
     ngOnInit() {
 
       this.service.get_rreport(this.e_id).subscribe(res =>{
@@ -249,6 +257,7 @@ export class Add {
     }
  }
  save(rep,j){
+  console.log(rep)
    this.e_id = localStorage.getItem('edit_id');
 
   //  this.g_report.push({'id':this.e_id});
@@ -262,12 +271,21 @@ export class Add {
   let index = this.g_report.route_card_report.indexOf(rep);
   rep.rejection = parseInt(this.rejection.value);
     rep.rework = parseInt(this.rework.value);
-    this.g_report.id = this.e_id
-     this.g_report.route_card_report[index] = rep;
-     this.service.put_rreport(this.g_report).subscribe(res =>{
-      Swal.fire("Updated Successfully")
+    let addnumber = (rep.rejection+ rep.rework)
+    console.log(addnumber)
+    if(addnumber > rep.actual){
+      Swal.fire("Please verify actual parts")
+    }
+    else{
 
-     })
+      this.g_report.id = this.e_id
+      this.g_report.route_card_report[index] = rep;
+      this.service.put_rreport(this.g_report).subscribe(res =>{
+       Swal.fire("Updated Successfully")
+ 
+      })
+    }
+  
 
 
      let register = {

@@ -1169,7 +1169,7 @@ table.table td .highlit {
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
     color: #fff!important;
     font-size: 20px;
-    margin-left: 20px;
+    // margin-left: 20px;
     font-family: 'Barlow Condensed', sans-serif;
 }
 .highcharts-contextbutton {
@@ -3571,7 +3571,7 @@ body .compare_page .chart_sec .ulitization_chart {
 }
 
 rect.highcharts-background {
-    fill: rgb(203, 216, 216) !important;
+    fill: #fff;
 }
 
 .mat-select-value {
@@ -3580,6 +3580,42 @@ rect.highcharts-background {
 
 
 //algapps styles
+
+span.chart_sub_title {
+    color: #fff;
+}
+
+.close_modal mat-icon {
+    font-size: 20px;
+    background: #fff;
+    font-weight: 800;
+    color: #000;
+    text-align: center;
+}
+
+
+.axis_chart.bgg {
+    border: 1px solid #2E2E2E;
+    background: #242424;
+    padding: 16px;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.axis_chart.bgg h3 {
+    font-size: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.circle_chart.true.ng-star-inserted svg.ng-star-inserted {
+    width: 100px;
+}
+
+
+.container.sadd .mat-checkbox-inner-container {
+    background: #fff !important;
+}
 
 .main_co.d-flex {
     justify-content: space-between;
@@ -3813,6 +3849,10 @@ span.material-icons.one {
            
             margin-right: 0px !important;
         }
+
+        .idle_reason_page .idle_reason_list .idle_reason_item, .quality_ip_page .line_machines_list .line_machine_item, .machines_collections .machine_prod, .dashboard_page_sec .line_list .line_item {
+            width: 100% !important;
+        }
   }
 
   @media only screen and (max-width: 768px) {
@@ -3906,6 +3946,68 @@ span.material-icons.one {
 
     .idle_reason_page .idle_reason_list .idle_reason_item, .quality_ip_page .line_machines_list .line_machine_item, .machines_collections .machine_prod, .dashboard_page_sec .line_list .line_item {
         width: 48%;
+    }
+
+  }
+
+
+  @media screen and (max-width: 768px) and (min-width: 600px) {
+    .idle_reason_page .idle_reason_list .idle_reason_item, .quality_ip_page .line_machines_list .line_machine_item, .machines_collections .machine_prod, .dashboard_page_sec .line_list .line_item {
+        width: 47%;
+    }
+    .dashboard_page_sec .circle_chart_inner {
+        display: block;
+    }
+
+    .dashboardline_item {
+        
+        display: block !important;
+        
+    }
+
+    .inner_card[_ngcontent-urw-c8] {
+       
+        justify-content: space-around;
+    }
+
+    .dashboardline_page .dashboardline_list .dashboardline_item p {
+        
+        margin-bottom: 0px;
+        
+    }
+
+    .login-section-wrapper {
+       
+        padding: 0px 30px 0px 20px !important;
+        
+    }
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+
+    .line_desc {
+        display: block !important;
+    }
+
+    .dashboard_page_sec .line_desc_inner {
+        width: 100% !important;
+        
+    }
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 600px) {
+    .shift_sec .shift_card {
+       
+        width: auto !important;
+    }
+
+    .shift_sec .col{
+        width: auto !important;
+        
+    }
+
+    h2.sub_title[_ngcontent-hfl-c8] {
+        margin-left: 0px;
     }
 
   }
