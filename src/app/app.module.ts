@@ -13,6 +13,8 @@
     import { CountUpModule } from 'ngx-countup';
 
     import { ChartModule } from 'angular-highcharts';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
     
     @NgModule({
      declarations: [
@@ -27,7 +29,8 @@
         RegisterModule, SharedModule,
        CoreModule,
        HighchartsChartModule,
-       CountUpModule      
+       CountUpModule,
+       ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })      
     
  ],
      providers: [NavbarService],
