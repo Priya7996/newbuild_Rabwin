@@ -3585,6 +3585,42 @@ rect.highcharts-background {
 
 //algapps styles
 
+// span.chart_sub_title {
+//     color: #fff;
+// }
+
+// .close_modal mat-icon {
+//     font-size: 20px;
+//     background: #fff;
+//     font-weight: 800;
+//     color: #000;
+//     text-align: center;
+// }
+
+
+// .axis_chart.bgg {
+//     border: 1px solid #2E2E2E;
+//     background: #242424;
+//     padding: 16px;
+//     margin-left: 10px;
+//     border-radius: 5px;
+//     margin-bottom: 10px;
+// }
+
+// .axis_chart.bgg h3 {
+//     font-size: 20px !important;
+//     margin-bottom: 20px !important;
+// }
+
+// .circle_chart.true.ng-star-inserted svg.ng-star-inserted {
+//     width: 100px;
+// }
+
+
+// .container.sadd .mat-checkbox-inner-container {
+//     background: #fff !important;
+// }
+
 span.chart_sub_title {
     color: #fff;
 }
@@ -3620,7 +3656,6 @@ span.chart_sub_title {
 .container.sadd .mat-checkbox-inner-container {
     background: #fff !important;
 }
-
 .main_co.d-flex {
     justify-content: space-between;
     padding: 20px 20px 0px 0px;
@@ -4024,8 +4059,8 @@ span.material-icons.one {
     }
 
   }
-  // *****************UI for Header Start*******************
-  .sidebar-hidden{
+ // *****************UI for Header Start*******************
+ .sidebar-hidden{
     display: none;
 }
 .sidenav{
@@ -4038,10 +4073,10 @@ span.material-icons.one {
     background: #0e121b;
 }
 .sidenav_view .sidenav_links li a{
-    
+
         text-decoration: none;
         color: inherit;
-    
+
 }
 // .as-content{
 //     margin-left: 192px;
@@ -4056,13 +4091,12 @@ span.material-icons.one {
     padding-left: 40px;
 }
 .activemenu .mat-toolbar-row, .activemenu .mat-toolbar-single-row, .activemenu footer.main-footer {
-   
+
     width: 100% !important;
-} 
+}
 .as-toggle-btn{
     color: white;
     padding: .5rem;
-    cursor: pointer;
     margin-top: 8px;
 }
 .sidenav .sidenav_logo {
@@ -4082,4 +4116,44 @@ span.material-icons.one {
     top: 64px;
 }}
 
+@-moz-document url-prefix() {
+    .line_desc .time_sec li .progress .bar{
+        width: 100%;
+    }
+    .machinestatus_sec{
+        width: 100%;
+    }
+    .line_desc .time_sec li .progress .bar{
+        background: #808080;
+    }
+    .line_desc .line_mac_target .box_bg {
+        padding: 0px 20px 0px 20px;}
+  }
+.line_desc .time_sec li .progress {
+    margin: 0 2px;
+}
+.run.as-selected{
+    background: transparent !important;
+    border: 2px solid #04C984;
+    box-shadow: none  !important;
+}
+.run.as-selected h3{
+    color: #04C984  !important;
+}
+.idle.as-selected{
+    background: transparent !important;
+    border: 2px solid #FEAD01;
+    box-shadow: none !important;
+}
+.idle.as-selected h3{
+    color: #FEAD01 !important;
+}
+.disconnect.as-selected{
+    background: transparent !important;
+    border: 2px solid #939393;
+    box-shadow: none !important;
+}
+.disconnect.as-selected h3{
+    color: #939393 !important;
+}
 // *****************UI for Header End*******************

@@ -13,7 +13,8 @@
 }
 
 .disconnect_wrap{
-  background: url(../../../assets/images/hexagon_hover.png);
+  // background-image : url(../../../assets/images/hexagon_hover.png) !important;
+  background-image: none !important;
   background-size: 100%;
   background-repeat: no-repeat;
   font-size: 25px;
@@ -23,11 +24,14 @@
   height: 40px;
   background-position: center;
   background-size: contain;
-  background-color: var(--gray) !important;   
+  background-color: var(--gray) !important; 
+  -webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);  
 
 }
 .run_wrap{
-background: url(../../../assets/images/hexagon_hover.png);
+// background-image: url(../../../assets/images/hexagon_hover.png) !important;
+background-image: none !important;
 background-size: 100%;
 background-repeat: no-repeat;
 font-size: 25px;
@@ -38,11 +42,13 @@ height: 40px;
 background-position: center;
 background-size: contain;
 background-color: var(--green) !important;   
+-webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 
 }
 .idle_wrap{
 
-background: url(../../../assets/images/hexagon_hover.png);
+background-image: none !important;
 background-size: 100%;
 background-repeat: no-repeat;
 font-size: 25px;
@@ -52,9 +58,57 @@ line-height: 28px;
 height: 40px;
 background-position: center;
 background-size: contain;
-background-color: var(--warning) !important;   
+background-color: var(--warning) !important; 
+-webkit-clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);  
 
 } 
+.idle_wrap h3, .run_wrap h3, .disconnect_wrap h3{
+color: #ffffff !important;
+}
+// .disconnect_wrap{
+//   background: url(../../../assets/images/hexagon_hover.png);
+//   background-size: 100%;
+//   background-repeat: no-repeat;
+//   font-size: 25px;
+//   font-weight: 700;
+//   -webkit-text-stroke: 0.7px #000000;
+//   line-height: 28px;
+//   height: 40px;
+//   background-position: center;
+//   background-size: contain;
+//   background-color: var(--gray) !important;   
+
+// }
+// .run_wrap{
+// background: url(../../../assets/images/hexagon_hover.png);
+// background-size: 100%;
+// background-repeat: no-repeat;
+// font-size: 25px;
+// font-weight: 700;
+// -webkit-text-stroke: 0.7px #000000;
+// line-height: 28px;
+// height: 40px;
+// background-position: center;
+// background-size: contain;
+// background-color: var(--green) !important;   
+
+// }
+// .idle_wrap{
+
+// background: url(../../../assets/images/hexagon_hover.png);
+// background-size: 100%;
+// background-repeat: no-repeat;
+// font-size: 25px;
+// font-weight: 700;
+// -webkit-text-stroke: 0.7px #000000;
+// line-height: 28px;
+// height: 40px;
+// background-position: center;
+// background-size: contain;
+// background-color: var(--warning) !important;   
+
+// } 
 
 
 // .machine_status_item{

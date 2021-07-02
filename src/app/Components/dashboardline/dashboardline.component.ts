@@ -43,7 +43,7 @@ export class DashboardlineComponent implements OnInit {
   axis4:any;
   axis5:any;
   spindle_load:any;
-
+  selectedItem: any;
  
   constructor(public dialog: MatDialog,private service: DashboardService,private route:ActivatedRoute,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show();
@@ -350,6 +350,9 @@ export class DashboardlineComponent implements OnInit {
     this.alname = res;
 
     })
+  }
+  onClick(item) {
+    this.selectedItem = item;
   }
   openDialog(line,mac): void {
     const dialogRef = this.dialog.open(Dialog, {

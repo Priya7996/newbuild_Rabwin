@@ -14,7 +14,7 @@
         <div class="dashboardline_page">
             <div class="dashboardline_list left_side side_sec">
                 <div class="inner_card" *ngFor = "let val of alname" (click)="valvo(val?.line,val?.machine,val?.run,val?.run_time,val?.stop,val?.disconnect,val?.reason)">
-                <div class="dashboardline_item active" *ngIf="val.status === 'DISCONNECT'">
+                <div class="dashboardline_item active" (click)="onClick(val)" [ngClass]="{ 'as-selected': val == selectedItem }" *ngIf="val.status === 'DISCONNECT'">
                     <div>
                         <h3>{{val?.machine}}</h3>
                         <p>Machine Disconnect</p>
@@ -22,7 +22,7 @@
                     <span>{{val?.run}}%</span>
                 </div>
 
-                <div class="dashboardline_item run" *ngIf="val.status === 'OPERATE'">
+                <div class="dashboardline_item run" (click)="onClick(val)" [ngClass]="{ 'as-selected': val == selectedItem }"  *ngIf="val.status === 'OPERATE'">
                     <div>
                         <h3>{{val?.machine}}</h3>
                         <p>Machine Running</p>
@@ -30,7 +30,7 @@
                     <span>{{val?.run}}%</span>
                 </div>
 
-                <div class="dashboardline_item idle" *ngIf="val.status === 'STOP'">
+                <div class="dashboardline_item idle" (click)="onClick(val)" [ngClass]="{ 'as-selected': val == selectedItem }" *ngIf="val.status === 'STOP'">
                     <div>
                         <h3>{{val?.machine}}</h3>
                         <p>{{val?.reason}}</p>
@@ -109,7 +109,7 @@
 
                                         <!-- <progress class="progress-bar no-data" max="100" value={{operator?.diconnect}}>
                                           </progress> -->
-                                          <progress class="bar disconnect" max="100" value={{operator?.disconnect}}>
+                                          <progress class="bar disconnect" max="100" value={{operator?.diconnect}}> 
                                         </progress>
                   
                                     </div>
