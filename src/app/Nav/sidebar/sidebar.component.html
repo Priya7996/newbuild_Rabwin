@@ -6,10 +6,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button> -->
       <div class="company_name">
-        <button  class="d-lg-none d-sm-block" type="button" aria-label="Toggle sidenav" mat-icon-button
+        <!-- <button  type="button" aria-label="Toggle sidenav" mat-icon-button
           (click)="drawer.toggle()">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+        </button> -->
+        <div class="as-toggle-btn"  (click)="toggleSidebar()" id="sidebarCollapse">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </div>
         <h1 class="d-none d-sm-none d-lg-block"> {{tenant_name}}</h1>
         
  
@@ -25,7 +28,7 @@
               <p>Welcome {{rolename}}</p>
 
             </div>
-            <mat-icon class="v-align-middle display">person_outline</mat-icon>
+            <mat-icon class="v-align-middle display as-display">person_outline</mat-icon>
     
           </div>
          
@@ -39,63 +42,31 @@
   </div>
 </mat-toolbar>
 
-<mat-sidenav-container>
- 
-  <!-- <mat-sidenav #drawer class="sidenav scroller" mode="side" opened *ngIf="nav.visible"> -->
-  <mat-sidenav #drawer class="sidenav scroller" mode="side" opened  *ngIf="nav.visible">
 
-     <!-- <button  type="button" aria-label="Toggle sidenav" mat-icon-button
-  (click)="drawer.toggle()">
-  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-</button> -->
-    <div>
-      <mat-nav-list *ngIf="rolename === 'QA'" class="sidenav_view">
-        <a href="javascript:;" class="sidenav_logo">
-          <img src="../../../assets/images/logo-new.png">
+<div class="sidenav "  id="sidebar" *ngIf="nav.visible" >
+  
+  <div class="sidenav_view" *ngIf="rolename === 'QA'">
+    <a href="javascript:;" class="sidenav_logo">
+      <img src="../../../assets/images/logo-new.png">
+    </a>
+    <ul class="sidenav_links ">
+      <!-- <li (click)=shift() routerLinkActive="active-link">
+        <a href="javascript:;">
+          <mat-icon class="v-align-middle display">dashboard
+          </mat-icon>
+          <span>Dashboard</span>
         </a>
-  
-        <ul class="sidenav_links">
-          <!-- <li (click)=shift() routerLinkActive="active-link">
-            <a href="javascript:;">
-              <mat-icon class="v-align-middle display">dashboard
-              </mat-icon>
-              <span>Dashboard</span>
-            </a>
-          </li> -->
-  
-  
-         
-  
-      
-  
-  
-  
-  
-  
-  
-  
-  
-          <li [routerLink]="['/quality']" routerLinkActive="active-link">
-            <a href="javascript:;">
-              <mat-icon class="v-align-middle display">timelapse
-              </mat-icon>
-              <span>Quality</span>
-            </a>
-          </li>
-  
-  
-        
-      
-  
-  
-  
-         
-        </ul>
-      </mat-nav-list>
+      </li> -->
+      <li [routerLink]="['/quality']" routerLinkActive="active-link">
+        <a href="javascript:;">
+          <mat-icon class="v-align-middle display">timelapse
+          </mat-icon>
+          <span>Quality</span>
+        </a>
+      </li>
+    </ul>
     </div>
-
-    <!-- Sidenav start here -->
-    <mat-nav-list *ngIf="rolename === 'Admin'" class="sidenav_view">
+    <div *ngIf="rolename === 'Admin'" class="sidenav_view"> 
       <a href="javascript:;" class="sidenav_logo">
         <img src="../../../assets/images/logo-new.png">
       </a>
@@ -260,12 +231,9 @@
           </a>
         </li>
       </ul>
-    </mat-nav-list>
+    </div>
 
-
-
-
-    <mat-nav-list *ngIf="rolename === 'Supervisor'" class="sidenav_view">
+    <div *ngIf="rolename === 'Supervisor'" class="sidenav_view">
       <a href="javascript:;" class="sidenav_logo">
         <img src="../../../assets/images/logo-new.png">
       </a>
@@ -461,12 +429,12 @@
         </i>
       </button> -->
 
-    </mat-nav-list>
-  </mat-sidenav>
-  <div>
+    </div>
+  </div>
+  <div class="as-content">
     <router-outlet></router-outlet>
   </div>
-</mat-sidenav-container>
+
 
 
 <footer class="main-footer ng-scope" *ngIf="nav.visible">

@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class SidebarComponent implements OnInit {
   count_machine:any;
     opened: boolean;
-
+    public sidebarToggled = false;
   show1: boolean;
   @Input()navStatus: boolean;
   available:any;
@@ -116,7 +116,23 @@ export class SidebarComponent implements OnInit {
   refresh(){
     location.reload();
   }
-
+ // toggle sidebar
+ toggleSidebar() {
+  let assidebar = document.querySelector('.sidenav');
+  let body = document.querySelector('body');
+  
+  console.log(assidebar);
+ 
+    this.sidebarToggled = !this.sidebarToggled;
+    console.log(this.sidebarToggled );
+    if(this.sidebarToggled) {
+      assidebar.classList.add('sidebar-hidden');
+      body.classList.add('activemenu');
+    } else {
+      assidebar.classList.remove('sidebar-hidden');
+      body.classList.remove('activemenu');
+    }
+}
   ngOnDestroy() {}
   close() {
     Swal.fire({
@@ -133,4 +149,6 @@ export class SidebarComponent implements OnInit {
     });
   }
 }
+
+
 

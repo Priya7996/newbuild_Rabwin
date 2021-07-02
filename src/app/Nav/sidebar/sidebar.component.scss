@@ -204,7 +204,7 @@
   z-index: 9;
   text-align: center;
   position: fixed;
-  top: 0;
+  top: 64px;
   left: 0px;
   width: 192px;
   height: auto;
@@ -229,7 +229,9 @@
   padding-right: 0;
   width: calc(100% - 192px);
 }
-
+.activemenu .header {
+  width: 100%;
+}
 
 footer{
   &.main-footer{
@@ -281,7 +283,7 @@ footer{
   }
 
   .sidenav_links{
-    margin: 0;
+    margin: 4px 0;
     li{
       padding: 5px;
       padding-left: 16px;
@@ -317,3 +319,9 @@ footer{
     }
   }
 }
+
+@media (min-width: 769px)
+{
+.sidenav{
+    top:0;
+}}

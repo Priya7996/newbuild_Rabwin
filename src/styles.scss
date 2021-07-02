@@ -3163,6 +3163,10 @@ body .componentForm .time_field_bg{
     -o-display: none;
     display: none;
                 }
+                .as-display {
+       
+                    display: none !important;
+                }
       
                 .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item {
                     width: 16%;
@@ -3801,6 +3805,10 @@ span.material-icons.one {
        
         display: block;
     }
+    .as-display {
+       
+        display: block;
+    }
     body .compare_page .chart_sec .ulitization_chart {
         width: auto;
     }
@@ -3852,6 +3860,11 @@ span.material-icons.one {
 
         .idle_reason_page .idle_reason_list .idle_reason_item, .quality_ip_page .line_machines_list .line_machine_item, .machines_collections .machine_prod, .dashboard_page_sec .line_list .line_item {
             width: 100% !important;
+        }
+
+        ul.sep_cht {
+            width: 110px !important;
+            margin: auto;
         }
   }
 
@@ -4011,3 +4024,62 @@ span.material-icons.one {
     }
 
   }
+  // *****************UI for Header Start*******************
+  .sidebar-hidden{
+    display: none;
+}
+.sidenav{
+    height: 100% !important;
+    overflow: auto;
+}
+
+.sidenav_view .sidenav_links li.active-link a {
+    color: #ec6e17;
+    background: #0e121b;
+}
+.sidenav_view .sidenav_links li a{
+    
+        text-decoration: none;
+        color: inherit;
+    
+}
+// .as-content{
+//     margin-left: 192px;
+// }
+// .activemenu .as-content{
+//     margin-left: 0%;
+// }
+.page{
+    padding-left: 210px;
+}
+.activemenu .page{
+    padding-left: 40px;
+}
+.activemenu .mat-toolbar-row, .activemenu .mat-toolbar-single-row, .activemenu footer.main-footer {
+   
+    width: 100% !important;
+} 
+.as-toggle-btn{
+    color: white;
+    padding: .5rem;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.sidenav .sidenav_logo {
+    display: none !important;
+}
+.sidenav_logo {
+    display: block !important;
+}
+@media (min-width: 769px)
+{.sidenav .sidenav_logo {
+    display: block !important;
+}
+.sidenav_logo {
+    display: none !important;
+}
+.sidenav{
+    top: 64px;
+}}
+
+// *****************UI for Header End*******************
