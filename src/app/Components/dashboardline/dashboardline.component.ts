@@ -53,9 +53,10 @@ export class DashboardlineComponent implements OnInit {
 
     this.service.form_line(this.lname).pipe(untilDestroyed(this)).subscribe(res=>{
         this.myLoader = false;
-   
     this.fline = res[0].line;
     this.fname = res[0].machine;
+    this.selectedItem = res[0].machine;
+    console.log(this.selectedItem);
     this.utlization = res[0].run;
     this.run_time = res[0].run_time;
     this.stop = res[0].idle_time;

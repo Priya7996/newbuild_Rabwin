@@ -794,6 +794,13 @@ table {
 
 // responsive
 @media (max-width: 600px) {
+
+    .sidenav{
+        display: none;
+    }
+    .sss{
+        display: block !important;
+    }
     .filter_field {
         margin-right: 0 !important;
     }
@@ -3215,7 +3222,7 @@ body .componentForm .time_field_bg{
             }
             html body .cdk-global-overlay-wrapper .cdk-overlay-pane{
                 width:100%!important;
-                overflow-y: scroll;
+                // overflow-y: scroll;
             }
             body .shift_sec .col{
                 padding: 0 10px!important;
@@ -3541,16 +3548,16 @@ body .compare_page .chart_sec .ulitization_chart {
         margin: 0!important;
     }}
     .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.idle h3{
-        color: #FECC00!important;
+        color: #FECC00;
         font-weight: 600;
     }  
     .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.run h3{
-        color: #04C984!important;
+        color: #04C984;
         font-weight: 600;
     }  
 
     .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec .machine_status_list .machine_status_item.active h3{
-        color: #878a86!important;
+        color: #878a86;
         font-weight: 600;
     }  
     .spindle_loader {
@@ -3694,6 +3701,10 @@ span.material-icons.one {
 
   @media only screen and (max-width: 600px) {
 
+    .filter_sec {
+        display: block;
+    }
+
     .line_item.ng-star-inserted {
         width: 100% !important;
     }
@@ -3729,9 +3740,23 @@ span.material-icons.one {
       width: 100% !important;
   }
   
-  .dashboard_page_sec .circle_chart_inner {
-      display: contents;
-  }
+//   .dashboard_page_sec .circle_chart_inner {
+//       display: contents;
+//   }
+
+
+.dashboard_page_sec .line_list .line_item .line_item_content .circle_chart {
+    
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+.dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec {
+    margin: .5rem 0;
+    border-radius: 10px;
+}
+.dashboard_page_sec .line_desc{
+    border-radius: 10px;
+}
   
   .circle_chart_right {
       width: 100% !important;
@@ -3785,14 +3810,15 @@ span.material-icons.one {
 
 .shift_details, .shift_details .box_sec, .shift_details .btn_link {
   
-    display: block !important;
+   // display: block ;
     text-align: center;
+    justify-content: center;
 }
 
 .shift_details .box_sec.last_update_view p.time_date::after {
     
     top: 11px;
-    right: -14px;
+    right: -34px;
 }
 
 .dashboardline_item{
@@ -3822,10 +3848,10 @@ span.material-icons.one {
     width: 100%; 
 }
 
-.axis_chart, .dashboardline_list {
+// .axis_chart, .dashboardline_list {
     
-     display: block;
-}
+//      display: block;
+// }
 
 .filter_sec .filter_fields {
     
@@ -4098,6 +4124,7 @@ span.material-icons.one {
     color: white;
     padding: .5rem;
     margin-top: 8px;
+    cursor: pointer;
 }
 .sidenav .sidenav_logo {
     display: none !important;
@@ -4155,5 +4182,9 @@ span.material-icons.one {
 }
 .disconnect.as-selected h3{
     color: #939393 !important;
+}
+
+mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
+    cursor: pointer;
 }
 // *****************UI for Header End*******************

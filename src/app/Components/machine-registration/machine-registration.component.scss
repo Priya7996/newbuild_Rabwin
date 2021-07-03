@@ -2,6 +2,7 @@
 .tableflow{
     color: whitesmoke;
     width: 100%;
+    white-space: nowrap;
     // height: 100%;
 
 }
@@ -25,4 +26,22 @@ table.tableflow h5 {
     max-height: inherit;
     color: whitesmoke;
 
+}
+
+td, th {
+    padding: 10px;
+}
+.overflow {
+    overflow: auto;
+}
+
+.close_modal {
+    position: absolute;
+    top: 32px;
+    right: 24px;
+    color: #a3a0a0;
+}
+
+.container.sadd {
+    overflow: auto;
 }

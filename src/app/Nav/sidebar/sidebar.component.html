@@ -16,7 +16,7 @@
         <h1 class="d-none d-sm-none d-lg-block"> {{tenant_name}}</h1>
         
  
-        <h1 class="d-lg-none d-sm-block">SET</h1>
+        <h1 class="d-lg-none d-sm-block">{{tenant_name}}</h1>
       </div>
       <a href="javascript:;" class="sidenav_logo d-lg-none d-sm-block">
         <img src="../../../assets/images/logo-new.png">
@@ -57,7 +57,7 @@
           <span>Dashboard</span>
         </a>
       </li> -->
-      <li [routerLink]="['/quality']" routerLinkActive="active-link">
+      <li [routerLink]="['/quality']" (click)="shifting()" routerLinkActive="active-link">
         <a href="javascript:;">
           <mat-icon class="v-align-middle display">timelapse
           </mat-icon>
@@ -106,7 +106,7 @@
           </a>
         </li> -->
 
-        <li [routerLink]="['/alarm']" routerLinkActive="active-link">
+        <li [routerLink]="['/alarm']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">notifications
             </mat-icon>
@@ -114,7 +114,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/report']" routerLinkActive="active-link">
+        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">file_copy
             </mat-icon>
@@ -132,7 +132,7 @@
           </a>
         </li> -->
 
-        <li [routerLink]="['/idle_reason']" routerLinkActive="active-link">
+        <li [routerLink]="['/idle_reason']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">assignment
             </mat-icon>
@@ -141,7 +141,7 @@
         </li>
 
 
-        <li [routerLink]="['/report_idle']" routerLinkActive="active-link">
+        <li [routerLink]="['/report_idle']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">data_usage
             </mat-icon>
@@ -149,7 +149,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/efficiency']" routerLinkActive="active-link">
+        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">timelapse
             </mat-icon>
@@ -157,7 +157,7 @@
           </a>                       
         </li>
 
-        <li [routerLink]="['/comparechart']" routerLinkActive="active-link">
+        <li [routerLink]="['/comparechart']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">compare
             </mat-icon>
@@ -171,7 +171,7 @@
 
 
 
-        <li [routerLink]="['/quality']" routerLinkActive="active-link">
+        <li [routerLink]="['/quality']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">timelapse
             </mat-icon>
@@ -180,7 +180,7 @@
         </li>
 
 
-        <li [routerLink]="['/machine_registration']" routerLinkActive="active-link">
+        <li [routerLink]="['/machine_registration']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">widgets
             </mat-icon>
@@ -189,7 +189,7 @@
         </li>
 
 
-        <li [routerLink]="['/shift']" routerLinkActive="active-link">
+        <li [routerLink]="['/shift']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">insert_invitation
             </mat-icon>
@@ -198,7 +198,7 @@
         </li>
 
 
-        <li [routerLink]="['/user_management']" routerLinkActive="active-link">
+        <li [routerLink]="['/user_management']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">person
             </mat-icon>
@@ -214,7 +214,7 @@
         </li> -->
 
 
-        <li [routerLink]="['/operator_registration']" routerLinkActive="active-link">
+        <li [routerLink]="['/operator_registration']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">account_circle
             </mat-icon>
@@ -223,7 +223,7 @@
         </li>
 
 
-        <li [routerLink]="['/reason_lmw']" routerLinkActive="active-link">
+        <li [routerLink]="['/reason_lmw']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">list
             </mat-icon>
@@ -256,7 +256,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/alarm']" routerLinkActive="active-link">
+        <li [routerLink]="['/alarm']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">notifications
             </mat-icon>
@@ -264,7 +264,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/report']" routerLinkActive="active-link">
+        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">file_copy
             </mat-icon>
@@ -272,7 +272,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/idle_reason']" routerLinkActive="active-link">
+        <li [routerLink]="['/idle_reason']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">assignment
             </mat-icon>
@@ -286,7 +286,7 @@
             <span>Production Report</span>
           </a>
         </li> -->
-        <li [routerLink]="['/report_idle']" routerLinkActive="active-link">
+        <li [routerLink]="['/report_idle']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">data_usage
             </mat-icon>
@@ -294,14 +294,14 @@
           </a>
         </li>
 
-        <li [routerLink]="['/efficiency']" routerLinkActive="active-link">
+        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">timelapse
             </mat-icon>
             <span>Efficiency</span>
           </a>                       
         </li>
-        <li [routerLink]="['/comparechart']" routerLinkActive="active-link">
+        <li [routerLink]="['/comparechart']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">compare
             </mat-icon>

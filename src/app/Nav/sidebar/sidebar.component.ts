@@ -75,12 +75,21 @@ export class SidebarComponent implements OnInit {
         this.route.navigateByUrl('/rabwin_dashboard');
 
       }
+      if(window.innerWidth  < 600){
+        this.toggleSidebar();
+      }
 
     })
   
    
 
    
+  }
+
+  shifting(){
+    if(window.innerWidth  < 600){
+      this.toggleSidebar();
+    }
   }
   ngOnChanges(changes: SimpleChanges) {
     if(changes.navStatus.currentValue){
@@ -117,7 +126,10 @@ export class SidebarComponent implements OnInit {
     location.reload();
   }
  // toggle sidebar
- toggleSidebar() {
+// toggle sidebar
+
+
+toggleSidebar() {
   let assidebar = document.querySelector('.sidenav');
   let body = document.querySelector('body');
   
@@ -125,13 +137,37 @@ export class SidebarComponent implements OnInit {
  
     this.sidebarToggled = !this.sidebarToggled;
     console.log(this.sidebarToggled );
-    if(this.sidebarToggled) {
-      assidebar.classList.add('sidebar-hidden');
-      body.classList.add('activemenu');
-    } else {
-      assidebar.classList.remove('sidebar-hidden');
-      body.classList.remove('activemenu');
+    // debugger
+    if(window.innerWidth  < 600){
+      if(assidebar.classList.contains('sss' || '' ))    
+      {
+        assidebar.classList.add('sidebar-hidden');
+          body.classList.add('activemenu');
+          assidebar.classList.remove('sss');
+      }
+      else
+      { 
+        assidebar.classList.remove('sidebar-hidden');
+        body.classList.remove('activemenu');
+        assidebar.classList.add('sss');
+      
+      }
     }
+else{
+if(this.sidebarToggled) {
+  assidebar.classList.add('sidebar-hidden');
+  body.classList.add('activemenu');
+  assidebar.classList.remove('sss');
+} 
+else {
+  assidebar.classList.remove('sidebar-hidden');
+  body.classList.remove('activemenu');
+  assidebar.classList.add('sss');
+}
+}
+  
+
+   
 }
   ngOnDestroy() {}
   close() {

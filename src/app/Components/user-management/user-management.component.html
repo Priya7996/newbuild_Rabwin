@@ -59,11 +59,13 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-          <mat-paginator [length]="total_count" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
-          (page)="pageEvent($event)">
-        </mat-paginator>
+         
         </mat-card-content>
+        <mat-paginator [length]="total_count" [pageSize]="page_size" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent($event)">
+      </mat-paginator>
       </mat-card>
+      
     </div>
   <div *ngIf="myLoader" class="spinner">
     <img src="assets/images/spinner.gif">

@@ -205,7 +205,7 @@
 
 
 
-                <div class="axis_chart bg">
+                <div class="axis_chart bg" *ngIf="axis4">
                   
                     <div class="circle_chart" *ngIf="axis4">
                         <circle-progress radius="90" percent={{servo_load3}} outerStrokeColor="#21a477" innerStrokeColor="#1E2634"
