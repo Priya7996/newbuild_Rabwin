@@ -26,8 +26,6 @@ const routes: Routes = [
 { path: 'report_idle', loadChildren: () => import('./Components/report-idle/report-idle.module').then(m => m.ReportIdleModule) },
 { path: 'oee', loadChildren: () => import('./Components/oee/oee.module').then(m => m.OeeModule) },
 { path: 'chart', loadChildren: () => import('./Components/chart/chart.module').then(m => m.ChartModule) },
-{ path: 'employee_login', loadChildren: () => import('./Components/employee-login/employee-login.module').then(m => m.EmployeeLoginModule) },
-{ path: 'employee_dashboard', loadChildren: () => import('./Components/employee-dashboard/employee-dashboard.module').then(m => m.EmployeeDashboardModule) },
 { path: 'andon-dashboard', loadChildren: () => import('./Components/andon-dashboard/andon-dashboard.module').then(m => m.AndonDashboardModule) },
 { path: 'sdashboard', loadChildren: () => import('./Components/sdashboard/sdashboard.module').then(m => m.SdashboardModule) },
 { path: 'quality', loadChildren: () => import('./Components/quality/quality.module').then(m => m.QualityModule) },
