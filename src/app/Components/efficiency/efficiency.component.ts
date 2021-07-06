@@ -70,6 +70,7 @@ export class EfficiencyComponent implements OnInit {
       from_date: [""],
 
     })
+    this.myLoader = true;
 
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
@@ -100,6 +101,7 @@ export class EfficiencyComponent implements OnInit {
             from_date : this.fiesr_date
           })
 
+          this.myLoader = false;
 
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
           // 'dd/MM/yyyy');

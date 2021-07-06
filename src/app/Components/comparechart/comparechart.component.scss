@@ -104,3 +104,10 @@ form{
     }
 }
 
+
+@media (max-width: 600px) {
+    .compare_page .chart_sec ul{
+        display: flex;
+        width: 100% !important;
+    }
+    }

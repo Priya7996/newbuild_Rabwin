@@ -155,6 +155,9 @@ export class ComparechartComponent implements OnInit {
         operator:[""]
   
       })
+
+      this.myLoader = true;
+
       this.service.getmodule().subscribe(res => {
         this.module_response = res;
         this.login.patchValue({
@@ -200,7 +203,8 @@ export class ComparechartComponent implements OnInit {
             localStorage.setItem('EDATE', this.first_loading['to_date']);
             this.ndate = localStorage.getItem('CSDATE');
             this.ndate2= localStorage.getItem('EDATE');
-         
+            this.myLoader = false;
+
             this.logintest('true');
           })
         })
@@ -209,7 +213,8 @@ export class ComparechartComponent implements OnInit {
     })
   
    
-    
+    this.myLoader1 = true;
+
     this.service.moduleget().subscribe(res => {
       this.response_module = res;
       this.test.patchValue({
@@ -248,6 +253,8 @@ export class ComparechartComponent implements OnInit {
             localStorage.setItem('RSEDATE', this.first_pge_loading['to_date']);
             this.Rdate = localStorage.getItem('RSSDATE');
             this.Rdate2= localStorage.getItem('RSEDATE');
+            this.myLoader1 = false;
+
           this.testfunction('true');
         })
       })

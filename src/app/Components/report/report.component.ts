@@ -164,7 +164,8 @@ export class ReportComponent implements OnInit {
 
     })
 
-    
+    this.myLoader = true;
+
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
       this.login.patchValue({
@@ -215,7 +216,8 @@ export class ReportComponent implements OnInit {
           localStorage.setItem('EDATE', this.first_loading['to_date']);
           this.sdate = localStorage.getItem('SDATE');
           this.edate = localStorage.getItem('EDATE');
-         
+          this.myLoader = false;
+
           // this.new_date = new DatePipe('en-US').transform(this.first_loading['from_date'], 
           // 'dd/MM/yyyy');
           // this.new_date1 = new DatePipe('en-US').transform(this.first_loading['to_date'], 

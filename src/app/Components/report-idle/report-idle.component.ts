@@ -112,6 +112,7 @@ fiesr_date:any;
         shift_num: [""],
         date: [""],
       })
+      this.myLoader = true;
 
 
       this.service.getmodule().subscribe(res => {
@@ -146,7 +147,8 @@ fiesr_date:any;
 
             })
   
-           
+            this.myLoader = false;
+
             this.logintest('true');
           })
         })

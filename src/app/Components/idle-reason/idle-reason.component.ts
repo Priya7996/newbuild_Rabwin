@@ -83,6 +83,7 @@ gtag('config', 'G-JRVTCZ20DE');
             shift_num: [""],
             date: [""],
           })
+          this.myLoader = true;
 
 
           this.service.getmodule().subscribe(res => {
@@ -116,11 +117,9 @@ gtag('config', 'G-JRVTCZ20DE');
          
            date: {begin: this.datepipe.transform(this.dat1, 'yyyy-MM-dd'), end: this.datepipe.transform(this.dat2, 'yyyy-MM-dd')}
         })
-                   // this.minDate = this.first_loading['from_date'][m
-                 // this.maxDate = this.first_loading['to_date'][m
-               
-               // this.minDate = this.first_loading['from_date'][m
-             // this.maxDate = this.first_loading['to_date'][m
+                 
+             this.myLoader = false;
+
                this.logintest('true');
             })
           })

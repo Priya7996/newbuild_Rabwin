@@ -66,7 +66,7 @@
 
                 </td>
                 
-            <td *ngIf="show_report?.mode === 'Production'">
+            <td *ngIf="show_report?.mode === 'Production'" class ="point">
                 <p  *ngIf="show_report?.accept > 0" (click)="toggleShow(i,show_report)">Edit</p>
                 <p *ngIf="show_report?.accept == 0" (click)="edit1()">Edit</p>
 
@@ -83,3 +83,6 @@
     </div>
     </mat-card>
 </mat-dialog-content>
+<div *ngIf="myLoader1" class="spinner">
+    <img src="assets/images/spinner.gif">
+</div>

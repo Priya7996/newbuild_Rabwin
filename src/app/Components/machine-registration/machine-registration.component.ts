@@ -376,6 +376,7 @@ export class Sadd {
 
 
     this.machine.update_axis(this.servlo_id,aaxis13).pipe(untilDestroyed(this)).subscribe(res => {
+      Swal.fire("updated successfully")
 
       this.dialogRef.close();
 

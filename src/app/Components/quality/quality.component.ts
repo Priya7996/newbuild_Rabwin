@@ -26,6 +26,8 @@ export class QualityComponent implements OnInit {
   new_date: string;
   new_date1: string;
   status: string;
+  myLoader = false;
+
   get_report: any;
   first_loading: any;
   public maxDate: Object = new Date();
@@ -108,6 +110,7 @@ export class QualityComponent implements OnInit {
 
     })
 
+    this.myLoader = true;
 
     this.service.getmodule().subscribe(res => {
       this.module_response = res;
@@ -136,6 +139,8 @@ export class QualityComponent implements OnInit {
               date : this.fiesr_date
 
             })
+            this.myLoader = false;
+
             this.logintest('true');
 
           })
@@ -147,6 +152,8 @@ export class QualityComponent implements OnInit {
   }
 
   logintest(s) {
+    this.myLoader = true;
+
     this.status = s;
 
     if (this.status == 'true') {
@@ -163,6 +170,8 @@ export class QualityComponent implements OnInit {
       localStorage.setItem('QADAT', register.date);
 
       this.service.overall_report_ing(register).subscribe(res => {
+        this.myLoader = false;
+
         this.get_report = res;
         this.get_report1 = res[0].route_card_report;
 
@@ -194,6 +203,7 @@ export class Add {
   actual:any;
   e_id:any;
   qshif:any;
+  myLoader1 = false;
   qdat:any;
   qmachi:any;
   rejection = new FormControl('', [Validators.required]);
@@ -224,10 +234,11 @@ export class Add {
     }
   }
     ngOnInit() {
-
+this.myLoader1 = true;
       this.service.get_rreport(this.e_id).subscribe(res =>{
         this.g_report = res;
-  
+        this.myLoader1 = false;
+
         this.get_report = res.route_card_report;
         this.rejection = new FormControl(this.get_report.rejection, [Validators.required]);
         let data_rc = res.route_card_report;
@@ -280,7 +291,11 @@ export class Add {
 
       this.g_report.id = this.e_id
       this.g_report.route_card_report[index] = rep;
+      this.myLoader1 = true;
+
       this.service.put_rreport(this.g_report).subscribe(res =>{
+        this.myLoader1 = false;
+
        Swal.fire("Updated Successfully")
  
       })
@@ -293,9 +308,12 @@ export class Add {
       "shift_num": this.qshif,
       "date": this.qdat
     }
-   
+    this.myLoader1 = true;
+
     this.service.overall_report_ing(register).subscribe(res => {
        this.get_reporting = res;
+       this.myLoader1 = false;
+
        this.datapost = this.get_reporting;
        this.get_report1 = res[0].route_card_report;
 
