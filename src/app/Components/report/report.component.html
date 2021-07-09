@@ -112,7 +112,7 @@
 
             </form>
  
-            <div class="table_export">
+            <div class="table_export" (click)="downlosd()">
                 <button class="export_btn" mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'Report'})"> Export</button>
                 <!-- <a href="" class="export_btn">
                         <i class="material-icons">

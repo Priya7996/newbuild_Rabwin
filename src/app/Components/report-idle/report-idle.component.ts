@@ -240,7 +240,10 @@ fiesr_date:any;
      if(this.get_report.length==0){
       Swal.fire('Exporting!, No Data Found')
     }else{
+      Swal.fire('Download Successfully')
+
     for(var i=0;i<this.get_report.length;i++){
+
       this.export_excel.push({
          "S.No": i+1,
          "Date": this.g_report.date || '---',

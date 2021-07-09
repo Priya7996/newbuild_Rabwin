@@ -71,6 +71,10 @@ startDate:any;
 
 
       }
+      downlosd(){
+        Swal.fire("Download Successfully")
+      }
+    
         ngOnInit() {
 
           

@@ -16,7 +16,7 @@ $yantra-primary: (50 : #fff1e2,
     600 : #fa840a,
     700 : #fa7908,
     800 : #f96f06,
-    900 : #f85c03,
+    900 : #f85c03, 
     A100 : #ffffff,
     A200 : #fff1eb,
     A400 : #ffceb8,
@@ -4069,7 +4069,25 @@ span.material-icons.one {
     }
   }
 
-  @media screen and (max-width: 1024px) and (min-width: 600px) {
+//   @media screen and (max-width: 1024px) and (min-width: 600px) {
+//     .shift_sec .shift_card {
+       
+//         width: auto !important;
+//     }
+
+//     .shift_sec .col{
+//         width: auto !important;
+        
+//     }
+
+//     h2.sub_title[_ngcontent-hfl-c8] {
+//         margin-left: 0px;
+//     }
+
+//   }
+
+
+@media screen and (max-width: 1024px) and (min-width: 600px) {
     .shift_sec .shift_card {
        
         width: auto !important;
@@ -4082,6 +4100,23 @@ span.material-icons.one {
 
     h2.sub_title[_ngcontent-hfl-c8] {
         margin-left: 0px;
+    }
+
+    .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec h2 {
+        
+        text-align: center;
+    }
+
+    .machinestatus_sec_inner {
+        
+        overflow: auto;
+    margin-top:6px;
+    }
+    
+    .dashboard_page_sec .line_list .line_item .line_item_content .machine_status_sec {
+        
+        height: 140px;
+        
     }
 
   }

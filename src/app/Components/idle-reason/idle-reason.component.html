@@ -75,7 +75,7 @@
           <button [disabled]="login.invalid" type="submit" color="primary" mat-raised-button>Submit</button>
         </div>
       </form>
-      <div class="table_export">
+      <div class="table_export" (click)="downlosd()">
         <button class="export_btn" (click)="exporter.exportTable('xlsx',{fileName:'OEE Report'})" mat-raised-button> Export</button>
         <!-- <a href="" class="export_btn">
                   <i class="material-icons">

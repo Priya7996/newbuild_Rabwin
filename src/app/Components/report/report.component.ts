@@ -80,6 +80,10 @@ export class ReportComponent implements OnInit {
   
   }
 
+  downlosd(){
+    Swal.fire("Download Successfully")
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewDialog, {
    
