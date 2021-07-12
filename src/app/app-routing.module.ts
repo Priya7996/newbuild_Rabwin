@@ -39,6 +39,8 @@ const routes: Routes = [
   
 { path: 'tv', loadChildren: () => import('./Components/tv/tv.module').then(m => m.TvModule) },
   
+{ path: 'color', loadChildren: () => import('./Components/color/color.module').then(m => m.ColorModule) },
+  
     
 ]
     
