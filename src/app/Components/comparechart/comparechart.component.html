@@ -277,7 +277,7 @@
                             <mat-form-field appearance="outline">
                                 <mat-select placeholder="Select Module" matNativeControl required
                                     formControlName="line" (selectionChange)="getsplit($event.value)">
-                                    <mat-option value="all">All</mat-option>
+                                    <mat-option value="all" *ngIf="rolename === 'Admin'">All</mat-option>
                                     <mat-option *ngFor="let mod of module_response" [value]="mod">
                                       {{mod}}
                                   </mat-option>
@@ -464,7 +464,7 @@
                             <mat-form-field appearance="outline">
                                 <mat-select placeholder="Select Module" matNativeControl required
                                     formControlName="line" (selectionChange)="getmodule($event.value)">
-                                    <mat-option value="all">All</mat-option>
+                                    <mat-option value="all" *ngIf="rolename1 === 'Admin'">All</mat-option>
                                     <mat-option *ngFor="let modd of response_module" [value]="modd">
                                       {{modd}}
                                   </mat-option>

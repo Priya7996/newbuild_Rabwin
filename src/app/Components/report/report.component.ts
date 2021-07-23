@@ -36,7 +36,7 @@ export class ReportComponent implements OnInit {
   O_MAC:any;
   daterangepicker:any;
   export_excel: any[] = [];
-  
+  rolename:any;
   public today: Date = new Date(new Date().toDateString());
   public weekStart: Date = new Date(new Date(new Date().setDate(new Date().getDate() - (new Date().getDay() + 7) % 7)).toDateString());
   public weekEnd: Date = new Date(new Date(new Date().setDate(new Date(new Date().setDate((new Date().getDate()
@@ -157,6 +157,10 @@ export class ReportComponent implements OnInit {
 
     }
   ngOnInit() {
+
+
+    this.rolename = localStorage.getItem('role_name');
+    console.log(this.rolename);
 
   this.login = this.fb.group({
       line:[""],

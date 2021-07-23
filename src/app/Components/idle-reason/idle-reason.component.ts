@@ -16,7 +16,7 @@ declare var gtag;
    styleUrls: ['./idle-reason.component.scss']
     }) 
     export class IdleReasonComponent implements OnInit {
-
+      rolename:any;
       displayedColumns: string[] = ['position', 'date', 'line', 'machine_name','operator','availability','perfomance','quality','oee'];
   dataSource = new MatTableDataSource();
       public today: Date = new Date(new Date().toDateString());
@@ -77,6 +77,8 @@ startDate:any;
     
         ngOnInit() {
 
+          this.rolename = localStorage.getItem('role_name');
+          console.log(this.rolename);
           
 gtag('config', 'G-JRVTCZ20DE');
 
@@ -104,9 +106,9 @@ gtag('config', 'G-JRVTCZ20DE');
               })
          this.service.getmachines().subscribe(res => {
             this.machine_response = res;
-            this.login.patchValue({
-              machine_name: this.machine_response[0],
-            })
+            // this.login.patchValue({
+            //   machine_name: this.machine_response[0],
+            // })
             this.service.getshift().subscribe(res => {
               this.shift_response = res;
               this.login.patchValue({

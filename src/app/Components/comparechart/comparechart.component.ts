@@ -67,6 +67,8 @@ export class ComparechartComponent implements OnInit {
   datpre2:any;
   // maxDate:any;
   // minDate:any;
+  rolename1:any;
+  rolename:any;
   sdate:any;
   edate:any;
   ndate:any;
@@ -144,7 +146,11 @@ export class ComparechartComponent implements OnInit {
   ngOnInit() {
 
 
+    this.rolename = localStorage.getItem('role_name');
+    console.log(this.rolename);
 
+    this.rolename1 = localStorage.getItem('role_name');
+    console.log(this.rolename);
     
      this.login = this.fb.group({
       line:[""],
@@ -174,9 +180,9 @@ export class ComparechartComponent implements OnInit {
           let ComMac = localStorage.getItem('COMMACHINE');
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
-        this.login.patchValue({
-          machine_name: this.machine_response[0],
-        })
+        // this.login.patchValue({
+        //   machine_name: this.machine_response[0],
+        // })
         this.service.getshift().subscribe(res => {
           this.shift_response = res; 
           this.login.patchValue({
@@ -229,9 +235,9 @@ export class ComparechartComponent implements OnInit {
         })
     this.service.machine_get().subscribe(res => {
       this.machine_get = res;
-      this.test.patchValue({
-        machine_name: this.machine_get[0],
-      })
+      // this.test.patchValue({
+      //   machine_name: this.machine_get[0],
+      // })
       this.service.shift_get().subscribe(res => {
         this.select_shift = res;
         this.test.patchValue({

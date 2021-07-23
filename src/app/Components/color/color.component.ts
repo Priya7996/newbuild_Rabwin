@@ -18,8 +18,8 @@ export class ColorComponent implements OnInit {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]); // read file as data url
     reader.onload = (event) => { // called once readAsDataURL is completed
-    this.url = event.target.result;
-     console.log(this.url)
+    // this.url = event.target.result;
+    //  console.log(this.url)
     }
     }
     }

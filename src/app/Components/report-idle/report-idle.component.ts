@@ -17,6 +17,8 @@ declare var Highcharts: any;
   styleUrls: ['./report-idle.component.scss']
 })
 export class ReportIdleComponent implements OnInit {
+
+  rolename:any;
   g_report:any;
   time:any;
   loop:any;
@@ -103,7 +105,8 @@ fiesr_date:any;
     }
     ngOnInit() {
 
-      
+      this.rolename = localStorage.getItem('role_name');
+      console.log(this.rolename);
  
 
       this.login = this.fb.group({
@@ -129,9 +132,9 @@ fiesr_date:any;
           })
       this.service.getmachines().subscribe(res => {
         this.machine_response = res;
-        this.login.patchValue({
-          machine_name: this.machine_response[0],
-        })
+        // this.login.patchValue({
+        //   machine_name: this.machine_response[0],
+        // })
         this.service.getshift().subscribe(res => {
           this.shift_response = res;
           this.login.patchValue({
