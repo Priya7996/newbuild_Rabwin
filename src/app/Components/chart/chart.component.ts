@@ -15,9 +15,9 @@ export class ChartComponent implements OnInit {
    }
 
   ngOnInit() {
-  this.myLoader = true;
+  // this.myLoader = true; 
   this.service.oee().subscribe(res =>{
-  this.myLoader = false;
+  // this.myLoader = false;
   this.oee = res;
   })
 
