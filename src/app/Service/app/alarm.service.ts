@@ -17,6 +17,11 @@ export class AlarmService {
   alarm_historyl(pageNo):Observable<any> {
     return this.http.get('alarm_histories?page='+pageNo+'&&per_page='+20 );
   }
+
+  god():Observable<any>{
+    return this.http.get('kpy_dashboard')
+
+}
 }
 
 // ?page=' +pageNo+'&&per_page='+20

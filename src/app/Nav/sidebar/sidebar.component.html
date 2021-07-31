@@ -18,9 +18,9 @@
  
         <h1 class="d-lg-none d-sm-block">{{tenant_name}}</h1>
 
-        <input type="text" [(ngModel)]="primaryColor"> <br>
+        <!-- <input type="text" [(ngModel)]="primaryColor"> <br>
         <button (click)="changeTheme(primaryColor)">Save</button>
-        <div class="block primary-background">Primary</div>  
+        <div class="block primary-background">Primary</div>   -->
       </div>
       <a href="javascript:;" class="sidenav_logo d-lg-none d-sm-block">
         <img src="../../../assets/images/rabwinnewlogtest.png">
@@ -67,7 +67,7 @@
         <a href="javascript:;">
           <mat-icon class="v-align-middle display">timelapse
           </mat-icon>
-          <span>Quality</span>
+          <span>Quality Entry</span>
         </a>
       </li>
     </ul>
@@ -104,6 +104,59 @@
           </a>
         </li>
 
+        <li [routerLink]="['/kpi-dashboard']"  routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">dashboard
+            </mat-icon>
+            <span>OEE</span>
+          </a>
+        </li>
+
+
+        
+        <li [routerLink]="['/idle_reason']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">assignment
+            </mat-icon>
+            <span>OEE Report</span>
+          </a>
+        </li>
+
+        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">timelapse
+            </mat-icon>
+            <span>Efficiency Report</span>
+          </a>                       
+        </li>
+
+        
+        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">file_copy
+            </mat-icon>
+            <span>General Report</span>
+          </a>
+        </li>
+
+        
+        <li [routerLink]="['/report_idle']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">data_usage
+            </mat-icon>
+            <span>Idle Reason Report</span>
+          </a>
+        </li>
+
+
+        <li [routerLink]="['/comparechart']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">compare
+            </mat-icon>
+            <span>Compare chart</span>
+          </a>
+        </li>
+
         <!-- <li [routerLink]="['/tv']"  routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">dashboard
@@ -116,17 +169,10 @@
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">notifications
             </mat-icon>
-            <span>Alarm</span>
+            <span>Alarms</span>
           </a>
         </li>
 
-        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">file_copy
-            </mat-icon>
-            <span>Report</span>
-          </a>
-        </li>
 
 
 
@@ -138,38 +184,11 @@
           </a>
         </li> -->
 
-        <li [routerLink]="['/idle_reason']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">assignment
-            </mat-icon>
-            <span>OEE Report</span>
-          </a>
-        </li>
 
 
-        <li [routerLink]="['/report_idle']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">data_usage
-            </mat-icon>
-            <span>Idle Reason Report</span>
-          </a>
-        </li>
+       
 
-        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">timelapse
-            </mat-icon>
-            <span>Efficiency</span>
-          </a>                       
-        </li>
-
-        <li [routerLink]="['/comparechart']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">compare
-            </mat-icon>
-            <span>Compare chart</span>
-          </a>
-        </li>
+      
 
 
         
@@ -181,7 +200,7 @@
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">timelapse
             </mat-icon>
-            <span>Quality</span>
+            <span>Quality Entry</span>
           </a>
         </li>
 
@@ -262,19 +281,12 @@
           </a>
         </li>
 
-        <li [routerLink]="['/alarm']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">notifications
-            </mat-icon>
-            <span>Alarm</span>
-          </a>
-        </li>
 
-        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
+        <li [routerLink]="['/kpi-dashboard']"  routerLinkActive="active-link">
           <a href="javascript:;">
-            <mat-icon class="v-align-middle display">file_copy
+            <mat-icon class="v-align-middle display">dashboard
             </mat-icon>
-            <span>Report</span>
+            <span>OEE</span>
           </a>
         </li>
 
@@ -285,13 +297,25 @@
             <span>OEE Report</span>
           </a>
         </li>
-        <!-- <li [routerLink]="['/idle_reason']" routerLinkActive="active-link">
+
+
+        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
-            <mat-icon class="v-align-middle display">assignment
+            <mat-icon class="v-align-middle display">timelapse
             </mat-icon>
-            <span>Production Report</span>
+            <span>Efficiency Report</span>
+          </a>                       
+        </li>
+
+        <li [routerLink]="['/report']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">file_copy
+            </mat-icon>
+            <span>General Report</span>
           </a>
-        </li> -->
+        </li>
+
+
         <li [routerLink]="['/report_idle']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">data_usage
@@ -300,13 +324,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/efficiency']" (click)="shifting()" routerLinkActive="active-link">
-          <a href="javascript:;">
-            <mat-icon class="v-align-middle display">timelapse
-            </mat-icon>
-            <span>Efficiency</span>
-          </a>                       
-        </li>
+        
         <li [routerLink]="['/comparechart']" (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">compare
@@ -314,6 +332,27 @@
             <span>Compare chart</span>
           </a>
         </li>
+
+        <li [routerLink]="['/alarm']" (click)="shifting()" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">notifications
+            </mat-icon>
+            <span>Alarm</span>
+          </a>
+        </li>
+
+      
+      
+        <!-- <li [routerLink]="['/idle_reason']" routerLinkActive="active-link">
+          <a href="javascript:;">
+            <mat-icon class="v-align-middle display">assignment
+            </mat-icon>
+            <span>Production Report</span>
+          </a>
+        </li> -->
+       
+
+       
 
 
     

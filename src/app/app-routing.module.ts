@@ -41,6 +41,8 @@ const routes: Routes = [
   
 { path: 'color', loadChildren: () => import('./Components/color/color.module').then(m => m.ColorModule) },
   
+{ path: 'kpi-dashboard', loadChildren: () => import('./Components/kpi-dashboard/kpi-dashboard.module').then(m => m.KpiDashboardModule) },
+  
     
 ]
     
