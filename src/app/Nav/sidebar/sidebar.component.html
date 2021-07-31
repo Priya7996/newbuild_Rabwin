@@ -17,6 +17,10 @@
         
  
         <h1 class="d-lg-none d-sm-block">{{tenant_name}}</h1>
+
+        <input type="text" [(ngModel)]="primaryColor"> <br>
+        <button (click)="changeTheme(primaryColor)">Save</button>
+        <div class="block primary-background">Primary</div>  
       </div>
       <a href="javascript:;" class="sidenav_logo d-lg-none d-sm-block">
         <img src="../../../assets/images/rabwinnewlogtest.png">

@@ -4224,3 +4224,26 @@ mat-icon.mat-icon.notranslate.material-icons.mat-icon-no-color {
 }
 
 // *****************UI for Header End*******************
+
+$primary: var(--primary-color);
+$secondary: var(--secondary-color);
+
+h1 {
+  color: $primary;
+}
+h1:hover {
+  color: $secondary;
+}
+
+.block {
+  width: 100px;
+  height: 100px;
+}
+
+.primary-background {
+  background-color: $primary;
+}
+
+.secondary-background {
+  background-color: $secondary;
+}

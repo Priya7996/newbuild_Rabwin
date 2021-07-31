@@ -15,6 +15,9 @@ import Swal from 'sweetalert2';
 })
 export class SidebarComponent implements OnInit {
   count_machine:any;
+  pri: any;
+  primaryColor: string;
+
     opened: boolean;
     public sidebarToggled = false;
   show1: boolean;
@@ -51,7 +54,14 @@ export class SidebarComponent implements OnInit {
     this.rolename = localStorage.getItem('role_name');
   
   }
-
+  changeTheme(primary: string) {
+    console.log(primary);
+    localStorage.setItem('pri_mary_col_vapmso', primary);
+  
+  
+    document.documentElement.style.setProperty('--primary-color', primary);
+  
+  }
 
   shift(){
     this.servie.machine_count().pipe(untilDestroyed(this)).subscribe(res=>{
@@ -93,6 +103,9 @@ export class SidebarComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     if(changes.navStatus.currentValue){
+      this.pri = localStorage.getItem('color_theme')
+      console.log(this.pri);
+      this.changeTheme(this.pri);
       this.tenant_name = localStorage.getItem('ten_name');
 
       this.rolename = localStorage.getItem('role_name');

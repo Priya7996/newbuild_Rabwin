@@ -70,6 +70,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('id', res.id)
       localStorage.setItem('role_name', res.role);
       localStorage.setItem('ten_name', res.tenant);
+      localStorage.setItem('color_theme',res.clr_code)
+
 
       let data = res.role;
       if (res === false) {
