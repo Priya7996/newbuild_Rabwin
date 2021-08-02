@@ -104,7 +104,7 @@
           </a>
         </li>
 
-        <li [routerLink]="['/kpi-dashboard']"  routerLinkActive="active-link">
+        <li [routerLink]="['/kpi-dashboard']"  (click)="shifting()" routerLinkActive="active-link">
           <a href="javascript:;">
             <mat-icon class="v-align-middle display">dashboard
             </mat-icon>

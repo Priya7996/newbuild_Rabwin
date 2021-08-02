@@ -78,11 +78,20 @@
                 }
             }
         }
+        // @media (max-width:1024px){
+   
+        //     .machine_list .machine_item{
+        //             // width: 24%;
+        //             width: 18.5% !important;
+        //         }
+           
+        // }
         .machine_list{
             display: flex;
             flex-wrap: wrap;
             .machine_item{
-                width: 24%;
+                // width: 24%;
+                width: 19%;
                 margin: 0px 10px 20px 0;
                 .machine_header{
                     display: flex;
@@ -383,3 +392,30 @@
 .highcharts-data-table tr:hover {
     background: #f1f7ff;
 } 
+
+
+#page_area.page .machine_list .machine_item.stop .machine_body .metrics{
+    color:#F81301;
+    font-weight: 500;
+}
+#page_area.page .machine_list .machine_item.active .machine_body .metrics{
+        color: #16a500;
+    font-weight: 500;
+}
+#page_area.page .machine_list .machine_item.idle .machine_body .metrics{
+        color: #646262;
+    font-weight: 500;
+}
+#page_area.page .machine_list .machine_item.stop .machine_body .metrics{
+    color:#F81301;
+    font-weight: 600;
+}
+#page_area.page .machine_list .machine_item.active .machine_body .metrics{
+        color: #16a500;
+    font-weight: 600;
+}
+#page_area.page .machine_list .machine_item.idle .machine_body .metrics{
+        color: #646262;
+    font-weight: 600;
+}
+

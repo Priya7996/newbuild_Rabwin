@@ -1591,14 +1591,25 @@ table.table.report_table {
 
 
 .page{
+    // transition: width 0.3s linear;
+    // background-color: #0e121b;
+    // height: calc(100vh - 92px);
+    // padding: 16px;
+    // overflow-x: hidden;
+    // margin-top: 56px;
+    // padding-bottom: 0;
+    // width: 100%;
+
     transition: width 0.3s linear;
     background-color: #0e121b;
-    height: calc(100vh - 92px);
-    padding: 16px;
+    //height: calc(100vh - 92px);
+     padding: 16px;
     overflow-x: hidden;
-    margin-top: 56px;
+   // margin-top: 56px;
     padding-bottom: 0;
     width: 100%;
+    padding-block-start: 65px;
+    height: 100vh;
     .section_top_padding{
         padding: 0;
         .page_title_sec{
