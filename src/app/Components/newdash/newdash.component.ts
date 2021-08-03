@@ -11,7 +11,9 @@ declare var Highcharts: any;
   styleUrls: ['./newdash.component.scss']
 })
 export class NewdashComponent implements OnInit {
-
+  maxDate:any;
+  addEvent:any;
+  atartDate:any; 
   count_machine:any;
   a_dashboard:any; 
   valuen:any; 
