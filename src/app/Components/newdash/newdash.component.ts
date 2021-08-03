@@ -13,7 +13,7 @@ declare var Highcharts: any;
 export class NewdashComponent implements OnInit {
   maxDate:any;
   addEvent:any;
-  atartDate:any; 
+  startDate:any; 
   count_machine:any;
   a_dashboard:any; 
   valuen:any; 
