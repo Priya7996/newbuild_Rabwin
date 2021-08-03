@@ -29,12 +29,12 @@ export class KpiDashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.myLoader = true;
+    this.myLoader = true;
     this.service.god().subscribe(res =>{
       this.machine_response = res;
       console.log(this.machine_response)
       
-      // this.myLoader = false;
+      this.myLoader = false;
       setTimeout (() => {
 
       for(let i in this.machine_response){

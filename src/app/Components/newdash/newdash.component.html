@@ -4,37 +4,45 @@
     </div>
     <div class="section_top_padding">
       <div class="page_title_sec">
-        <h2>Dashboard - Overall Efficiency</h2>
+        <h2>Dashboard - Old Overall Efficiency</h2>
          <div class="shift_details">
-          <h2> <b><p [routerLink]="['/newdash']">GO</p></b></h2>
 
           <div class="shift_view box_sec">
             <!-- <mat-icon class="v-align-middle display">check_circle
             </mat-icon> -->
 
-           <h2> <b><p>Current Shift</p></b></h2>
-            <div class="view_box">
-              <span>{{s_num}}</span>
-            </div>
+              <mat-form-field appearance="outline">
+                <mat-select placeholder="Select Shift" matNativeControl required
+                [formControl]="shift_num"  (selectionChange)="getshift($event.value)">
+                    <mat-option value="all">All</mat-option>
+
+                    <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
+                        {{shift.shift_no}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>    
+            
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="picker" [formControl]="date" (dateInput)="addEvent('input', $event)" [max]="maxDate" (dateChange)="addEvent('change', $event)">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
           </div>
-          <div class="last_update_view box_sec">
+
+          <h2> <b><p (click)="allselect()">GO</p></b></h2>
+
+          <!-- <div class="last_update_view box_sec">
             <mat-icon class="v-align-middle display">query_builder</mat-icon>
             <p class="time_date">Last Update <br>
               Time &amp; Date</p>
   
-            <!-- <p>
-              <span>
-              {{today | date:'h:mm:ss a'  }} <br>
-              </span>
-              <span>{{ltime | date:'dd-MM-yyyy h:mm:ss a'}}</span>
-            </p> -->
-
-            <p><span>
+                     <p><span>
               {{ltime | date:'h:mm:ss a'  }} <br>
               </span>
               <span>{{ltime | date:'dd-MM-yyyy'}}</span>
             </p>
-          </div>
+          </div> -->
             <!-- <button class="btn btn_link" (click)="refresh()" matTooltip="Refresh">
               Update now
               <mat-icon class="v-align-middle display">cached
@@ -47,7 +55,7 @@
         <div class="line_list" >
           <div class="line_item"  *ngFor = "let value of a_dashboard" >
             <div class="line_item_content">
-              <div class="circle_chart" (click)="char(value?.Line)">
+              <div class="circle_chart">
                 <h3>{{value?.Line}}</h3>
                 <div class="circle_chart_inner">
                 <div class="circle_chart_left">

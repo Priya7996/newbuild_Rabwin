@@ -19,7 +19,9 @@ export class DashboardService {
   // getmachines1(live):Observable<any> {
   //   return this.http.get('get_machine_status2?live=' + live)
   // }
-
+  getshift():Observable<any>{
+    return this.http.get('shifts')
+  }
   getmachines1(register):Observable<any>{
     return this.http.get('get_machine_status2?live=' + register)
   }

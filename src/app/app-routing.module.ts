@@ -43,6 +43,8 @@ const routes: Routes = [
   
 { path: 'kpi-dashboard', loadChildren: () => import('./Components/kpi-dashboard/kpi-dashboard.module').then(m => m.KpiDashboardModule) },
   
+{ path: 'newdash', loadChildren: () => import('./Components/newdash/newdash.module').then(m => m.NewdashModule) },
+  
     
 ]
     
