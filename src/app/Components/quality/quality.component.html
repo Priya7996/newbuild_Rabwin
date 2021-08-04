@@ -91,12 +91,12 @@
                                 <e-preset label="Last Year" [start]='yearStart' [end]='yearEnd'></e-preset>
                             </e-presets>
                         </ejs-daterangepicker>
-                    </div> --> 
+                    </div> -->  
  
                     <div class="filter_field date_picker" color="primary">
                         <mat-form-field>
                             <mat-label>Date</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName="date" (dateInput)="addEvent('input', $event)" [max]="maxDate" (dateChange)="addEvent('change', $event)">
+                            <input matInput [matDatepicker]="picker" formControlName="date" (dateInput)="addEvent('input', $event)" [min]="minDate" [max]="maxDate" (dateChange)="addEvent('change', $event)">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                           </mat-form-field>

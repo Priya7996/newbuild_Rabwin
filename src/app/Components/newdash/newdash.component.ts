@@ -3,6 +3,8 @@ import { NavbarService } from '../../Nav/navbar.service';
 import { DashboardService } from '../../Service/app/dashboard.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { FormGroup, FormBuilder,Validators,FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2'
 
 declare var Highcharts: any;
 @Component({
@@ -12,21 +14,24 @@ declare var Highcharts: any;
 })
 export class NewdashComponent implements OnInit {
   maxDate:any;
+  dat1:any;
+  a_dashboard:any;
+  shift_response1:any;
   addEvent:any;
   startDate:any; 
   count_machine:any;
-  a_dashboard:any; 
+  a_dashboard1:any; 
   valuen:any; 
   data:any;
   s_num:any;
   ltime:any;
   shift_num = new FormControl('', [Validators.required]);
   date = new FormControl('', [Validators.required]);
-
+  takohkol :any;
   myLoader = false;
   today: number = Date.now();
   shift_response:any;
-  constructor(private nav:NavbarService,private service: DashboardService) {
+  constructor(private datepipe: DatePipe,private nav:NavbarService,private service: DashboardService) {
     this.nav.show();
     setInterval(() => {this.today = Date.now()}, 1);
 
@@ -36,6 +41,8 @@ export class NewdashComponent implements OnInit {
 
   ngOnInit() {
 
+    this.takohkol = "No data"
+
 
     this.service.getshift().subscribe(res => {
       this.shift_response = res;
@@ -44,23 +51,23 @@ export class NewdashComponent implements OnInit {
 
     this.service.andon().pipe(untilDestroyed(this)).subscribe(res=>{
     
-       this.a_dashboard = res;
+       this.a_dashboard1 = res;
       //  this.s_num = res.shift_no[0];
       //  this.ltime = res.show_time;
        this.myLoader = false;
-       for(let i in this.a_dashboard){
-        this.ltime = this.a_dashboard[i].show_time;
-        this.s_num = this.a_dashboard[i].shift_no;
+    //    for(let i in this.a_dashboard){
+    //     this.ltime = this.a_dashboard[i].show_time;
+    //     this.s_num = this.a_dashboard[i].shift_no;
 
        
-     }
-       for(let i in this.a_dashboard){
-         this.valuen = this.a_dashboard[i].status;
-         for(let j in this.a_dashboard[i].status){
+    //  }
+    //    for(let i in this.a_dashboard){
+    //      this.valuen = this.a_dashboard[i].status;
+    //      for(let j in this.a_dashboard[i].status){
 
-          this.data = this.a_dashboard[i].status[j].machine; 
-       }
-      }
+    //       this.data = this.a_dashboard[i].status[j].machine; 
+    //    }
+    //   }
       })
 
 
@@ -214,8 +221,17 @@ console.log(shift)
 }
 
 allselect(){
-  alert("shiftdate");
+  this.dat1 = new DatePipe('en-US').transform(this.date.value, 'dd-MM-yyyy');
+
   console.log(this.shift_num.value,this.date.value)
+  this.service.getshift2(this.dat1,this.shift_num.value).subscribe(res => {
+    this.shift_response1 = res;
+    this.a_dashboard = res;
+    // Swal.fire(res.msg)
+
+
+  })
+  // http://3.7.120.8:3000/api/v1/prev_dashboards?date=02-08-2021&shift_no=3
 }
   refresh(){
     location.reload();

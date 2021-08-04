@@ -32,6 +32,8 @@ export class QualityComponent implements OnInit {
   first_loading: any;
   public maxDate: Object = new Date();
 
+  public minDate: Object = new Date();  //minDate is 1st Jan 2019
+
   constructor(private datepipe: DatePipe,private service: ReportService,public dialog: MatDialog,private nav: NavbarService, private fb: FormBuilder,) {
     this.nav.show()
   }

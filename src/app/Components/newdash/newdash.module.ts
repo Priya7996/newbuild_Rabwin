@@ -8,6 +8,7 @@ import { CountUpModule } from 'ngx-countup';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DashboardService} from '../../Service/app/dashboard.service';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [NewdashComponent],
@@ -40,7 +41,8 @@ import { DashboardService} from '../../Service/app/dashboard.service';
     })
   
   ],
-  providers:[DashboardService]
+  providers:[DashboardService,DatePipe],
+ 
 
 })
 export class NewdashModule { }

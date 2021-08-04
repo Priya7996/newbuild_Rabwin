@@ -22,6 +22,12 @@ export class DashboardService {
   getshift():Observable<any>{
     return this.http.get('shifts')
   }
+
+  getshift2(date,shift):Observable<any>{
+    return this.http.get('prev_dashboards?date=' + date + '&&shift_no=' + shift )
+  }
+
+  // http://3.7.120.8:3000/api/v1/prev_dashboards?date=02-08-2021&shift_no=3
   getmachines1(register):Observable<any>{
     return this.http.get('get_machine_status2?live=' + register)
   }

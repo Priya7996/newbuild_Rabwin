@@ -1599,6 +1599,7 @@ table.table.report_table {
     // margin-top: 56px;
     // padding-bottom: 0;
     // width: 100%;
+ 
 
     transition: width 0.3s linear;
     background-color: #0e121b;
@@ -1606,10 +1607,11 @@ table.table.report_table {
      padding: 16px;
     overflow-x: hidden;
    // margin-top: 56px;
-    padding-bottom: 0;
     width: 100%;
-    padding-block-start: 65px;
-    height: 95vh;
+
+    height:97vh;
+    padding-block-start: 66px;
+    padding-bottom:1rem;
     .section_top_padding{
         padding: 0;
         .page_title_sec{
@@ -2128,6 +2130,8 @@ table.table.report_table {
                     margin-bottom: 10px;
                     padding: 0;
                     height: 5px;
+                    font-size:none;
+
                     overflow: hidden;
                     // background: #1d4a6e;
                     border-radius: 6px;
@@ -4150,6 +4154,9 @@ span.material-icons.one {
         color: inherit;
 
 }
+.header .company_name h1{
+    font-size:23px
+    }
 // .as-content{
 //     margin-left: 192px;
 // }
