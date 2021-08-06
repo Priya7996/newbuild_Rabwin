@@ -4102,6 +4102,12 @@ span.material-icons.one {
 //   }
 
 
+@media(max-width:360px){
+    .header .company_name h1 {
+        font-size: 21px;
+    }
+}
+
 @media screen and (max-width: 1024px) and (min-width: 600px) {
     .shift_sec .shift_card {
        

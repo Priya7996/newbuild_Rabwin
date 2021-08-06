@@ -24,6 +24,7 @@ export class EfficiencyComponent implements OnInit {
   mac_response:any;
   myLoader = false;
   fina:any;
+  lnth:any;
   daterangepicker:any;
   export_excel: any[] = [];
   module_response:any;
@@ -215,6 +216,9 @@ export class EfficiencyComponent implements OnInit {
         if(this.result == '0'){
           Swal.fire("No Efficiency Report Found")
         }
+        console.log(res);
+        this.lnth = res;
+        console.log(this.lnth);
         this.g_report = res[0];
         this.get_report = res[0].route_card_report;
         this.fina = res;

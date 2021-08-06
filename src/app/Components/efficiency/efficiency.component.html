@@ -71,9 +71,9 @@
               
             </div>
         </div>
-        <mat-card class="card_sec"> 
+        <mat-card class="card_sec" > 
             <div class="table_wrapper">
-                <table class="table report_table">
+                <table class="table report_table" *ngIf="lnth?.length>0">
                     <thead>
                         <tr></tr>
                         <tr class="sticky">
@@ -103,7 +103,7 @@
                     </thead>
                     <tbody *ngFor="let gating of fina;let i = index">
                       <!-- {{gating.accept}} -->
-                        <tr *ngFor="let show_report of gating.route_card_report">
+                        <tr *ngFor="let show_report of gating.route_card_report;let i = index">
                             <td>{{i+1}}</td>
                             <td>{{g_report?.date | date:'dd-MM-yyyy'}}</td>
 
@@ -138,7 +138,50 @@
 
                         </tr>
                     </tbody>
+
+
+
+                 
                 </table>
+
+
+                <table class="table report_table" *ngIf="lnth?.length==0">
+                  <thead>
+                      <tr></tr>
+                      <tr class="sticky">
+                          <th>S.no</th>
+                          <th class="date">Date</th>
+
+                          <th>Shift</th>
+                          <th>Line</th>
+                          <th>Machine Name</th>
+                          <th>Operator Name</th>
+                          <th>Operator Id</th>
+                          <th>Mode</th>
+                          <th>Route Card Number</th>
+                          <th>Route Card Start Time</th>
+                          <th>Route Card End Time</th>
+                          <!-- <th>Duration</th> -->
+                          <th>Target</th>
+                          <th>Actual</th>
+                          <th>Accept</th>
+                          <th>Reject</th>
+                          <th>Rework</th>
+                          <th>Efficiency(%)</th>
+                        
+                         
+                        
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <!-- {{gating.accept}} -->
+                     
+                  </tbody>
+
+
+
+               
+              </table>
 
             </div>
             <div *ngIf="get_report?.length==0" class="no_data_found">

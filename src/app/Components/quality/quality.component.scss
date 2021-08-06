@@ -55,3 +55,21 @@ mat-dialog-content.mat-typography.mat-dialog-content {
   .point{
       cursor: pointer;
   }
+
+  .total_parts div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quality_ip_page .line_machines_list .line_machine_item .line_mac_box .total_parts{
+    padding: 0px 8px;
+}
+.quality_ip_page .line_machines_list .line_machine_item .line_mac_box .total_parts span{
+    font-size: 30px;
+   
+    font-weight: 500;
+}
+.mt-12{
+    margin-top: -12px;
+}

@@ -222,11 +222,15 @@ console.log(shift)
 
 allselect(){
   this.dat1 = new DatePipe('en-US').transform(this.date.value, 'dd-MM-yyyy');
+  this.myLoader = true;
 
   console.log(this.shift_num.value,this.date.value)
   this.service.getshift2(this.dat1,this.shift_num.value).subscribe(res => {
     this.shift_response1 = res;
+    this.myLoader = false;
+
     this.a_dashboard = res;
+
     // Swal.fire(res.msg)
 
 
