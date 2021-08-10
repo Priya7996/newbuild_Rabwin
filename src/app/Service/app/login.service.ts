@@ -21,6 +21,10 @@ export class LoginService {
     return this.http.get('check_status')
   }
 
+  geto():Observable<any> {
+    return this.http.get('get_user')
+  }
+
   // forgot(params):Observable<any> {
   //   return this.http.get('sessions/forgot_pwd='+params)
   // }

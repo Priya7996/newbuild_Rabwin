@@ -24,6 +24,10 @@ export class LoginComponent implements OnInit {
     this.nav.hide();
   }
   ngOnInit() {
+
+    this.service.geto().pipe(untilDestroyed(this)).subscribe(res=>{
+console.log(res);
+    })
     this.Signup = localStorage.getItem('sign');
     // if(this.signup === 'false'){
     //   alert("no signup")

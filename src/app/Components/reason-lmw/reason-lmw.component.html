@@ -10,8 +10,9 @@
             <div class="idle_reason_list">
                 <div class="idle_reason_item" *ngFor="let reason of reason_table; let i = index">
                     <div class="icon">
-                        <mat-icon class="v-align-middle display">hourglass_empty
-                        </mat-icon>
+                        <span class="v-align-middle display">{{reason?.code}}
+                        </span>
+                        
                     </div>
                     <h3 >{{reason?.reason}}</h3>
 
