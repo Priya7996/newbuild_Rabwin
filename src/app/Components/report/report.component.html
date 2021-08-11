@@ -277,7 +277,10 @@
                   </ng-container>
                 
 
-                  
+                  <ng-container matColumnDef="ncq">
+                    <th mat-header-cell *matHeaderCellDef>NCQ</th>
+                    <td mat-cell *matCellDef="let element"> {{element.target }} </td>
+                  </ng-container>
 
                   <ng-container matColumnDef="accept">
                     <th mat-header-cell *matHeaderCellDef>Accept</th>

@@ -45,7 +45,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Module" matNativeControl required
                                 formControlName="line" (selectionChange)="getsplit($event.value)">
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
                                 <mat-option *ngFor="let mod of module_response" [value]="mod">
                                   {{mod}}
                               </mat-option>
@@ -57,7 +57,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Machine" matNativeControl required
                                 formControlName="machine_name" >
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
 
                                 <mat-option *ngFor="let Machine of mac_response" [value]="Machine">
                                     {{Machine}}
@@ -71,7 +71,7 @@
                         <mat-form-field appearance="outline">
                             <mat-select placeholder="Select Shift" matNativeControl required
                                 formControlName="shift_num" >
-                                <mat-option value="all">All</mat-option>
+                                <!-- <mat-option value="all">All</mat-option> -->
       
                                 <mat-option *ngFor="let shift of shift_response" [value]="shift.shift_no">
                                     {{shift.shift_no}}
@@ -142,7 +142,7 @@
                                 <p style="font-size: 28px;">NCQ <mat-icon class="v-align-middle display">arrow_forward
                                 </mat-icon> 
                                 </p>
-                                <span>2 </span>
+                                <span>{{qua.ncq}} </span>
                             </div>
                         </div>
                         <div class="total_parts" style="display: flex; flex-direction: column; align-items: stretch; padding-top: .5rem;">
@@ -151,11 +151,11 @@
                                 </p>
                                 <span style="font-size: 26px;word-break: break-all;">{{qua.root_card}} </span>
                             </div>
-                            <div class="mt-12"  style="border: 1px solid gray; margin: -3px; justify-content: end; padding: 8px; border-top: 0;">
+                            <!-- <div class="mt-12"  style="border: 1px solid gray; margin: -3px; justify-content: end; padding: 8px; border-top: 0;">
                                 <p style="font-size: 20px; white-space: nowrap; padding-right: 20px;">Operation No 
                                 </p>
                                 <span style="font-size: 26px;word-break: break-all;">12</span>
-                            </div>
+                            </div> -->
                             <div class="mt-12"  style="border: 1px solid gray; margin: -3px;justify-content: end; padding: 8px; border-top: 0;margin-bottom: 6px;">
                                 <p style="font-size: 20px; white-space: nowrap; padding-right: 20px;">Operator Name 
                                 </p>
@@ -197,16 +197,16 @@
                                     </div>
                                     <!-- <button type="button" class="btn btn_gray">Go</button> -->
                                 </div>
-                                <div class="filter_field" style="font-weight: 400; text-align: left; margin: 5px 0; font-size: 20px;">
+                                <!-- <div class="filter_field" style="font-weight: 400; text-align: left; margin: 5px 0; font-size: 20px;">
                                     <mat-label> Remarks</mat-label>
                                     <mat-form-field appearance="outline" style="    border-radius: 5px;background: #1e1c1c;width: 100%;border: 1px solid #666363; height: 50px;">
                                         <input matInput placeholder="Enter Rejected Parts" value=" Remarks" style="font-size: 20px; line-height: 5;  margin-top: -11px;" readonly>
                                     </mat-form-field>
-                                </div>
-                                <div class="accepted_parts" style="justify-content: center;    margin-top: 1rem;">
+                                </div> -->
+                                <!-- <div class="accepted_parts" style="justify-content: center;    margin-top: 1rem;">
                                     <h3 style="padding: 5px;">Submit</h3>
                                     
-                                </div>
+                                </div> -->
                             </form>
                             <ul>
                                 <!-- <li>

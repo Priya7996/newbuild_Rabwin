@@ -208,8 +208,11 @@ export class Add {
   myLoader1 = false;
   qdat:any;
   qmachi:any;
+  accept = new FormControl('', [Validators.required]);
+  subtract:any;
   rejection = new FormControl('', [Validators.required]);
   rework = new FormControl('', [Validators.required]);
+  reason = new FormControl('', [Validators.required]);
   isShown: boolean = false ;
   get_report1: any;
   get_reporting: any;
@@ -262,14 +265,22 @@ this.myLoader1 = true;
   toggleShow(i,val) {
     this.enableEdit = true; 
     this.enableEditIndex = i;
-    this.rejection = new FormControl(val.rejection, [Validators.required]);
+    console.log(val.rejection)
+    this.rejection = new FormControl(val.rejection1, [Validators.required]);
     this.rework = new FormControl(val.rework, [Validators.required]);
+    this.accept = new FormControl(val.accept, [Validators.required]);
+
 
     if(i){
       this.isShown = ! this.isShown;
     }
  }
  save(rep,j){
+   console.log(this.accept.value)
+   console.log(this.rework.value)
+   console.log(this.rejection.value)
+   console.log(this.reason.value)
+
   console.log(rep)
    this.e_id = localStorage.getItem('edit_id');
 
@@ -282,16 +293,24 @@ this.myLoader1 = true;
   
    this.e_id = localStorage.getItem('edit_id');
   let index = this.g_report.route_card_report.indexOf(rep);
-  rep.rejection = parseInt(this.rejection.value);
+  console.log(rep.rejection)
+  rep.rejection1 = parseInt(this.rejection.value);
     rep.rework = parseInt(this.rework.value);
-    let addnumber = (rep.rejection+ rep.rework)
+    rep.accept = parseInt(this.accept.value);
+    let addnumber = (rep.rejection1+ rep.rework + rep.accept)
     console.log(addnumber)
+    this.subtract = (rep.actual - addnumber);
+    console.log(this.subtract);
+    rep.rejection = parseInt(this.subtract);
+
     if(addnumber > rep.actual){
-      Swal.fire("Please verify actual parts")
+      Swal.fire("Greater than actual Production")
     }
     else{
 
       this.g_report.id = this.e_id
+      this.g_report.edit_reason= this.reason.value;
+
       this.g_report.route_card_report[index] = rep;
       this.myLoader1 = true;
 
